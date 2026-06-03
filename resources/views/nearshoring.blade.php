@@ -24,28 +24,22 @@
 </section>
 
 <section class="softura-service-row">
-    
     <div class="onsh-free-images">
         <div class="onsh-card-back left">
             <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&h=400&auto=format&fit=crop" alt="Desarrolladores Softura">
         </div>
-        
         <div class="onsh-card-back right">
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&h=400&auto=format&fit=crop" alt="Métricas de desarrollo">
-        </div>
-        
+        </div> 
         <div class="onsh-card-main">
             <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&h=480&auto=format&fit=crop" alt="Reunión Onshoring">
         </div>
     </div>
-
     <div class="onsh-free-content">
-        <h2 class="onsh-title-fluid">ONSHORING</h2>
-        
+        <h2 class="onsh-title-fluid">ONSHORING</h2>  
         <p class="onsh-desc-fluid">
             En esta modalidad, tu empresa nos transfiere las responsabilidades referentes al cumplimiento de tareas relacionadas con el desarrollo de software. No necesitas crecer tu nómina. Contamos con células especializadas para comenzar. Pertenecemos al padrón del <strong>REPSE</strong> (Registro de Prestadoras de Servicios Especializados u Obras Especializadas), obligatorio de la STPS para regular a las empresas que ofrecen servicios especializados.
         </p>
-        
         <div class="onsh-actions-container">
             <div class="onsh-badge-gold">
                 <div class="onsh-badge-inner">
@@ -62,21 +56,14 @@
     <div class="onsh-line-decorator right-side"></div>
 </section>
 
-
-
-
 <section class="nearsh-section-wrapper">
-    <div class="nearsh-container-split">
-        
+    <div class="nearsh-container-split">  
         <div class="onsh-line-decorator left-side"></div>
-
         <div class="nearsh-content-col">
             <h2 class="nearsh-title-fluid">NEARSHORING</h2>
-            
             <p class="nearsh-desc-fluid">
                 Con este modelo de externalización de servicios, brindamos una solución integral a empresas establecidas en el extranjero (E.U.A. y Latinoamérica). A diferencia del onshoring, esta modalidad se enfoca únicamente en el desarrollo de software de manera remota, pensando en quienes no cuenten con un equipo de TI dedicado al desarrollo dentro de su empresa.
             </p>
-
             <div class="nearsh-bullets-group">
                 <div class="nearsh-bullet-section">
                     <h3>Servicios de Onshoring:</h3>
@@ -85,7 +72,6 @@
                         <li>Digitalización y alcance en toda Latinoamérica.</li>
                     </ul>
                 </div>
-
                 <div class="nearsh-bullet-section">
                     <h3>Servicios de Outsourcing / Staffing:</h3>
                     <ul>
@@ -94,23 +80,18 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        
+        </div>  
         <div class="nearsh-image-col">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&h=600&auto=format&fit=crop" alt="Vista del planeta conectividad">
         </div>
-
     </div>
 </section>
 
-<section class="softura-support-fluid-row">
-    
+<section class="softura-support-fluid-row"> 
     <div class="supp-fluid-header">
         <h2 class="supp-fluid-title">TE ACOMPAÑAMOS EN TODO MOMENTO</h2>
-    </div>
-    
-    <div class="supp-fluid-body-grid">
-        
+    </div> 
+    <div class="supp-fluid-body-grid">     
         <div class="supp-fluid-content">
             <p class="supp-fluid-lead">
                 Más que un proveedor, somos tu aliado tecnológico a largo plazo.
@@ -119,16 +100,12 @@
                 Te acompañamos antes, durante y después de cada proyecto, brindando soporte técnico y creatividad para asegurar que tus soluciones evolucionen, generen valor y sigan impulsando el crecimiento de tu negocio.
             </p>
         </div>
-
         <div class="supp-fluid-image-col">
             <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=600&h=420&auto=format&fit=crop" alt="Equipo Softura acompañamiento tecnológico">
-        </div>
-        
-    </div>
-    
+        </div>      
+    </div>   
     <div class="supp-line-decorator bottom-side"></div>
 </section>
-
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const opciones = {
@@ -137,7 +114,6 @@
         // Usamos un umbral balanceado para que detecte rápido tanto al bajar como al subir
         threshold: 0.1 
     };
-
     const activarMovimiento = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -150,22 +126,18 @@
             }
         });
     };
-
     const descriptorScroll = new IntersectionObserver(activarMovimiento, opciones);
-
     const seccionOnshoring = document.querySelector("section.softura-service-row");
     if (seccionOnshoring) {
         descriptorScroll.observe(seccionOnshoring);
     }
   });
-
   document.addEventListener("DOMContentLoaded", () => {
     const opciones = {
         root: null, 
         rootMargin: "0px",
         threshold: 0.1 // Sensibilidad equilibrada para registrar la entrada y salida
     };
-
     const activarMovimiento = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -177,29 +149,24 @@
             }
         });
     };
-
     const descriptorScroll = new IntersectionObserver(activarMovimiento, opciones);
-
     // Registramos la sección de Onshoring
     const seccionOnshoring = document.querySelector("section.softura-service-row");
     if (seccionOnshoring) {
         descriptorScroll.observe(seccionOnshoring);
     }
-
     // Registramos la sección de Nearshoring usando el contenedor interno del Grid
     const seccionNearshoring = document.querySelector(".nearsh-container-split");
     if (seccionNearshoring) {
         descriptorScroll.observe(seccionNearshoring);
     }
 });
-
 document.addEventListener("DOMContentLoaded", () => {
     const opciones = {
         root: null, 
         rootMargin: "0px",
         threshold: 0.1
     };
-
     const activarMovimiento = (entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -209,30 +176,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     };
-
     const descriptorScroll = new IntersectionObserver(activarMovimiento, opciones);
-
     // 1. Radar Onshoring
     const seccionOnshoring = document.querySelector("section.softura-service-row");
     if (seccionOnshoring) {
         descriptorScroll.observe(seccionOnshoring);
     }
-
     // 2. Radar Nearshoring
     const seccionNearshoring = document.querySelector(".nearsh-container-split");
     if (seccionNearshoring) {
         descriptorScroll.observe(seccionNearshoring);
     }
-
     // 3. Radar Acompañamiento Fluido (Nueva sección)
     const seccionSoporteFluido = document.querySelector("section.softura-support-fluid-row");
     if (seccionSoporteFluido) {
         descriptorScroll.observe(seccionSoporteFluido);
     }
 });
-
-
-
 </script>
 
 
