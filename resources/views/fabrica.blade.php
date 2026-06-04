@@ -1,68 +1,63 @@
 @extends('layouts.web')
 
 @section('title', 'Fábrica de Software — Softura Solutions')
+@section('body-class', 'page-fabrica deck-page')
 
 @push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link rel="stylesheet" href="/css/estilos3.css">
+<link rel="stylesheet" href="{{ asset('css/softura-deck.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home-polish.css') }}">
 @endpush
 
 @section('content')
 
-<main class="main-container">
-  <header class="section-header">
-    <span class="badge">
-      <i class="fas fa-rocket"></i> SOLUCIONES QUE IMPULSAN TU NEGOCIO
-    </span>
-    <h1>Software <span>a la Medida</span></h1>
-    <p class="subtitle">
-      Buscamos que tu empresa cuente con el impulso necesario para crecer y consolidarse día a día.<br>
-      Te ayudamos a alcanzar tus objetivos con el desarrollo de software específico y especializado que necesitas.
-    </p>
-  </header>
-
-  <section class="services-grid">
-    <article class="service-item">
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400" alt="Automatiza procesos">
-        <div class="icon-floating"><i class="fas fa-cog"></i></div>
-      </div>
-      <h3>Automatiza procesos</h3>
-      <p>Optimiza tareas y aumenta la productividad.</p>
-    </article>
-    <article class="service-item">
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=400" alt="Reduce costos">
-        <div class="icon-floating"><i class="fas fa-dollar-sign"></i></div>
-      </div>
-      <h3>Reduce costos</h3>
-      <p>Soluciones eficientes que impactan tu rentabilidad.</p>
-    </article>
-    <article class="service-item">
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400" alt="Fortalece tu competitividad">
-        <div class="icon-floating"><i class="fas fa-chart-line"></i></div>
-      </div>
-      <h3>Fortalece tu competitividad</h3>
-      <p>Te ayudamos a innovar y estar siempre un paso adelante.</p>
-    </article>
-    <article class="service-item">
-      <div class="image-wrapper">
-        <img src="https://images.unsplash.com/photo-1556742044-3c52d6e88c62?q=80&w=400" alt="Mejora tus servicios">
-        <div class="icon-floating"><i class="fas fa-star"></i></div>
-      </div>
-      <h3>Mejora tus servicios</h3>
-      <p>Ofrece experiencias que generan lealtad.</p>
-    </article>
+<div class="subpage-hero-pad">
+  <section class="deck-section deck-section--alt">
+    <div class="deck-container">
+      <span class="deck-tag">Fábrica de software</span>
+      <h1 class="deck-title">Un poco de software <em style="font-style:normal;color:#93c5fd">hace la diferencia</em></h1>
+      <div class="deck-title-line"></div>
+      <p class="deck-lead">Buscamos que tu empresa cuente con el impulso necesario para crecer y consolidarse día a día. Te ayudamos a alcanzar tus objetivos con desarrollo de software específico y consultoría acorde a lo que realmente requieres.</p>
+    </div>
   </section>
 
-  <div class="quote-banner">
-    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-    <div class="quote-text">
-      <h2>El software ha cambiado el mundo, <span>imagínate lo que hará por ti...</span></h2>
+  @foreach(config('softura-content.servicios') as $index => $servicio)
+  <section class="deck-service-block" id="fabrica-{{ $servicio['slug'] }}">
+    <div class="deck-container deck-grid-2 {{ $index % 2 === 1 ? 'deck-grid-2--reverse' : '' }}">
+      <div class="deck-copy rev">
+        <span class="deck-tag">{{ strtoupper($servicio['titulo']) }}</span>
+        <h2 class="deck-title" style="font-size:clamp(1.5rem,3vw,2.2rem)">{{ $servicio['titulo'] }}</h2>
+        <p class="deck-lead">{{ $servicio['texto'] }}</p>
+        @if(!empty($servicio['logos']))
+        <div class="sp-logo-strip" style="margin-top:1.5rem">
+          @foreach($servicio['logos'] as $logo)
+            @include('partials.official-logo', array_merge($logo, ['class' => 'sp-official-logo sp-official-logo--client']))
+          @endforeach
+        </div>
+        @endif
+      </div>
+      <div class="deck-visual rev">
+        <div class="deck-visual-frame">
+          @if(!empty($servicio['logos'][0]))
+            @include('partials.official-logo', array_merge($servicio['logos'][0], [
+              'class' => 'sp-official-logo sp-official-logo--hero',
+            ]))
+          @endif
+        </div>
+      </div>
     </div>
-    <div class="quote-illustration"><i class="fas fa-laptop-code"></i></div>
-  </div>
-</main>
+  </section>
+  @endforeach
+
+  <section class="deck-section">
+    <div class="deck-container rev">
+      <span class="deck-tag">Stack tecnológico</span>
+      <h2 class="deck-title">Somos especialistas</h2>
+      <p class="deck-lead">Nuestro principal enfoque son tecnologías de software libre. Constante actualización para brindar el mejor servicio.</p>
+      <div style="margin-top:2rem;background:#fff;border-radius:20px;padding:1.5rem">
+        @include('partials.deck-tech-logos')
+      </div>
+    </div>
+  </section>
+</div>
 
 @endsection

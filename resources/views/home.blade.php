@@ -1,300 +1,520 @@
 @extends('layouts.web')
 
 @section('title', 'Softura Solutions')
+@section('body-class', 'page-home')
 
-@push('head-scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-@endpush
+@section('nav-home-link')
+<li><a href="{{ route('home') }}" class="nav-active" data-i18n="nav.home">Inicio</a></li>
+@endsection
 
 @push('styles')
-<link rel="stylesheet" href="/css/estilos.css">
+<link rel="stylesheet" href="{{ asset('css/home-polish.css') }}">
+<link rel="stylesheet" href="{{ asset('css/softura-deck.css') }}">
 @endpush
 
 @section('content')
+<section class="hero hero--photo" id="hero-section">
+  <div class="hero-media" aria-hidden="true">
+    <img src="{{ asset('img/empresas 2.png') }}" alt="" loading="eager">
+    <div class="hero-overlay"></div>
+  </div>
 
-<section class="hero" id="hero-section">
-  <canvas id="three-hero"></canvas>
   <div class="hero-content">
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      Softura Solutions
-    </div>
-    <h1>Software<br><em>a la</em><br>medida</h1>
-    <p class="hero-sub">
-      Impulsamos la evolución de tu empresa con tecnología de alto rendimiento diseñada para el mercado actual.
+    <h1 data-i18n-html="home.hero.title">Un poco de software <em>hace la diferencia</em></h1>
+    <p class="hero-sub" data-i18n="home.hero.sub">
+      Ayudamos a las empresas a crecer con soluciones de software a la medida, respaldadas por consultoría especializada y más de 20 años de experiencia.
     </p>
+    <div class="hero-actions">
+      <a href="#servicios" class="btn-p btn-p--hero">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span data-i18n="home.hero.cta1">Conoce nuestros servicios</span>
+      </a>
+      <a href="{{ route('conocenos') }}" class="btn-g btn-g--hero">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span data-i18n="home.hero.cta2">Ver más</span>
+      </a>
+    </div>
   </div>
 </section>
 
-<div class="stats rev">
-  <div class="stat">
-    <div class="stat-n" data-target="120" data-suffix="+">0</div>
-    <div class="stat-l">Proyectos entregados</div>
-  </div>
-  <div class="stat">
-    <div class="stat-n" data-target="98" data-suffix="%">0</div>
-    <div class="stat-l">Satisfacción de clientes</div>
-  </div>
-  <div class="stat">
-    <div class="stat-n" data-target="40" data-suffix="+">0</div>
-    <div class="stat-l">Expertos en el equipo</div>
-  </div>
-  <div class="stat">
-    <div class="stat-n" data-target="5" data-suffix="+">0</div>
-    <div class="stat-l">Años de experiencia</div>
+<div class="stats-float rev">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-icon stat-icon--blue" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="stat-n" data-target="20" data-suffix="+">20+</div>
+      <div class="stat-l" data-i18n="home.stat.years">Años de experiencia</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon--green" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="stat-n" data-target="30" data-suffix="+">30+</div>
+      <div class="stat-l" data-i18n="home.stat.team">Profesionales especializados</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon--orange" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      </div>
+      <div class="stat-n" data-target="100" data-suffix="+">100+</div>
+      <div class="stat-l" data-i18n="home.stat.allies">Ingenieros aliados CLUSTEC</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon--purple" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="stat-n" data-target="7" data-suffix="">7</div>
+      <div class="stat-l" data-i18n="home.stat.services">Servicios especializados</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon stat-icon--teal" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <div class="stat-n" data-target="4" data-suffix="+">4+</div>
+      <div class="stat-l" data-i18n="home.stat.quality">Normas de calidad</div>
+    </div>
   </div>
 </div>
 
-<section class="section" id="servicios">
-  <div class="services-bg"></div>
-  <div class="services-head rev">
-    <h2>
-      Potenciamos la competitividad de tu empresa con <span>soluciones tecnológicas</span> eficientes.
-    </h2>
-    <p class="services-sub">Desarrollamos software a la medida, aplicaciones y plataformas digitales que impulsan tu negocio al siguiente nivel.</p>
-  </div>
-  <div class="services-grid">
-    <div class="svc rev">
-      <div class="svc-num">01</div>
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="medidaGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs>
-          <path d="M21 6V3h-3M3 18v3h3M3 6v12h12" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
-          <rect x="10" y="7" width="8" height="8" rx="1.5" fill="url(#medidaGrad)" stroke="#6366f1" stroke-width="1"/>
-          <path d="M14 7v8M10 11h8" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+<section class="ss-section ss-section--light" id="nosotros">
+  <div class="ss-container ss-split rev">
+    <div class="ss-split-text">
+      <span class="ss-kicker">Somos diferentes</span>
+      <h2 class="ss-title">20 años impulsando la innovación</h2>
+      <p class="ss-lead">Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.</p>
+      <div class="ss-badges">
+        <img src="{{ asset('img/Imagen3.png') }}" alt="COPARMEX Tlaxcala" class="ss-partner-logo">
+        <img src="{{ asset('img/Imagen1.png') }}" alt="CLUSTEC" class="ss-partner-logo">
       </div>
-      <h3 class="svc-title">Software a la medida</h3>
-      <p class="svc-desc">Apps web y móviles construidas desde cero. Código limpio, arquitectura escalable y entrega continua.</p>
-      <div class="svc-arrow">→</div>
     </div>
-    <div class="svc rev" style="transition-delay:.1s">
-      <div class="svc-num">02</div>
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="maquilaGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs>
-          <rect x="2" y="4" width="8" height="5" rx="1" fill="url(#maquilaGrad)"/>
-          <rect x="14" y="4" width="8" height="5" rx="1" fill="url(#maquilaGrad)"/>
-          <rect x="8" y="15" width="8" height="5" rx="1" fill="url(#maquilaGrad)"/>
-          <path d="M6 9v3h4M18 9v3h-4M12 12v3" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 2"/>
-        </svg>
-      </div>
-      <h3 class="svc-title">Maquila de software</h3>
-      <p class="svc-desc">Desarrollo de software a bajo costo, manteniendo calidad, escalabilidad y tiempos de entrega rápidos.</p>
-      <div class="svc-arrow">→</div>
-    </div>
-    <div class="svc rev" style="transition-delay:.2s">
-      <div class="svc-num">03</div>
-      <div class="svc-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="appsGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs>
-          <rect x="5" y="2" width="14" height="20" rx="3" stroke="#475569" stroke-width="1.5"/>
-          <rect x="6.5" y="3.5" width="11" height="17" rx="1.5" fill="url(#appsGrad)" opacity=".15"/>
-          <path d="M9 11l-2 2 2 2M15 11l2 2-2 2" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <h3 class="svc-title">Desarrollo de apps</h3>
-      <p class="svc-desc">Aplicaciones móviles y web desarrolladas con tecnologías modernas para brindar experiencias rápidas y atractivas.</p>
-      <div class="svc-arrow">→</div>
+    <div class="ss-split-media">
+      <img src="{{ asset('img/corporativo.png') }}" alt="Equipo Softura Solutions" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
 
-<section id="ecosistema" class="rev" style="position:relative;z-index:10;background:#000000;color:#fff;padding:6rem 0;overflow:hidden;font-family:'Inter',sans-serif;">
-  <div style="position:absolute;top:-10%;left:-10%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(26,79,255,0.15) 0%,transparent 70%);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:-10%;right:-10%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none;"></div>
-  <div style="max-width:1300px;margin:0 auto;padding:0 5vw;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;">
-    <div style="display:flex;flex-direction:column;gap:2rem;">
-      <div>
-        <div class="sec-label" style="text-transform:uppercase;letter-spacing:3px;color:#ffffff;font-weight:700;font-size:0.85rem;margin-bottom:0.75rem;">Nuestro Ecosistema</div>
-        <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-family:'Syne',sans-serif;font-weight:800;line-height:1.15;margin:0 0 1.5rem 0;color:#ffffff;">
-          Respaldados por un<br>ecosistema <span style="background:linear-gradient(90deg,#00C6FF,#0072FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;">tecnológico</span>
-        </h2>
-        <p style="color:#94A3B8;font-size:1.05rem;line-height:1.6;margin:0;">
-          Nuestro equipo base está conformado por más de 30 profesionales especializados. Como socios fundadores y miembros honoríficos del <strong>Clúster de TI de Tlaxcala</strong>, extendemos nuestras capacidades de inmediato.
-        </p>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem;backdrop-filter:blur(10px);">
-        <div style="text-align:center;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <div style="font-size:clamp(3rem,5vw,4.5rem);font-family:'Syne',sans-serif;font-weight:800;background:linear-gradient(180deg,#fff 40%,#1A4FFF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;" class="stat-n" data-target="500" data-suffix="+">500+</div>
-          <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:2px;color:#7094FF;font-weight:700;margin-top:0.5rem;">Ingenieros Disponibles</div>
+<section class="ss-section ss-section--white" id="servicios">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Fábrica de software</span>
+      <h2 class="ss-title">Descubre cómo podemos <span>ayudarte</span></h2>
+      <p class="ss-lead ss-lead--center">Soluciones integrales de desarrollo, consultoría y acompañamiento para llevar tu negocio al siguiente nivel.</p>
+    </header>
+    <div class="ss-services-grid rev">
+      @foreach(config('softura-content.servicios') as $servicio)
+      <article class="ss-card ss-card--official" id="svc-{{ $servicio['slug'] }}">
+        @if(!empty($servicio['logos']))
+        <div class="ss-card-logos" aria-hidden="true">
+          @foreach($servicio['logos'] as $logo)
+            @include('partials.official-logo', array_merge($logo, ['class' => 'sp-official-logo sp-official-logo--card']))
+          @endforeach
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-          <div style="display:flex;align-items:center;gap:0.75rem;">
-            <div style="background:rgba(26,79,255,0.15);border:1px solid rgba(26,79,255,0.3);width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#1A4FFF;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-6h6v6M9 16h6M8 6h.01M16 6h.01M8 10h.01M16 10h.01"></path></svg>
-            </div>
-            <div>
-              <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;">4 Alianzas</div>
-              <div style="font-size:0.75rem;color:#64748B;">Líderes de TI</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:0.75rem;">
-            <div style="background:rgba(26,79,255,0.15);border:1px solid rgba(26,79,255,0.3);width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#1A4FFF;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            </div>
-            <div>
-              <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;">Nacional</div>
-              <div style="font-size:0.75rem;color:#64748B;">Presencia País</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div style="position:relative;height:550px;display:flex;align-items:center;justify-content:center;flex:1;min-width:350px;">
-      <div style="position:absolute;border:1px dashed rgba(26,79,255,0.2);border-radius:50%;width:320px;height:320px;animation:spin 40s linear infinite;"></div>
-      <div style="position:absolute;border:1px solid rgba(255,255,255,0.05);border-radius:50%;width:460px;height:460px;"></div>
-      <div id="eco-core" style="position:relative;z-index:5;width:190px;height:190px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;color:#030816;box-shadow:0 0 40px rgba(26,79,255,0.4);border:6px solid rgba(26,79,255,0.15);transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);">
-        <div id="core-logo-placeholder" style="height:40px;display:flex;align-items:center;margin-bottom:0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#1A4FFF;">SOFTURA</div>
-        <p id="core-desc" style="font-size:0.72rem;color:#475569;line-height:1.3;margin:0;font-weight:500;">Pasa el cursor sobre un aliado para explorar nuestro ecosistema.</p>
-      </div>
-      <div class="sat-node" data-title="CLUSTEC" data-desc="Impulsando la innovación y competitividad tecnológica regional." data-img="/img/Imagen1.png" style="position:absolute;top:5%;background:#fff;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen1.png" alt="CLUSTEC" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="AMITI" data-desc="Fortaleciendo la industria de TI y el desarrollo de talento en México." data-img="/img/Imagen2.png" style="position:absolute;top:25%;right:5%;background:#454545;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen2.png" alt="AMITI" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="COPARMEX" data-desc="Unidos por la justicia social, un México próspero y lleno de oportunidades." data-img="/img/Imagen3.png" style="position:absolute;bottom:25%;right:5%;background:#fff;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen3.png" alt="COPARMEX" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="mxTI" data-desc="Promoviendo el desarrollo y la internacionalización de la industria de software nacional." data-img="/img/Imagen4.png" style="position:absolute;bottom:5%;background:#fff;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen4.png" alt="mxTI" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="NUEVO ALIADO A" data-desc="Descripción breve del quinto aliado estratégico." data-img="/img/Imagen5.png" style="position:absolute;bottom:25%;left:5%;background:#3f3e3e;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen5.png" alt="Aliado 5" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="NUEVO ALIADO B" data-desc="Descripción breve del sexto aliado estratégico." data-img="/img/Imagen1.1.png" style="position:absolute;top:25%;left:5%;background:#383838;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen1.1.png" alt="Aliado 6" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
+        @endif
+        <h3>{{ $servicio['titulo'] }}</h3>
+        <p>{{ $servicio['texto'] }}</p>
+      </article>
+      @endforeach
     </div>
   </div>
 </section>
 
-<section class="section" id="proceso">
-  <div class="process-wrap">
+<section class="ss-section ss-section--dark" id="devops">
+  <div class="ss-container ss-split ss-split--reverse rev">
+    <div class="ss-split-media ss-devops-visual">
+      <img src="{{ asset('img/sigalaptop.png') }}" alt="Entrega continua y DevOps" class="ss-media-photo" loading="lazy">
+    </div>
+    <div class="ss-split-text">
+      <span class="ss-kicker ss-kicker--gold">DevOps</span>
+      <h2 class="ss-title ss-title--light">Entrega continua y confiable</h2>
+      <p class="ss-lead ss-lead--light">Podemos ejecutar proyectos utilizando una filosofía para entregar software de forma más rápida, confiable y continua:</p>
+      <ul class="ss-list ss-list--light">
+        <li>Integración y entrega continua</li>
+        <li>Automatización de pruebas y despliegues</li>
+        <li>Monitoreo y retroalimentación constante</li>
+        <li>Cultura de colaboración entre equipos</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--dark ss-section--alt" id="onshoring">
+  <div class="ss-container ss-split rev">
+    <div class="ss-split-text">
+      <span class="ss-kicker ss-kicker--gold">Onshoring</span>
+      <h2 class="ss-title ss-title--light">Onshoring</h2>
+      <p class="ss-lead ss-lead--light">En esta modalidad, tu empresa nos transfiere las responsabilidades referentes al cumplimiento de tareas relacionadas con el desarrollo de software. No necesitas crecer tu nómina. Contamos con células especializadas para comenzar.</p>
+      <p class="ss-lead ss-lead--light ss-repse"><i class="fas fa-certificate" aria-hidden="true"></i> Pertenecemos al padrón del <strong>REPSE</strong> (Registro de Prestadoras de Servicios Especializados u Obras Especializadas), obligatorio de la STPS para regular a las empresas que ofrecen servicios especializados.</p>
+    </div>
+    <div class="ss-split-media">
+      <img src="{{ asset('img/Imagen5.png') }}" alt="Equipo de desarrollo en México" class="ss-media-photo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--dark" id="calidad">
+  <div class="ss-container">
+    <header class="ss-head ss-head--light rev">
+      <span class="ss-kicker ss-kicker--gold">Calidad certificada</span>
+      <h2 class="ss-title ss-title--light">La calidad es nuestra prioridad</h2>
+      <p class="ss-lead ss-lead--light ss-lead--center">Desarrollamos con estándares internacionales — CMMi, PSP, MoProSoft y MAAGTICSI — combinados con metodologías ágiles y equipos certificados en Scrum.</p>
+    </header>
+    <div class="ss-certs ss-certs--logos rev">
+      @foreach(config('softura-content.certificaciones') as $cert)
+      <div class="ss-cert ss-cert--logo">
+        @include('partials.official-logo', [
+          'file' => $cert['file'] ?? null,
+          'cdn' => $cert['cdn'] ?? null,
+          'alt' => $cert['nombre'],
+          'class' => 'sp-official-logo sp-official-logo--cert',
+        ])
+        <span>{{ $cert['nombre'] }}</span>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--light" id="valor">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Experiencia integral</span>
+      <h2 class="ss-title">Mejoramos tu <span>experiencia</span></h2>
+      <p class="ss-lead ss-lead--center">Brindamos una experiencia integral de servicio combinando desarrollo a la medida, buenas prácticas de ingeniería y metodologías ágiles.</p>
+    </header>
+    <div class="ss-values rev">
+      @foreach(config('softura-content.valores_experiencia') as $valor)
+      <article class="ss-value">
+        <div class="ss-value-num">{{ $valor['num'] }}</div>
+        <h3>{{ $valor['titulo'] }}</h3>
+        <p>{{ $valor['texto'] }}</p>
+      </article>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--white" id="equipo">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Talento</span>
+      <h2 class="ss-title">Contamos con un equipo de <span>especialistas</span></h2>
+      <p class="ss-lead ss-lead--center">Personal de ingenieros con diferentes perfiles, enfocados al desarrollo de software.</p>
+    </header>
+    <div class="ss-roles rev">
+      @foreach(config('softura-content.equipo_roles') as $rol)
+      <div class="ss-role"><span>{{ $rol }}</span></div>
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--light" id="tecnologias">
+  <div class="ss-container ss-split rev">
+    <div class="ss-tech-visual ss-tech-panel">
+      @include('partials.deck-tech-logos')
+    </div>
+    <div class="ss-split-text">
+      <span class="ss-kicker">Stack tecnológico</span>
+      <h2 class="ss-title">Somos especialistas</h2>
+      <p class="ss-lead">Nuestro equipo de profesionales está integrado por especialistas, responsables y comprometidos, mismos que se encuentran en constante actualización, con el objetivo de brindar el mejor servicio en cualquiera de las siguientes tecnologías:</p>
+      <blockquote class="ss-quote">"Nuestro principal enfoque son tecnologías de software libre"</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--white" id="capacitacion">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Formación continua</span>
+      <h2 class="ss-title">Equipo de profesionales <span>comprometidos</span></h2>
+    </header>
+    <div class="ss-metrics rev">
+      <article class="ss-metric"><strong class="ss-metric-n">100%</strong><p>de nuestros consultores cuentan con formación universitaria.</p></article>
+      <article class="ss-metric"><strong class="ss-metric-n">15%</strong><p>de nuestros consultores han cursado un posgrado del área.</p></article>
+      <article class="ss-metric"><strong class="ss-metric-n">5</strong><p>cursos de capacitación al año en promedio por integrante del equipo de desarrollo.</p></article>
+      <article class="ss-metric"><strong class="ss-metric-n">244 hrs</strong><p>dedicadas en promedio al año en capacitaciones.</p></article>
+    </div>
+    <p class="ss-quote ss-quote--center rev">"La capacitación es la llave que desbloquea el potencial de la excelencia"</p>
+  </div>
+</section>
+
+<section class="ss-section ss-section--dark" id="acompanamiento">
+  <div class="ss-container ss-split rev">
+    <div class="ss-split-text">
+      <span class="ss-kicker ss-kicker--gold">Aliado tecnológico</span>
+      <h2 class="ss-title ss-title--light">Te acompañamos en todo momento</h2>
+      <p class="ss-lead ss-lead--light"><strong>Más que un proveedor, somos tu aliado tecnológico a largo plazo.</strong></p>
+      <p class="ss-lead ss-lead--light">Te acompañamos antes, durante y después de cada proyecto, brindando soporte técnico y creatividad para asegurar que tus soluciones evolucionen, generen valor y sigan impulsando el crecimiento de tu negocio.</p>
+    </div>
+    <div class="ss-split-media">
+      <img src="{{ asset('img/corporativo.png') }}" alt="Acompañamiento Softura" class="ss-media-photo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--dark" id="ecosistema">
+  <div class="ss-container">
+    <header class="ss-head ss-head--light rev">
+      <span class="ss-kicker ss-kicker--gold">Red de aliados</span>
+      <h2 class="ss-title ss-title--light">Tenemos un gran <span>respaldo</span></h2>
+      <p class="ss-lead ss-lead--light ss-lead--center">Como socios fundadores del Clúster de TI de Tlaxcala (CLUSTEC), accedemos a una red de más de 100 ingenieros expertos para proyectos de mayor escala.</p>
+    </header>
+    <div class="ss-eco-grid rev">
+      <article class="ss-eco-card">
+        <img src="{{ asset('img/Imagen1.png') }}" alt="CLUSTEC">
+        <p>Clúster de TI de Tlaxcala — acceso a red nacional de ingeniería.</p>
+      </article>
+      <article class="ss-eco-card">
+        <img src="{{ asset('img/Imagen2.png') }}" alt="AMITI">
+        <p>Fortaleciendo la industria de TI y su talento en México.</p>
+      </article>
+      <article class="ss-eco-card">
+        <img src="{{ asset('img/Imagen3.png') }}" alt="COPARMEX">
+        <p>Unidos por un México próspero y con oportunidades.</p>
+      </article>
+      <article class="ss-eco-card">
+        <img src="{{ asset('img/Imagen4.png') }}" alt="mxTI">
+        <p>Promoviendo el desarrollo de la industria de software.</p>
+      </article>
+    </div>
+    <div class="ss-eco-highlight rev">
+      <p>Software and Delivery Center — ampliamos capacidades con aliados estratégicos del ecosistema tecnológico nacional.</p>
+      <a href="{{ route('conocenos') }}" class="btn-p btn-p--hero">Conoce más sobre nosotros</a>
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--light" id="clientes">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Confianza</span>
+      <h2 class="ss-title">Ellos nos <span>aprueban</span></h2>
+      <p class="ss-lead ss-lead--center">A lo largo de los años hemos establecido relaciones comerciales basadas en la confianza con clientes de distintos giros y modelos de negocio.</p>
+    </header>
+    @include('partials.official-clientes-grid')
+  </div>
+</section>
+
+<section class="ss-section ss-section--dark" id="rse">
+  <div class="ss-container">
+    <header class="ss-head ss-head--light rev">
+      <span class="ss-kicker ss-kicker--gold">Responsabilidad social</span>
+      <h2 class="ss-title ss-title--light">Generadora de sinergia tecnológica con responsabilidad social</h2>
+    </header>
+    <div class="ss-rse-list rev">
+      <article class="ss-rse-item">
+        <div class="ss-rse-icon"><i class="fas fa-handshake"></i></div>
+        <p><strong>Estrecha vinculación con IES</strong> para detectar, desarrollar y captar talento de manera temprana — estancias, estadías, prácticas profesionales — reduciendo tiempos de capacitación y fortaleciendo nuestro compromiso social.</p>
+      </article>
+      <article class="ss-rse-item">
+        <div class="ss-rse-icon"><i class="fas fa-users"></i></div>
+        <p>Participamos en proyectos de <strong>Formación Dual</strong> con IES de la región para fortalecer el modelo de la Triple Hélice, incorporando talento al trabajo (ej. Jóvenes Construyendo el Futuro).</p>
+      </article>
+      <article class="ss-rse-item">
+        <div class="ss-rse-icon"><i class="fas fa-book-open"></i></div>
+        <p>Fomentamos la <strong>formación continua</strong> entre nuestro personal mediante autocapacitación, certificaciones y programas educativos con IES (ej. Diplomado en Ciencias de Datos Softura-UATx).</p>
+      </article>
+    </div>
+    <div class="ss-rse-logos rev">
+      @foreach(config('softura-content.rse_ies') as $ies)
+        @include('partials.official-logo', [
+          'file' => $ies['file'] ?? null,
+          'cdn' => $ies['cdn'] ?? null,
+          'alt' => $ies['alt'],
+          'class' => 'sp-official-logo sp-official-logo--rse',
+        ])
+      @endforeach
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--light" id="bituyu-preview">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Producto destacado</span>
+      <h2 class="ss-title">Ecosistema <span>Bituyú</span></h2>
+      <p class="ss-lead ss-lead--center">Plataforma tecnológica para la gestión de promociones y digitalización de MiPyMEs para Sindicatos, IES, Grupos Empresariales y Municipios.</p>
+    </header>
+    <div class="ss-bituyu-preview-media rev">
+      <img src="{{ asset('img/ecosistema bituyu.png') }}" alt="Ecosistema Bituyú" loading="lazy">
+    </div>
+    <div class="ss-bituyu-stats rev">
+      <article class="ss-bituyu-stat"><strong>1,000+</strong><span>MiPyME's</span></article>
+      <article class="ss-bituyu-stat"><strong>6,000+</strong><span>Productos y servicios</span></article>
+      <article class="ss-bituyu-stat"><strong>100+</strong><span>Promociones exclusivas</span></article>
+    </div>
+    <div class="ss-head-cta rev">
+      <a href="{{ route('productos') }}#sec-bituyu" class="btn-p">Conoce Bituyú</a>
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--white" id="proceso">
+  <div class="ss-container process-wrap">
+    
     <div class="process-header rev">
       <h2>Con nuestros modelos de externalización,<br>seremos tus verdaderos <strong>aliados de negocio</strong></h2>
     </div>
+    
     <div class="process-cards rev">
       <div class="p-card">
         <div class="p-icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+            <path d="M2 12h20"/>
+            <path d="M16 14a2 2 0 0 0-3-1.73V11a1 1 0 0 0-2 0v1.27a2 2 0 0 0-3 1.73 2 2 0 0 0 4 0h2a2 2 0 0 0 2 0z"/>
           </svg>
         </div>
         <h3>Onshoring</h3>
         <p>Nuestros ingenieros trabajan directamente en tus instalaciones ubicadas en México cuando así se requiera.</p>
       </div>
+
       <div class="p-card">
         <div class="p-icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+            <path d="M7 21h10"/>
           </svg>
         </div>
         <h3>Nearshoring</h3>
         <p>Nuestros ingenieros trabajan remotamente en proyectos para tu empresa ubicada en E.U.A o Latinoamérica.</p>
       </div>
     </div>
+
     <div class="process-footer rev">
       <p>Hagamos equipo y <strong>deja de preocuparte</strong> de los costos de reclutamiento, selección, capacitación y continuidad del personal.</p>
     </div>
+
+  </div>
+</section> 
+
+<section class="ss-section ss-section--light" id="stack">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Portafolio</span>
+      <h2 class="ss-title">Nuestros <span>productos</span></h2>
+      <p class="ss-lead ss-lead--center">Soluciones diseñadas para optimizar procesos, automatizar tareas y acelerar el crecimiento de tu organización.</p>
+    </header>
+    <div class="ss-products rev">
+      <a href="{{ route('productos') }}#sec-bituyu" class="ss-product"><img src="{{ asset('img/bituyu.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Bituyú</span><span>Red virtual de negocios</span></a>
+      <a href="{{ route('productos') }}#sec-binibiaa" class="ss-product"><img src="{{ asset('img/binibia.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Binibiaa</span><span>Comercio artesanal</span></a>
+      <a href="{{ route('productos') }}#sec-academika" class="ss-product"><img src="{{ asset('img/academica.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Academika</span><span>Plataforma académica</span></a>
+      <a href="{{ route('productos') }}#sec-siga" class="ss-product"><img src="{{ asset('img/siga.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">SIGA</span><span>E-Learning</span></a>
+      <a href="{{ route('productos') }}#sec-fenix-orbit" class="ss-product"><img src="{{ asset('img/fenix.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Fenyx Admin</span><span>Punto de venta</span></a>
+      <a href="{{ route('productos') }}#pbr-full-section" class="ss-product"><img src="{{ asset('img/pbr.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">MI PBR</span><span>Presupuesto por resultados</span></a>
+      <a href="{{ route('productos') }}#sec-sspip" class="ss-product"><img src="{{ asset('img/sspip.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">SSPIP</span><span>Industria petrolera</span></a>
+    </div>
+    <div class="ss-head-cta rev">
+      <a href="{{ route('productos') }}" class="btn-p">Ver todos los productos</a>
+    </div>
   </div>
 </section>
 
-<section class="stack-section" id="stack">
-  <div class="products-top rev">
-    <div class="sec-label">PRODUCTOS</div>
-    <h2>Descubre nuestros productos y potencia el éxito de tu organización</h2>
-    <p class="products-sub">Soluciones diseñadas para optimizar procesos, automatizar tareas y acelerar el crecimiento de tu empresa.</p>
-  </div>
-  <div class="stack-grid">
-    <div class="stack-tag rev"><div class="dot">✦</div><div><h3>Bituyú</h3><p>Gestión moderna y automatización empresarial.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⬡</div><div><h3>Binibiaa</h3><p>Soluciones inteligentes para procesos digitales.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">▣</div><div><h3>Academica</h3><p>Plataforma educativa moderna y eficiente.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">◫</div><div><h3>SIGA</h3><p>Administración y control de información avanzada.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">◈</div><div><h3>Fenyx Admin</h3><p>Herramientas administrativas ágiles y escalables.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⬢</div><div><h3>MI PBR</h3><p>Monitoreo y gestión estratégica de recursos.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⌘</div><div><h3>SSPIP</h3><p>Solución tecnológica segura y eficiente.</p></div></div>
-  </div>
-</section>
 
-<section class="cta-section" id="contacto-cta" style="position:relative;z-index:10;background:#020714;padding:5rem 5vw;color:#fff;font-family:'Inter',sans-serif;">
-  <div class="rev" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;">
+
+
+
+
+
+
+
+
+<section class="cta-section" id="contacto" style="position:relative; z-index:10; background:#020714; padding:5rem 5vw; color:#fff; font-family:'Inter', sans-serif;">
+  
+  <div class="rev" style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:4rem; align-items: center;">
+    
     <div>
-      <div class="sec-label" style="color:#1A4FFF;text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:1rem;font-size:0.9rem;">Contacto</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;line-height:1.2;margin-bottom:1.5rem;">
+      <div class="sec-label" style="color:#1A4FFF; text-transform:uppercase; letter-spacing:2px; font-weight:600; margin-bottom:1rem; font-size:0.9rem;">Contacto</div>
+      
+      <h2 style="font-family:'Syne', sans-serif; font-size:clamp(2.2rem, 4vw, 3.5rem); font-weight:800; line-height:1.2; margin-bottom:1.5rem;">
         Emprende este <br>viaje <span style="color:#1A4FFF;">con nosotros</span>
       </h2>
-      <p style="color:#94a3b8;font-size:1.1rem;line-height:1.6;max-width:480px;margin-bottom:3.5rem;">
+      
+      <p style="color:#94a3b8; font-size:1.1rem; line-height:1.6; max-width:480px; margin-bottom:3.5rem;">
         Cuéntanos tu idea y construyamos juntos soluciones tecnológicas que impulsen tu negocio.
       </p>
-    </div>
-    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(10px);padding:2.5rem;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
-      <form data-contact novalidate style="display:flex;flex-direction:column;gap:1.2rem;">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;">
-          <input type="text" name="nombre" placeholder="Nombre completo" required style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-          <input type="text" name="empresa" placeholder="Empresa (opcional)" style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
+
+      <div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center;">
+        
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(26, 79, 255, 0.1); border:1px solid rgba(26, 79, 255, 0.3); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#1A4FFF;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h20c0-2.31-1-4.24-2.5-5.5"></path><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path></svg>
+          </div>
+          <span style="font-size:0.85rem; font-weight:500; color:#cbd5e1; max-width:90px; line-height:1.3;">Soluciones a la medida</span>
         </div>
-        <input type="email" name="email" placeholder="Correo electrónico" required style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-        <input type="tel" name="telefono" placeholder="Teléfono (opcional)" style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-        <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto..." rows="4" required style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;display:block;"></textarea>
-        <button type="submit" style="width:100%;background:linear-gradient(90deg,#1A4FFF 0%,#3b82f6 100%);color:#fff;border:none;padding:1rem;border-radius:10px;font-family:inherit;font-weight:600;font-size:1rem;cursor:pointer;">
+
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(26, 79, 255, 0.1); border:1px solid rgba(26, 79, 255, 0.3); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#1A4FFF;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <span style="font-size:0.85rem; font-weight:500; color:#cbd5e1; max-width:100px; line-height:1.3;">Confidencialidad garantizada</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="background:rgba(26, 79, 255, 0.1); border:1px solid rgba(26, 79, 255, 0.3); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#1A4FFF;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+          </div>
+          <span style="font-size:0.85rem; font-weight:500; color:#cbd5e1; max-width:90px; line-height:1.3;">Respuesta rápida</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); backdrop-filter:blur(10px); padding:2.5rem; border-radius:24px; box-shadow:0 30px 60px rgba(0,0,0,0.4);">
+      
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
+        <div style="background:#1A4FFF; width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; box-shadow:0 8px 20px rgba(26,79,255,0.4);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+        <div>
+          <h3 style="font-size:1.2rem; font-weight:600; margin:0; color:#fff;">Envíanos un mensaje</h3>
+          <p style="font-size:0.85rem; color:#64748b; margin:0; margin-top:0.2rem;">Llene el formulario y nos pondremos en contacto contigo.</p>
+        </div>
+      </div>
+
+      <form data-contact novalidate style="display:flex; flex-direction:column; gap:1.2rem;">
+        
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.2rem;">
+          <div style="position:relative;">
+            <input type="text" name="nombre" data-i18n-placeholder="contact.name" placeholder="Nombre completo" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+          </div>
+          <div style="position:relative;">
+            <input type="text" name="empresa" data-i18n-placeholder="contact.company" placeholder="Empresa (opcional)" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+          </div>
+        </div>
+
+        <div style="position:relative;">
+          <input type="email" name="email" data-i18n-placeholder="contact.email" placeholder="Correo electrónico" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+        </div>
+
+        <div style="position:relative;">
+          <input type="tel" name="telefono" data-i18n-placeholder="contact.phone" placeholder="Teléfono (opcional)" style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; box-sizing:border-box;">
+        </div>
+
+        <div style="position:relative;">
+          <textarea name="mensaje" data-i18n-placeholder="contact.message" placeholder="Cuéntanos sobre tu proyecto o lo que necesitas..." rows="4" required style="width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:0.9rem 1rem; border-radius:10px; color:#fff; font-family:inherit; font-size:0.9rem; outline:none; resize:none; box-sizing:border-box; display:block;"></textarea>
+        </div>
+
+        <button type="submit" data-i18n="contact.send" style="width:100%; background:linear-gradient(90deg, #1A4FFF 0%, #3b82f6 100%); color:#fff; border:none; padding:1rem; border-radius:10px; font-family:inherit; font-weight:600; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.5rem; box-shadow:0 10px 25px rgba(26,79,255,0.3); transition:all 0.3s ease;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
           Enviar mensaje
         </button>
+
+        <div style="display:flex; align-items:center; justify-content:center; gap:0.5rem; color:#64748b; font-size:0.75rem; margin-top:0.5rem;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span>Tu información está segura y no será compartida.</span>
+        </div>
+
       </form>
+
     </div>
+
   </div>
 </section>
 
+
+
 @endsection
-
-@push('scripts')
-<script>
-(function(){
-  const canvas = document.getElementById('three-hero');
-  const section = document.getElementById('hero-section');
-  if(!canvas||!section) return;
-  const renderer = new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.setClearColor(0x000000,0);
-  function resize(){renderer.setSize(section.offsetWidth,section.offsetHeight);camera.aspect=section.offsetWidth/section.offsetHeight;camera.updateProjectionMatrix();}
-  const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(60,1,0.1,100);
-  camera.position.set(0,0,8);
-  resize();
-  window.addEventListener('resize',resize);
-  scene.add(new THREE.AmbientLight(0xffffff,0.4));
-  const dLight=new THREE.DirectionalLight(0x1A4FFF,1.5);dLight.position.set(5,5,5);scene.add(dLight);
-  const dLight2=new THREE.DirectionalLight(0x00C9A7,1);dLight2.position.set(-5,-3,3);scene.add(dLight2);
-  const wireMat=new THREE.MeshPhongMaterial({color:0x1A4FFF,wireframe:true,transparent:true,opacity:0.25});
-  const objects=[];
-  const mainSphere=new THREE.Mesh(new THREE.IcosahedronGeometry(1.8,3),wireMat.clone());mainSphere.material.opacity=0.15;scene.add(mainSphere);objects.push({mesh:mainSphere,rx:.003,ry:.005});
-  const innerIco=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),new THREE.MeshPhongMaterial({color:0xEEF2FF,transparent:true,opacity:0.6,shininess:120}));scene.add(innerIco);objects.push({mesh:innerIco,rx:.006,ry:-.004});
-  for(let i=0;i<3;i++){const ring=new THREE.Mesh(new THREE.TorusGeometry(2.5+i*.5,0.015,16,120),new THREE.MeshPhongMaterial({color:i===0?0x1A4FFF:i===1?0x00C9A7:0x6B6B80,transparent:true,opacity:0.5-i*.1}));ring.rotation.x=Math.PI/2*(i*.7+.5);ring.rotation.y=i*.8;scene.add(ring);objects.push({mesh:ring,rx:i%2===0?.004:-.003,ry:i%2===0?-.003:.005});}
-  const orbiters=[];
-  [{r:3.2,speed:.008,phase:0,y:.5,geo:new THREE.OctahedronGeometry(.18)},{r:3.5,speed:-.006,phase:2.1,y:-.4,geo:new THREE.TetrahedronGeometry(.15)},{r:2.8,speed:.01,phase:4.2,y:.8,geo:new THREE.OctahedronGeometry(.12)}].forEach(d=>{const m=new THREE.Mesh(d.geo,new THREE.MeshPhongMaterial({color:Math.random()>.5?0x1A4FFF:0x00C9A7,transparent:true,opacity:.8,shininess:100}));scene.add(m);orbiters.push({mesh:m,...d,t:d.phase});});
-  const ptGeo=new THREE.BufferGeometry();const ptPos=new Float32Array(450);for(let i=0;i<450;i++)ptPos[i]=(Math.random()-.5)*20;ptGeo.setAttribute('position',new THREE.BufferAttribute(ptPos,3));scene.add(new THREE.Points(ptGeo,new THREE.PointsMaterial({color:0x1A4FFF,size:.04,transparent:true,opacity:.4})));
-  const gridHelper=new THREE.GridHelper(20,30,0x1A4FFF,0xE4E4EE);gridHelper.material.transparent=true;gridHelper.material.opacity=0.15;gridHelper.position.y=-4;scene.add(gridHelper);
-  let mox=0,moy=0;document.addEventListener('mousemove',e=>{mox=(e.clientX/window.innerWidth-.5)*2;moy=(e.clientY/window.innerHeight-.5)*2;});
-  function animate(){requestAnimationFrame(animate);objects.forEach(o=>{o.mesh.rotation.x+=o.rx;o.mesh.rotation.y+=o.ry;});orbiters.forEach(o=>{o.t+=o.speed;o.mesh.position.x=Math.cos(o.t)*o.r;o.mesh.position.z=Math.sin(o.t)*o.r;o.mesh.position.y=o.y+Math.sin(o.t*2)*.3;o.mesh.rotation.x+=.02;o.mesh.rotation.y+=.015;});camera.position.x+=(mox*1.5-camera.position.x)*.04;camera.position.y+=(-moy*1-camera.position.y)*.04;camera.lookAt(0,0,0);renderer.render(scene,camera);}
-  animate();
-})();
-
-document.addEventListener("DOMContentLoaded",()=>{
-  const nodes=document.querySelectorAll('.sat-node');
-  const core=document.getElementById('eco-core');
-  const coreLogo=document.getElementById('core-logo-placeholder');
-  const coreDesc=document.getElementById('core-desc');
-  const defaultTitle=coreLogo.innerHTML;
-  const defaultDesc=coreDesc.innerHTML;
-  nodes.forEach(node=>{
-    node.addEventListener('mouseenter',()=>{
-      core.style.borderColor="#1A4FFF";core.style.boxShadow="0 0 50px rgba(26,79,255,0.6)";
-      coreLogo.innerHTML=`<img src="${node.getAttribute('data-img')}" style="max-height:100%;max-width:100%;object-fit:contain;">`;
-      coreDesc.innerHTML=`<strong>${node.getAttribute('data-title')}</strong><br>${node.getAttribute('data-desc')}`;
-    });
-    node.addEventListener('mouseleave',()=>{core.style.borderColor="rgba(26,79,255,0.15)";core.style.boxShadow="0 0 40px rgba(26,79,255,0.4)";coreLogo.innerHTML=defaultTitle;coreDesc.innerHTML=defaultDesc;});
-  });
-});
-</script>
-@endpush

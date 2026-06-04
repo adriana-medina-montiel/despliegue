@@ -1,25 +1,56 @@
 @extends('layouts.web')
 
 @section('title', 'Nearshoring / Onshoring — Softura Solutions')
-
-@push('styles')
-<link rel="stylesheet" href="/css/estilos.css">
-@endpush
+@section('body-class', 'page-nearshoring')
 
 @section('content')
 
-<section style="min-height:80vh;display:flex;align-items:center;justify-content:center;padding:8rem 5vw 4rem;text-align:center;">
-  <div style="max-width:800px;margin:0 auto;">
-    <div class="sec-label" style="text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;">Servicios</div>
-    <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.15;margin-bottom:1.5rem;">
-      Nearshoring &amp; Onshoring
-    </h1>
-    <p style="font-size:1.15rem;line-height:1.7;color:#6B6B80;max-width:600px;margin:0 auto 2.5rem;">
-      Nuestros ingenieros trabajan remotamente en proyectos para tu empresa ubicada en E.U.A o Latinoamérica, o directamente en tus instalaciones cuando se requiera.
-    </p>
-    <a href="{{ route('contacto') }}" style="display:inline-block;background:#1A4FFF;color:#fff;padding:1rem 2.5rem;border-radius:50px;font-weight:600;text-decoration:none;font-size:1rem;">
-      Hablemos de tu proyecto →
-    </a>
+<section class="ss-section ss-section--light subpage-hero-pad">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">Servicios</span>
+      <h2 class="ss-title">Nearshoring &amp; <span>Onshoring</span></h2>
+      <p class="ss-lead ss-lead--center">Con nuestros modelos de externalización, seremos tus verdaderos aliados de negocio. Deja de preocuparte por los costos de reclutamiento, selección, capacitación y continuidad del personal.</p>
+    </header>
+  </div>
+</section>
+
+<section class="ss-section ss-section--white">
+  <div class="ss-container process-wrap">
+    <div class="process-cards rev">
+      <div class="p-card">
+        <div class="p-icon-wrap">
+          <i class="fas fa-globe-americas" aria-hidden="true"></i>
+        </div>
+        <h3>Nearshoring</h3>
+        <p>Nuestros ingenieros trabajan remotamente en proyectos para tu empresa ubicada en E.U.A. o Latinoamérica, con zona horaria compatible y comunicación en tiempo real.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-icon-wrap">
+          <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+        </div>
+        <h3>Onshoring</h3>
+        <p>Nuestros ingenieros trabajan directamente en tus instalaciones ubicadas en México cuando así se requiera, integrándose a tu equipo local.</p>
+      </div>
+    </div>
+    <div class="process-footer rev">
+      <p>Hagamos equipo y <strong>deja de preocuparte</strong> de los costos de reclutamiento, selección, capacitación y continuidad del personal.</p>
+      <a href="{{ route('contacto') }}" class="btn-p" style="margin-top:1.5rem;display:inline-flex;">Hablemos de tu proyecto</a>
+    </div>
+  </div>
+</section>
+
+<section class="ss-section ss-section--dark">
+  <div class="ss-container ss-split rev">
+    <div class="ss-split-text">
+      <span class="ss-kicker ss-kicker--gold">Onshoring</span>
+      <h2 class="ss-title ss-title--light">Células especializadas</h2>
+      <p class="ss-lead ss-lead--light">En esta modalidad, tu empresa nos transfiere las responsabilidades referentes al cumplimiento de tareas relacionadas con el desarrollo de software. No necesitas crecer tu nómina.</p>
+      <p class="ss-lead ss-lead--light ss-repse"><i class="fas fa-certificate" aria-hidden="true"></i> Pertenecemos al padrón del <strong>REPSE</strong>, obligatorio de la STPS para regular a las empresas que ofrecen servicios especializados.</p>
+    </div>
+    <div class="ss-split-media">
+      <img src="{{ asset('img/Imagen5.png') }}" alt="Equipo de desarrollo" class="ss-media-photo" loading="lazy">
+    </div>
   </div>
 </section>
 

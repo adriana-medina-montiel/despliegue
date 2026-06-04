@@ -1,0 +1,426 @@
+/* Inicio — estilo corporativo unificado (Softura) */
+
+.page-home {
+  --ss-brand: #1a4fff;
+  --ss-navy: #050b1a;
+  background: #f4f7fc;
+  cursor: auto;
+}
+
+.page-home #cur,
+.page-home #cur-r {
+  display: none;
+}
+
+/* Hero con imagen local */
+.page-home .hero--photo {
+  min-height: min(88vh, 780px);
+  padding: 6.5rem 5vw 7rem;
+}
+
+.page-home .hero-media img {
+  object-position: center 35%;
+  filter: saturate(1) contrast(1);
+  transform: none;
+}
+
+.page-home .hero-content {
+  max-width: 700px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.page-home .hero-chip,
+.page-home .hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: #eff6ff;
+}
+
+.page-home .hero-pill {
+  margin-top: 0.75rem;
+}
+
+.page-home .hero-overlay {
+  background:
+    linear-gradient(110deg, rgba(2, 6, 23, 0.72) 0%, rgba(2, 6, 23, 0.52) 48%, rgba(2, 6, 23, 0.35) 100%);
+}
+
+.page-home .nav-links .dropdown-menu {
+  background: rgba(5, 11, 26, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 36px rgba(5, 11, 26, 0.35);
+}
+
+.page-home .nav-links .dropdown-menu a {
+  color: #e5eefb;
+}
+
+.page-home .nav-links .dropdown-menu a:hover,
+.page-home .nav-links .dropdown-menu a:focus-visible {
+  color: #fff;
+  background: rgba(26, 79, 255, 0.18);
+}
+
+.page-home .hero--photo h1 em {
+  color: #60a5fa;
+  font-style: normal;
+}
+
+.page-home .hero-actions {
+  align-items: center;
+}
+
+.page-home .hero-actions a {
+  min-height: 46px;
+  border-radius: 999px;
+  box-shadow: none;
+}
+
+.page-home .hero-actions .btn-p--hero {
+  background: linear-gradient(135deg, #1a4fff 0%, #2563eb 100%);
+  border: 1px solid rgba(147, 197, 253, 0.35);
+}
+
+.page-home .hero-actions .btn-g--hero {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  color: #eff6ff;
+}
+
+.page-home .hero-actions a:hover {
+  transform: translateY(-2px);
+}
+
+/* Stats — paleta única */
+.page-home .stats-float {
+  margin-top: -3.5rem;
+  position: relative;
+  z-index: 5;
+  padding: 0 5vw;
+}
+
+.page-home .stats-inner {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 24px 52px rgba(15, 23, 42, 0.12);
+  padding: 1.5rem 1.25rem;
+  backdrop-filter: blur(14px);
+}
+
+.page-home .stats-float .stat {
+  border-radius: 18px;
+  padding: 0.85rem 0.7rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.page-home .stats-float .stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(26, 79, 255, 0.12);
+}
+
+.page-home .stats-float .stat {
+  border-right-color: rgba(15, 23, 42, 0.06);
+}
+
+.page-home .stats-float .stat-n {
+  color: var(--ss-navy);
+}
+
+.page-home .stats-float .stat-l {
+  color: var(--sp-muted, #64748b);
+}
+
+.page-home .stat-icon--blue,
+.page-home .stat-icon--green,
+.page-home .stat-icon--orange,
+.page-home .stat-icon--purple,
+.page-home .stat-icon--teal {
+  background: rgba(26, 79, 255, 0.1);
+  border: 1px solid rgba(26, 79, 255, 0.2);
+  color: var(--ss-brand);
+}
+
+.page-home .stat-n {
+  color: var(--ss-navy);
+  font-family: 'Syne', sans-serif;
+}
+
+/* Medios en secciones */
+.page-home .ss-split-media img,
+.page-home .ss-media-photo {
+  border-radius: 18px;
+  box-shadow: 0 20px 48px rgba(5, 11, 26, 0.14);
+  object-fit: cover;
+}
+
+.page-home .ss-tech-visual {
+  background: #fff;
+  border-radius: 18px;
+  padding: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.page-home .ss-tech-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.page-home .ss-devops-visual .ss-media-photo {
+  aspect-ratio: 4/3;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Productos preview con logos */
+.page-home .ss-products {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.page-home .ss-product {
+  align-items: center;
+  text-align: center;
+  padding: 1.35rem 1rem 1.15rem;
+  gap: 0.65rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+}
+
+.page-home .ss-product:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px rgba(26, 79, 255, 0.12);
+  border-color: rgba(26, 79, 255, 0.25);
+}
+
+.page-home .ss-product-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.page-home .ss-product-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.page-home .ss-product span {
+  font-size: 0.75rem;
+}
+
+/* Bituyú preview */
+.page-home .ss-bituyu-preview-media {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+
+.page-home .ss-bituyu-preview-media img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1);
+}
+
+.page-home .ss-bituyu-stats .ss-bituyu-stat {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+}
+
+.page-home .ss-bituyu-stat i {
+  color: var(--ss-brand);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-home .ss-bituyu-stat strong {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  color: var(--ss-navy);
+}
+
+/* Contacto inline */
+.page-home .cta-section {
+  background: linear-gradient(180deg, #050b1a 0%, #0a1628 100%) !important;
+}
+
+.page-home .cta-section form input:focus,
+.page-home .cta-section form textarea:focus {
+  border-color: rgba(26, 79, 255, 0.5) !important;
+  outline: none;
+}
+
+/* Animaciones */
+.page-home .rev {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.page-home .rev.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Logos oficiales (presentación corporativa) */
+.page-home .ss-card-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.page-home .sp-official-logo--card {
+  height: 32px;
+  width: auto;
+  max-width: 72px;
+  object-fit: contain;
+}
+
+.page-home .ss-certs--logos {
+  gap: 1.25rem;
+}
+
+.page-home .ss-cert--logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 120px;
+  padding: 1.25rem 1rem;
+}
+
+.page-home .sp-official-logo--cert {
+  height: 40px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.page-home .ss-cert--logo span {
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.page-home .sp-clientes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.page-home .sp-clientes-sector {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 1.35rem 1.25rem;
+}
+
+.page-home .sp-clientes-sector h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ss-brand);
+  margin: 0 0 1rem;
+}
+
+.page-home .sp-logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem 1rem;
+}
+
+.page-home .sp-official-logo--client {
+  height: 36px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+}
+
+.page-home .ss-rse-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem 1.75rem;
+  padding: 1.75rem 1.5rem;
+}
+
+.page-home .sp-official-logo--rse {
+  height: 42px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+.page-home .ss-role {
+  padding: 1rem 0.65rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.05);
+}
+
+.page-home .ss-role span {
+  font-size: 0.76rem;
+}
+
+.page-home .deck-tech-logos {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.page-home .deck-tech-logos__item {
+  cursor: default;
+}
+
+.page-home .ss-card,
+.page-home .ss-value,
+.page-home .ss-metric,
+.page-home .ss-client-card,
+.page-home .ss-eco-card {
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+}
+
+@media (max-width: 768px) {
+  .page-home .stats-float {
+    margin-top: -2rem;
+  }
+  .page-home .stats-inner {
+    padding: 1rem;
+  }
+}

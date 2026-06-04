@@ -1,0 +1,500 @@
+/* Productos — pulido visual alineado con Softura */
+
+body.page-productos {
+  padding: 0 !important;
+  min-height: 100vh;
+  background: #f4f7fc;
+  cursor: auto;
+  display: block !important;
+}
+
+.page-productos .lang-switch-track {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.page-productos .lang-option {
+  color: #94a3b8;
+}
+
+.page-productos .lang-option.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.page-productos .nav-toggle {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.page-productos .nav-toggle span {
+  background: #fff;
+}
+
+.page-productos #cur,
+.page-productos #cur-r {
+  display: none;
+}
+
+/* Hero */
+.prod-hero {
+  position: relative;
+  min-height: 42vh;
+  display: flex;
+  align-items: center;
+  padding: 7rem 5vw 3.5rem;
+  overflow: hidden;
+  background: #050b1a;
+  margin-bottom: 0;
+}
+
+.prod-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.35;
+}
+
+.prod-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(5, 11, 26, 0.92) 0%, rgba(26, 79, 255, 0.45) 100%);
+}
+
+.prod-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.prod-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(26, 79, 255, 0.15);
+  border: 1px solid rgba(26, 79, 255, 0.35);
+  color: #93c5fd;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.prod-hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.12;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.prod-hero h1 em {
+  font-style: normal;
+  color: #60a5fa;
+}
+
+.prod-hero-lead {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 54ch;
+}
+
+/* Catálogo */
+.page-productos .products-section {
+  max-width: 1200px;
+  margin: -2.5rem auto 3rem;
+  padding: 2.5rem 1.25rem 0;
+  position: relative;
+  z-index: 3;
+}
+
+.page-productos .products-header {
+  background: #fff;
+  border-radius: 24px;
+  padding: 2rem 2rem 1.5rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  margin-bottom: 2rem;
+}
+
+.page-productos .products-header .subtitle {
+  font-family: 'Inter', sans-serif;
+  color: #1a4fff;
+}
+
+.page-productos .products-header h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.page-productos .product-card {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+}
+
+.page-productos .product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(26, 79, 255, 0.12);
+}
+
+.page-productos .card-content h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+}
+
+.page-productos .features-bar {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  padding: 1.25rem 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-productos .products-detail > section {
+  scroll-margin-top: 100px;
+}
+
+/* Bituyú — bloque destacado */
+.bituyu-section--corp {
+  background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 45%, #312e81 100%);
+  border-top: none;
+  padding: 5rem 0;
+}
+
+.bituyu-hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.bituyu-logo-main {
+  max-width: min(320px, 80vw);
+  max-height: 120px;
+  object-fit: contain;
+  margin: 0 auto 1.25rem;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.35));
+}
+
+.bituyu-tagline {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.bituyu-stores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.bituyu-store {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.bituyu-store:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.bituyu-ecosystem {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.bituyu-eco-diagram {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.75rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.bituyu-eco-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bituyu-eco-stat {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.bituyu-eco-stat i {
+  font-size: 1.25rem;
+  color: #a5b4fc;
+  margin-bottom: 0.5rem;
+}
+
+.bituyu-eco-stat strong {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.bituyu-eco-stat span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.bituyu-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.bituyu-section--corp .bituyu-feature {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.bituyu-section--corp .bituyu-feature h3 {
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.bituyu-section--corp .bituyu-feature p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.bituyu-section--corp .bituyu-bar {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+.bituyu-section--corp .bituyu-bar-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.bituyu-section--corp .bituyu-bar-btn {
+  background: linear-gradient(135deg, #1a4fff, #6366f1);
+}
+
+/* Animaciones scroll */
+.page-productos .rev {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.page-productos .rev.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Nav en productos — armonizar con layout global */
+.page-productos nav {
+  background: rgba(5, 11, 26, 0.88) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 0 !important;
+}
+
+.page-productos .nav-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 5vw;
+}
+
+.page-productos .nav-links a {
+  color: rgba(255, 255, 255, 0.75) !important;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.page-productos .nav-links a:hover,
+.page-productos .nav-links a.nav-active {
+  color: #fff !important;
+}
+
+.page-productos .nav-links .dropdown-menu {
+  background: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.page-productos .nav-links .dropdown-menu a {
+  color: #cbd5e1 !important;
+}
+
+.page-productos .nav-links .dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #fff !important;
+}
+
+.page-productos .btn-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #1a4fff;
+  color: #fff !important;
+  text-decoration: none;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.page-productos .btn-nav-cta:hover {
+  background: #0a2fcc;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .bituyu-ecosystem {
+    grid-template-columns: 1fr;
+  }
+  .bituyu-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .page-productos .features-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .page-productos .feature-line {
+    display: none;
+  }
+}
+
+/* Binibiaa — alinear con paleta corporativa */
+.page-productos .binibiaa-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  padding: 5rem 0;
+}
+
+.page-productos .binibiaa-header .brand-subtitle {
+  color: #1a4fff;
+  letter-spacing: 0.14em;
+}
+
+.page-productos .binibiaa-header .brand-title {
+  font-family: 'Syne', sans-serif;
+  color: #050b1a;
+  font-weight: 800;
+}
+
+.page-productos .binibiaa-header .brand-slogan {
+  color: #1a4fff;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.page-productos .binibiaa-header .brand-description {
+  color: #475569;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.page-productos .showcase-badge {
+  background: rgba(26, 79, 255, 0.1);
+  color: #1a4fff;
+  border: 1px solid rgba(26, 79, 255, 0.2);
+}
+
+.page-productos .showcase-item {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+}
+
+/* Academika — tonos unificados */
+.page-productos .academika-section-flat {
+  background: #f4f7fc;
+}
+
+.page-productos .academika-title-flat {
+  font-family: 'Syne', sans-serif;
+  color: #050b1a;
+}
+
+.page-productos .academika-header-flat .header-badge-icon {
+  background: linear-gradient(135deg, #1a4fff, #3b82f6);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(26, 79, 255, 0.25);
+}
+
+.page-productos .module-icon-circle {
+  background: rgba(26, 79, 255, 0.1) !important;
+}
+
+.page-productos .module-icon-circle i {
+  color: #1a4fff !important;
+}
+
+.page-productos .siga-icon-circle {
+  background: rgba(26, 79, 255, 0.1) !important;
+}
+
+.page-productos .siga-icon-circle i {
+  color: #1a4fff !important;
+}
+
+.page-productos .siga-title-flat {
+  font-family: 'Syne', sans-serif;
+  color: #1a4fff;
+}
+
+.page-productos .card-btn.btn-purple,
+.page-productos .card-btn.btn-indigo,
+.page-productos .card-btn.btn-blue,
+.page-productos .card-btn.btn-yellow {
+  background: #1a4fff;
+}
+
+@media (max-width: 640px) {
+  .prod-hero {
+    min-height: 36vh;
+    padding-top: 6.5rem;
+  }
+  .page-productos .products-section {
+    margin-top: -1.5rem;
+    padding-top: 1.5rem;
+  }
+}

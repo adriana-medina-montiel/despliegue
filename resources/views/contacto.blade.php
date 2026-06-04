@@ -2,12 +2,7 @@
 
 @section('title', 'Contacto — Softura Solutions')
 @section('body-class', 'subpage subpage-dark')
-@section('nav-class', 'nav-dark')
 @section('footer-class', 'footer-dark')
-
-@push('styles')
-<link rel="stylesheet" href="/css/estilos.css">
-@endpush
 
 @section('content')
 
@@ -17,6 +12,7 @@
       <div class="sec-label" data-i18n="contact.badge">Contacto</div>
       <h1 data-i18n="contact.title">Emprende este viaje con nosotros</h1>
       <p class="contact-lead" data-i18n="contact.lead">Cuéntanos tu idea y construyamos juntos soluciones tecnológicas que impulsen tu negocio.</p>
+
       <div class="contact-details">
         <div class="contact-detail-item">
           <span class="contact-detail-label" data-i18n="contact.location">Tlaxcala, México</span>
@@ -25,13 +21,19 @@
           <span class="contact-detail-label" data-i18n="contact.email.label">Correo</span>
           <a href="mailto:contacto@softura.com.mx">contacto@softura.com.mx</a>
         </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">WhatsApp</span>
+          <a href="https://api.whatsapp.com/send?phone=522411016729" target="_blank" rel="noopener">+52 241 101 6729</a>
+        </div>
       </div>
     </div>
+
     <div class="contact-form-card">
       <div class="contact-form-head">
         <h3 data-i18n="contact.form.title">Envíanos un mensaje</h3>
         <p data-i18n="contact.form.sub">Llena el formulario y nos pondremos en contacto contigo.</p>
       </div>
+
       <form data-contact novalidate>
         <div class="form-row">
           <input type="text" name="nombre" required data-i18n-placeholder="contact.name" placeholder="Nombre completo">
