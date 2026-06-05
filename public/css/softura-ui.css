@@ -79,19 +79,29 @@ html {
   outline-offset: 2px;
 }
 
-/* Nav corporativa (todas las páginas) */
-.site-marketing nav.nav-dark {
-  background: rgba(5, 11, 26, 0.4) !important; /* Más transparente al inicio para que se vea la imagen */
+/* Nav corporativa (todas las páginas) — anula estilos legacy de estilos.css */
+.site-marketing nav#site-nav {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: block !important;
+  padding: 0 !important;
+  background: rgba(5, 11, 26, 0.94) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
-  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
   transition: background 0.3s, box-shadow 0.3s;
 }
 
+.site-marketing nav.nav-dark {
+  background: rgba(5, 11, 26, 0.94) !important;
+}
+
 .site-marketing nav.nav-dark.nav-scrolled {
-  background: rgba(5, 11, 26, 0.96) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+  background: rgba(5, 11, 26, 0.98) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
 }
 
 .site-marketing .nav-inner {
@@ -101,28 +111,82 @@ html {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0.9rem 5vw;
+  padding: 0.85rem 5vw;
   gap: 1rem;
 }
 
+.site-marketing .logo img {
+  height: 42px;
+  max-height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.site-marketing .nav-links {
+  display: flex !important;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .site-marketing .nav-links a {
-  color: #dbe4f0;
-  text-transform: none;
-  letter-spacing: 0.03em;
-  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em;
+  font-size: 0.9rem;
   font-weight: 600;
-  padding: 0.6rem 1rem;
-  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 8px;
 }
 
 .site-marketing .nav-links a:hover,
 .site-marketing .nav-links a:focus-visible {
-  color: #fff;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .site-marketing .nav-links a.nav-active {
   color: #fff !important;
   position: relative;
+  background: rgba(26, 79, 255, 0.15);
+}
+
+.site-marketing .nav-social {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.25rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.site-marketing .nav-social-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0 !important;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.site-marketing .nav-social-btn:hover,
+.site-marketing .nav-social-btn:focus-visible {
+  background: rgba(26, 79, 255, 0.28) !important;
+  border-color: rgba(96, 165, 250, 0.45);
+  color: #fff !important;
+  transform: translateY(-1px);
 }
 
 .site-marketing .nav-links a.nav-active::after {
@@ -192,6 +256,40 @@ html {
   align-items: center;
   justify-content: space-between;
   gap: 1.75rem;
+}
+
+.site-marketing .sp-footer-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.75rem;
+}
+
+.site-marketing .sp-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-marketing .sp-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.site-marketing .sp-social-btn:hover {
+  background: rgba(26, 79, 255, 0.25);
+  border-color: rgba(96, 165, 250, 0.4);
+  color: #fff;
 }
 
 .site-marketing .sp-footer-brand .logo {
@@ -293,7 +391,51 @@ body.nav-open .nav-backdrop {
   visibility: visible;
 }
 
+.site-marketing .logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.site-marketing .logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.site-marketing .logo-text b {
+  color: var(--sp-cyan);
+}
+
 /* Menú móvil unificado */
+@media (max-width: 1100px) {
+  .site-marketing .nav-links > li:not(.nav-cta-wrap):not(.nav-social):not(.lang-switch) > a {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 901px) {
+  .site-marketing nav#site-nav .nav-links {
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    flex-direction: row !important;
+    pointer-events: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .site-marketing .nav-toggle {
+    display: none !important;
+  }
+}
+
 @media (max-width: 900px) {
   .site-marketing .nav-toggle {
     display: flex;
@@ -325,6 +467,13 @@ body.nav-open .nav-backdrop {
   .site-marketing .nav-links > li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding: 0.5rem 0;
+  }
+
+  .site-marketing .nav-social {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 0.35rem;
   }
 
   .site-marketing .nav-links .dropdown-menu {
@@ -365,6 +514,11 @@ body.nav-open .nav-backdrop {
   .site-marketing .sp-footer-inner {
     flex-direction: column;
     text-align: center;
+  }
+
+  .site-marketing .sp-footer-end {
+    flex-direction: column;
+    align-items: center;
   }
 
   .site-marketing .sp-footer-links {

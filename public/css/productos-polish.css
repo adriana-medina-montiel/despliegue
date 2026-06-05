@@ -171,17 +171,73 @@ body.page-productos {
 }
 
 .bituyu-hero {
-  text-align: center;
-  max-width: 760px;
+  max-width: 1100px;
   margin: 0 auto 3rem;
 }
 
-.bituyu-logo-main {
-  max-width: min(320px, 80vw);
-  max-height: 120px;
+.bituyu-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  text-align: left;
+}
+
+.bituyu-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bituyu-hero-mascot {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bituyu-mascot-img {
+  width: 100%;
+  max-width: 380px;
   object-fit: contain;
-  margin: 0 auto 1.25rem;
-  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+}
+
+.bituyu-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.bituyu-brand-icon {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 8px 24px rgba(236, 72, 153, 0.45));
+}
+
+.bituyu-brand-word {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: #fff;
+  text-shadow:
+    0 0 0 #111,
+    2px 2px 0 rgba(236, 72, 153, 0.85),
+    -1px -1px 0 rgba(251, 191, 36, 0.75);
+}
+
+.bituyu-logo-main {
+  width: auto;
+  max-width: min(280px, 72vw);
+  height: auto;
+  max-height: 96px;
+  object-fit: contain;
+  margin: 0 0 1.5rem;
+  filter: drop-shadow(0 8px 28px rgba(0, 0, 0, 0.4));
 }
 
 .bituyu-tagline {
@@ -194,23 +250,29 @@ body.page-productos {
 .bituyu-stores {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 0.75rem;
 }
 
 .bituyu-store {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
   padding: 0.7rem 1.25rem;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #fff;
   text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   transition: background 0.2s, transform 0.2s;
+}
+
+.bituyu-store strong {
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .bituyu-store:hover {
@@ -388,6 +450,31 @@ body.page-productos {
 }
 
 @media (max-width: 900px) {
+  .bituyu-hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .bituyu-hero-copy {
+    align-items: center;
+  }
+  .bituyu-brand-lockup {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .bituyu-brand-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .bituyu-logo-main {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .bituyu-stores {
+    justify-content: center;
+  }
   .bituyu-ecosystem {
     grid-template-columns: 1fr;
   }

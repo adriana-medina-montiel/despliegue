@@ -30,7 +30,7 @@
 
             <div class="product-card">
                 <div class="card-logo logo-indigo">
-                    <img src="{{ asset('img/bituyu.png') }}" alt="Bituyú Logo" class="product-logo">
+                    <img src="{{ asset('img/bituyu compras.png') }}" alt="Bituyú Logo" class="product-logo">
                 </div>
                 <div class="card-content">
                     <h3>Bituyú</h3>
@@ -152,14 +152,27 @@
     <section id="sec-bituyu" class="bituyu-section bituyu-section--corp">
         <div class="bituyu-wrapper">
             <header class="bituyu-hero rev">
-                <img src="{{ asset('img/bituyu.png') }}" alt="Bituyú" class="bituyu-logo-main">
-                <p class="bituyu-tagline">
-                    Plataforma tecnológica para la gestión de promociones y digitalización de MiPyMEs
-                    para Sindicatos, IES, Grupos Empresariales y Municipios.
-                </p>
-                <div class="bituyu-stores">
-                    <a href="#" class="bituyu-store" aria-label="Disponible en Google Play">Google Play</a>
-                    <a href="#" class="bituyu-store" aria-label="Disponible en App Store">App Store</a>
+                <div class="bituyu-hero-grid">
+                    <div class="bituyu-hero-copy">
+                    <div class="bituyu-brand-lockup">
+                        <img src="{{ asset('img/bituyu compras.png') }}" alt="" class="bituyu-brand-icon" aria-hidden="true">
+                        <span class="bituyu-brand-word">BITUYÚ</span>
+                    </div>
+                        <p class="bituyu-tagline">
+                            {{ config('softura-content.bituyu.descripcion') }}
+                        </p>
+                        <div class="bituyu-stores">
+                            <a href="#" class="bituyu-store" aria-label="Disponible en Google Play">
+                                <span>DISPONIBLE EN</span><strong>Google Play</strong>
+                            </a>
+                            <a href="#" class="bituyu-store" aria-label="Disponible en App Store">
+                                <span>DISPONIBLE EN</span><strong>App Store</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bituyu-hero-mascot">
+                        <img src="{{ asset('img/official/productos/bituyu movil.png') }}" alt="Bituyú — promociones exclusivas" class="bituyu-mascot-img" loading="lazy">
+                    </div>
                 </div>
             </header>
 

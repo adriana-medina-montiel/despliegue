@@ -12,26 +12,68 @@
   display: none;
 }
 
-/* Hero con imagen local */
+/* Hero con imagen de fondo a pantalla completa */
 .page-home .hero--photo {
-  min-height: min(88vh, 780px);
-  padding: 6.5rem 5vw 7rem;
+  position: relative;
+  min-height: min(92vh, 820px);
+  display: flex;
+  align-items: center;
+  padding: 7.5rem 5vw 8rem;
+  background: #050b1a;
+  overflow: hidden;
+}
+
+.page-home .hero--photo::before {
+  display: none;
+}
+
+.page-home .hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .page-home .hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   object-position: center 35%;
-  filter: saturate(1) contrast(1);
-  transform: none;
+  filter: saturate(1.05) contrast(1.02);
+}
+
+.page-home .hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(110deg, rgba(2, 6, 23, 0.82) 0%, rgba(2, 6, 23, 0.58) 50%, rgba(2, 6, 23, 0.42) 100%);
 }
 
 .page-home .hero-content {
-  max-width: 700px;
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
   padding: 0;
   border-radius: 0;
   background: transparent;
   border: 0;
   box-shadow: none;
   backdrop-filter: none;
+}
+
+.page-home .hero--photo h1 {
+  color: #ffffff;
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+}
+
+.page-home .hero--photo .hero-sub {
+  color: rgba(226, 232, 240, 0.92);
+  font-size: 1.08rem;
+  max-width: 540px;
+  line-height: 1.75;
 }
 
 .page-home .hero-chip,
@@ -51,11 +93,6 @@
 
 .page-home .hero-pill {
   margin-top: 0.75rem;
-}
-
-.page-home .hero-overlay {
-  background:
-    linear-gradient(110deg, rgba(2, 6, 23, 0.72) 0%, rgba(2, 6, 23, 0.52) 48%, rgba(2, 6, 23, 0.35) 100%);
 }
 
 .page-home .nav-links .dropdown-menu {
@@ -281,7 +318,7 @@
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.page-home .rev.visible {
+.page-home .rev.vis {
   opacity: 1;
   transform: none;
 }
@@ -335,40 +372,71 @@
 
 .page-home .sp-clientes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .page-home .sp-clientes-sector {
   background: #fff;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 18px;
-  padding: 1.35rem 1.25rem;
+  border-radius: 20px;
+  padding: 1.5rem 1.35rem 1.35rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
 }
 
 .page-home .sp-clientes-sector h3 {
   font-family: 'Syne', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--ss-brand);
-  margin: 0 0 1rem;
+  margin: 0 0 1.15rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .page-home .sp-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.page-home .sp-logo-cell {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.85rem 1rem;
+  min-height: 64px;
+  padding: 0.65rem 0.75rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 12px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.page-home .sp-logo-cell:hover {
+  border-color: rgba(26, 79, 255, 0.2);
+  box-shadow: 0 6px 16px rgba(26, 79, 255, 0.08);
 }
 
 .page-home .sp-official-logo--client {
-  height: 36px;
+  display: block;
   width: auto;
-  max-width: 110px;
+  height: auto;
+  max-height: 34px;
+  max-width: 88px;
   object-fit: contain;
+  object-position: center;
+  filter: grayscale(15%);
+  opacity: 0.92;
+  transition: filter 0.2s, opacity 0.2s;
+}
+
+.page-home .sp-logo-cell:hover .sp-official-logo--client {
+  filter: none;
+  opacity: 1;
 }
 
 .page-home .ss-rse-logos {
@@ -406,6 +474,16 @@
 
 .page-home .deck-tech-logos__item {
   cursor: default;
+}
+
+.page-home .ss-eco-card img,
+.page-home .sp-official-logo--eco {
+  height: 48px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  margin: 0 auto 1rem;
+  display: block;
 }
 
 .page-home .ss-card,

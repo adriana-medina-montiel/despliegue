@@ -15,7 +15,7 @@
 @section('content')
 <section class="hero hero--photo" id="hero-section">
   <div class="hero-media" aria-hidden="true">
-    <img src="{{ asset('img/empresas 2.png') }}" alt="" loading="eager">
+    <img src="{{ asset('img/official/Conocenos/software.jpg') }}" alt="" loading="eager">
     <div class="hero-overlay"></div>
   </div>
 
@@ -84,12 +84,12 @@
       <h2 class="ss-title">20 años impulsando la innovación</h2>
       <p class="ss-lead">Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.</p>
       <div class="ss-badges">
-        <img src="{{ asset('img/Imagen3.png') }}" alt="COPARMEX Tlaxcala" class="ss-partner-logo">
-        <img src="{{ asset('img/Imagen1.png') }}" alt="CLUSTEC" class="ss-partner-logo">
+        <img src="{{ asset('img/official/aliados/clustec.png') }}" alt="CLUSTEC Tlaxcala" class="ss-partner-logo">
+        <img src="{{ asset('img/official/aliados/smartsoft.png') }}" alt="SmartSoft" class="ss-partner-logo">
       </div>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/corporativo.png') }}" alt="Equipo Softura Solutions" class="ss-media-photo" loading="lazy">
+      <img src="{{ asset('img/official/Conocenos/equipo.png') }}" alt="Equipo Softura Solutions" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
@@ -101,20 +101,18 @@
       <h2 class="ss-title">Descubre cómo podemos <span>ayudarte</span></h2>
       <p class="ss-lead ss-lead--center">Soluciones integrales de desarrollo, consultoría y acompañamiento para llevar tu negocio al siguiente nivel.</p>
     </header>
-    <div class="ss-services-grid rev">
+    <div class="ss-services-grid ss-services-grid--icons rev">
       @foreach(config('softura-content.servicios') as $servicio)
-      <article class="ss-card ss-card--official" id="svc-{{ $servicio['slug'] }}">
-        @if(!empty($servicio['logos']))
-        <div class="ss-card-logos" aria-hidden="true">
-          @foreach($servicio['logos'] as $logo)
-            @include('partials.official-logo', array_merge($logo, ['class' => 'sp-official-logo sp-official-logo--card']))
-          @endforeach
-        </div>
+      <a href="{{ route('fabrica') }}#svc-{{ $servicio['slug'] }}" class="ss-card ss-card--icon">
+        @if(!empty($servicio['imagen']) && file_exists(public_path($servicio['imagen'])))
+          <img src="{{ asset($servicio['imagen']) }}" alt="" loading="lazy">
         @endif
         <h3>{{ $servicio['titulo'] }}</h3>
-        <p>{{ $servicio['texto'] }}</p>
-      </article>
+      </a>
       @endforeach
+    </div>
+    <div class="ss-head-cta rev">
+      <a href="{{ route('fabrica') }}" class="btn-p">Ver fábrica de software</a>
     </div>
   </div>
 </section>
@@ -122,7 +120,7 @@
 <section class="ss-section ss-section--dark" id="devops">
   <div class="ss-container ss-split ss-split--reverse rev">
     <div class="ss-split-media ss-devops-visual">
-      <img src="{{ asset('img/sigalaptop.png') }}" alt="Entrega continua y DevOps" class="ss-media-photo" loading="lazy">
+      <img src="{{ asset('img/official/productos/devops.jpg') }}" alt="Entrega continua y DevOps" class="ss-media-photo" loading="lazy">
     </div>
     <div class="ss-split-text">
       <span class="ss-kicker ss-kicker--gold">DevOps</span>
@@ -147,7 +145,7 @@
       <p class="ss-lead ss-lead--light ss-repse"><i class="fas fa-certificate" aria-hidden="true"></i> Pertenecemos al padrón del <strong>REPSE</strong> (Registro de Prestadoras de Servicios Especializados u Obras Especializadas), obligatorio de la STPS para regular a las empresas que ofrecen servicios especializados.</p>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/Imagen5.png') }}" alt="Equipo de desarrollo en México" class="ss-media-photo" loading="lazy">
+      <img src="{{ asset('img/official/productos/onshoring.jpg') }}" alt="Equipo de desarrollo en México" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
@@ -229,13 +227,18 @@
       <span class="ss-kicker">Formación continua</span>
       <h2 class="ss-title">Equipo de profesionales <span>comprometidos</span></h2>
     </header>
-    <div class="ss-metrics rev">
-      <article class="ss-metric"><strong class="ss-metric-n">100%</strong><p>de nuestros consultores cuentan con formación universitaria.</p></article>
-      <article class="ss-metric"><strong class="ss-metric-n">15%</strong><p>de nuestros consultores han cursado un posgrado del área.</p></article>
-      <article class="ss-metric"><strong class="ss-metric-n">5</strong><p>cursos de capacitación al año en promedio por integrante del equipo de desarrollo.</p></article>
-      <article class="ss-metric"><strong class="ss-metric-n">244 hrs</strong><p>dedicadas en promedio al año en capacitaciones.</p></article>
+    <div class="ss-capacitacion-wrap rev">
+      <div class="ss-metrics">
+        @foreach(config('softura-content.capacitacion') as $metric)
+        <article class="ss-metric">
+          <strong class="ss-metric-n">{{ $metric['valor'] }}</strong>
+          <p>{{ $metric['texto'] }}</p>
+        </article>
+        @endforeach
+      </div>
+      <img src="{{ asset('img/official/Conocenos/equipo.png') }}" alt="" class="ss-capacitacion-char" loading="lazy" aria-hidden="true">
     </div>
-    <p class="ss-quote ss-quote--center rev">"La capacitación es la llave que desbloquea el potencial de la excelencia"</p>
+    <p class="ss-quote ss-quote--center rev">La capacitación es la llave que desbloquea el potencial de la excelencia</p>
   </div>
 </section>
 
@@ -248,7 +251,7 @@
       <p class="ss-lead ss-lead--light">Te acompañamos antes, durante y después de cada proyecto, brindando soporte técnico y creatividad para asegurar que tus soluciones evolucionen, generen valor y sigan impulsando el crecimiento de tu negocio.</p>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/corporativo.png') }}" alt="Acompañamiento Softura" class="ss-media-photo" loading="lazy">
+      <img src="{{ asset('img/official/Conocenos/image5.png') }}" alt="Acompañamiento Softura" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
@@ -261,22 +264,17 @@
       <p class="ss-lead ss-lead--light ss-lead--center">Como socios fundadores del Clúster de TI de Tlaxcala (CLUSTEC), accedemos a una red de más de 100 ingenieros expertos para proyectos de mayor escala.</p>
     </header>
     <div class="ss-eco-grid rev">
+      @foreach(config('softura-content.respaldo') as $aliado)
       <article class="ss-eco-card">
-        <img src="{{ asset('img/Imagen1.png') }}" alt="CLUSTEC">
-        <p>Clúster de TI de Tlaxcala — acceso a red nacional de ingeniería.</p>
+        @include('partials.official-logo', [
+          'file' => $aliado['file'] ?? null,
+          'cdn' => $aliado['cdn'] ?? null,
+          'alt' => $aliado['alt'],
+          'class' => 'sp-official-logo sp-official-logo--eco',
+        ])
+        <p>{{ $aliado['texto'] }}</p>
       </article>
-      <article class="ss-eco-card">
-        <img src="{{ asset('img/Imagen2.png') }}" alt="AMITI">
-        <p>Fortaleciendo la industria de TI y su talento en México.</p>
-      </article>
-      <article class="ss-eco-card">
-        <img src="{{ asset('img/Imagen3.png') }}" alt="COPARMEX">
-        <p>Unidos por un México próspero y con oportunidades.</p>
-      </article>
-      <article class="ss-eco-card">
-        <img src="{{ asset('img/Imagen4.png') }}" alt="mxTI">
-        <p>Promoviendo el desarrollo de la industria de software.</p>
-      </article>
+      @endforeach
     </div>
     <div class="ss-eco-highlight rev">
       <p>Software and Delivery Center — ampliamos capacidades con aliados estratégicos del ecosistema tecnológico nacional.</p>
@@ -399,12 +397,12 @@
       <p class="ss-lead ss-lead--center">Soluciones diseñadas para optimizar procesos, automatizar tareas y acelerar el crecimiento de tu organización.</p>
     </header>
     <div class="ss-products rev">
-      <a href="{{ route('productos') }}#sec-bituyu" class="ss-product"><img src="{{ asset('img/bituyu.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Bituyú</span><span>Red virtual de negocios</span></a>
+      <a href="{{ route('productos') }}#sec-bituyu" class="ss-product"><img src="{{ asset('img/bituyu compras.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Bituyú</span><span>Red virtual de negocios</span></a>
       <a href="{{ route('productos') }}#sec-binibiaa" class="ss-product"><img src="{{ asset('img/binibia.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Binibiaa</span><span>Comercio artesanal</span></a>
       <a href="{{ route('productos') }}#sec-academika" class="ss-product"><img src="{{ asset('img/academica.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Academika</span><span>Plataforma académica</span></a>
-      <a href="{{ route('productos') }}#sec-siga" class="ss-product"><img src="{{ asset('img/siga.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">SIGA</span><span>E-Learning</span></a>
+      <a href="{{ route('productos') }}#sec-siga" class="ss-product"><img src="{{ asset('img/official/siga.png') }}" alt="" class="ss-product-logo" onerror="this.src='{{ asset('img/siga.png') }}'"><span class="ss-product-name">SIGA</span><span>E-Learning</span></a>
       <a href="{{ route('productos') }}#sec-fenix-orbit" class="ss-product"><img src="{{ asset('img/fenix.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Fenyx Admin</span><span>Punto de venta</span></a>
-      <a href="{{ route('productos') }}#pbr-full-section" class="ss-product"><img src="{{ asset('img/pbr.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">MI PBR</span><span>Presupuesto por resultados</span></a>
+      <a href="{{ route('productos') }}#pbr-full-section" class="ss-product"><img src="{{ asset('img/official/pbr.png') }}" alt="" class="ss-product-logo" onerror="this.src='{{ asset('img/pbr.png') }}'"><span class="ss-product-name">MI PBR</span><span>Presupuesto por resultados</span></a>
       <a href="{{ route('productos') }}#sec-sspip" class="ss-product"><img src="{{ asset('img/sspip.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">SSPIP</span><span>Industria petrolera</span></a>
     </div>
     <div class="ss-head-cta rev">

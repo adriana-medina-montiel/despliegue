@@ -500,7 +500,11 @@
   transform: translateY(24px);
   transition: opacity .7s ease, transform .7s ease;
 }
-.rev.visible { opacity: 1; transform: none; }
+.rev.vis,
+.rev.visible {
+  opacity: 1;
+  transform: none;
+}
 
 /* Logo grids */
 .deck-logo-grid {

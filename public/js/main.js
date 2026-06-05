@@ -209,9 +209,22 @@
     const backdrop = document.querySelector('.nav-backdrop');
     if (!nav || !document.body.classList.contains('site-marketing')) return;
 
-    window.addEventListener('scroll', () => {
+    const updateNavScroll = () => {
       nav.classList.toggle('nav-scrolled', window.scrollY > 40);
-    }, { passive: true });
+    };
+
+    const hero = document.querySelector('#hero-section, .prod-hero, .hero--photo, .inicio-hero');
+    if (hero && 'IntersectionObserver' in window) {
+      const navObs = new IntersectionObserver(([entry]) => {
+        nav.classList.toggle('nav-scrolled', !entry.isIntersecting || window.scrollY > 40);
+      }, { threshold: 0, rootMargin: '-72px 0px 0px 0px' });
+      navObs.observe(hero);
+      updateNavScroll();
+      window.addEventListener('scroll', updateNavScroll, { passive: true });
+    } else {
+      updateNavScroll();
+      window.addEventListener('scroll', updateNavScroll, { passive: true });
+    }
 
     const setNavOpen = (open) => {
       document.body.classList.toggle('nav-open', open);

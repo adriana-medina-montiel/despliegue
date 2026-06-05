@@ -5,12 +5,14 @@
     <h3>{{ $sector['sector'] }}</h3>
     <div class="sp-logo-strip">
       @foreach($sector['logos'] as $logo)
+      <div class="sp-logo-cell">
         @include('partials.official-logo', [
           'file' => $logo['file'] ?? null,
           'cdn' => $logo['cdn'] ?? null,
           'alt' => $logo['alt'] ?? '',
           'class' => 'sp-official-logo sp-official-logo--client',
         ])
+      </div>
       @endforeach
     </div>
   </article>

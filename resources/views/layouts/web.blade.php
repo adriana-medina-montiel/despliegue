@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 <link rel="stylesheet" href="{{ asset('css/softura-unified.css') }}">
 <link rel="stylesheet" href="{{ asset('css/softura-ui.css') }}">
+<link rel="stylesheet" href="{{ asset('css/softura-sections.css') }}">
 @stack('head-scripts')
 @stack('styles')
 </head>
@@ -25,7 +26,13 @@
 <nav class="@yield('nav-class', 'nav-dark')" id="site-nav" @yield('nav-attrs')>
   <div class="@yield('nav-wrapper-class', 'nav-inner')">
     <div class="logo">
-      <a href="{{ route('home') }}"><img src="{{ asset('img/s3.png') }}" alt="Softura Solutions"></a>
+      <a href="{{ route('home') }}" class="logo-link" aria-label="Softura Solutions — Inicio">
+        @if(file_exists(public_path('img/s3.png')))
+          <img src="{{ asset('img/s3.png') }}" alt="Softura Solutions">
+        @else
+          <span class="logo-text">SOFTURA<b>.</b></span>
+        @endif
+      </a>
     </div>
     @hasSection('nav-toggle')
       @yield('nav-toggle')
@@ -51,6 +58,14 @@
       <li><a href="{{ route('blog') }}" data-i18n="nav.blog">Blog</a></li>
       <li><a href="{{ route('conocenos') }}" data-i18n="nav.about">Conócenos</a></li>
       <li><a href="{{ route('contacto') }}" data-i18n="nav.contact">Contáctanos</a></li>
+      <li class="nav-social" aria-label="Redes sociales">
+        <a href="https://www.linkedin.com/company/softura-solutions" class="nav-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/SofturaSolutions" class="nav-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+      </li>
       <li class="lang-switch" role="group" aria-label="Idioma">
         <span class="lang-switch-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
@@ -87,13 +102,21 @@
       <div class="logo">Softura<b>.</b></div>
       <p data-i18n="footer.rights">© 2026 Softura Solutions · Tlaxcala, México</p>
     </div>
-    <nav class="sp-footer-links" aria-label="Enlaces del sitio">
-      <a href="{{ route('home') }}" data-i18n="nav.home">Inicio</a>
-      <a href="{{ route('productos') }}" data-i18n="nav.products">Productos</a>
-      <a href="{{ route('contacto') }}" data-i18n="nav.contact">Contacto</a>
-      <a href="https://www.linkedin.com/company/softura-solutions" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://www.facebook.com/SofturaSolutions" target="_blank" rel="noopener noreferrer">Facebook</a>
-    </nav>
+    <div class="sp-footer-end">
+      <nav class="sp-footer-links" aria-label="Enlaces del sitio">
+        <a href="{{ route('home') }}" data-i18n="nav.home">Inicio</a>
+        <a href="{{ route('productos') }}" data-i18n="nav.products">Productos</a>
+        <a href="{{ route('contacto') }}" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="sp-footer-social" aria-label="Redes sociales">
+        <a href="https://www.linkedin.com/company/softura-solutions" class="sp-social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/SofturaSolutions" class="sp-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
   </div>
 </footer>
 @show

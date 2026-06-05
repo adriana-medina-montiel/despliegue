@@ -49,7 +49,7 @@
       <p class="ss-lead ss-lead--light ss-repse"><i class="fas fa-certificate" aria-hidden="true"></i> Pertenecemos al padrón del <strong>REPSE</strong>, obligatorio de la STPS para regular a las empresas que ofrecen servicios especializados.</p>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/Imagen5.png') }}" alt="Equipo de desarrollo" class="ss-media-photo" loading="lazy">
+      <img src="{{ asset('img/official/productos/onshoring.jpg') }}" alt="Equipo de desarrollo" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
@@ -63,7 +63,7 @@
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&h=400&auto=format&fit=crop" alt="Métricas de desarrollo">
         </div> 
         <div class="onsh-card-main">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&h=480&auto=format&fit=crop" alt="Reunión Onshoring">
+            <img src="{{ asset('img/official/productos/onshoring.jpg') }}" alt="Reunión Onshoring">
         </div>
     </div>
     <div class="onsh-free-content">
@@ -132,7 +132,7 @@
             </p>
         </div>
         <div class="supp-fluid-image-col">
-            <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=600&h=420&auto=format&fit=crop" alt="Equipo Softura acompañamiento tecnológico">
+            <img src="{{ asset('img/official/Conocenos/image5.png') }}" alt="Equipo Softura acompañamiento tecnológico">
         </div>      
     </div>   
     <div class="supp-line-decorator bottom-side"></div>
