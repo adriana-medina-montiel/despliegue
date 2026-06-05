@@ -2,296 +2,153 @@
 
 @section('title', 'Blog — Softura Solutions')
 
-@section('footer')
-@endsection
+@push('styles')
+<link rel="stylesheet" href="/css/estilos.css">
+@endpush
 
 @section('content')
-<main class="subpage blog-index-main">
-  <section class="page-hero blog-hero blog-hero--joomla">
-    <div class="blog-wrap">
-      <div class="blog-hero-banner" role="img" aria-label="Banner del blog">
-        <div class="blog-hero-banner__bg" aria-hidden="true"></div>
-      </div>
-      <div class="blog-hero-content">
-        <div class="blog-hero-textbox blog-reveal">
-          <span class="sec-label" data-i18n="blog.badge">Blog técnico</span>
-          <h1 data-i18n="blog.title">Ideas, tendencias y guías para construir mejor software</h1>
-          <p class="page-hero-lead" data-i18n="blog.lead">
-            Explora artículos sobre programación, tecnología y buenas prácticas que ayudan a transformar proyectos en resultados.
-          </p>
-        </div>
-      </div>
+
+{{-- Definimos los datos manualmente aquí mismo --}}
+@php
+$posts = [
+    (object)[
+        'titulo' => '¿Es Python el lenguaje del futuro?', 
+        'fecha' => '11/11/2020', 
+        'autor' => 'Omar Hernández', 
+        'extracto' => 'El lenguaje Python surgió a principios de los 90 y fue diseñado para...',
+        'img' => 'python.jpg' 
+    ],
+    (object)[
+        'titulo' => 'Diferencias entre mesa de mezclas analógica y digital', 
+        'fecha' => '10/11/2020', 
+        'autor' => 'Raymundo Polo', 
+        'extracto' => 'Las consolas mezcladoras de audio funcionan ya sea con tecnología análoga...',
+        'img' => 'mezcladora.jpg'
+    ],
+    (object)[
+        'titulo' => 'Cifrado de datos.', 
+        'fecha' => '09/11/2020', 
+        'autor' => 'Victor Hugo Tamayo', 
+        'extracto' => '¿Cómo se asegura la privacidad de la información?',
+        'img' => 'cifrado.jpg'
+    ],
+    (object)[
+        'titulo' => 'Objetos de aprendizaje.', 
+        'fecha' => '06/11/2020', 
+        'categorias' => 'Tecnología, Educación, Multimedia',
+        'autor' => 'Sergey Sánchez', 
+        'extracto' => 'Un objeto de aprendizaje (OA) es una unidad de contenido mínima...',
+        'img' => 'objetos.jpg'
+    ],
+    (object)[
+        'titulo' => 'Copiar y Pegar', 
+        'fecha' => '29/10/2020', 
+        'categorias' => 'Tecnología, Educación, Multimedia',
+        'autor' => 'Irvin Lopez', 
+        'extracto' => 'Aunque no tengas altos conocimientos informáticos, es muy probable que...',
+        'img' => 'virus.jpg'
+    ],
+    (object)[
+        'titulo' => 'Motores y Operadores de búsqueda', 
+        'fecha' => '23/10/2020', 
+        'categorias' => ' Buscadores, Web, Busquedas ·',
+        'autor' => 'Enrique Corona', 
+        'extracto' => 'Como sabemos, el internet es una conexión de miles incluso millones de conexiones...',
+        'img' => 'bigdata.jpg'
+    ],
+    (object)[
+        'titulo' => 'Apps y páginas para aprender más.', 
+        'fecha' => '21/10/2020', 
+        'categorias' => 'Apps, Aprender, En casa',
+        'autor' => 'Uriel Alvarez', 
+        'extracto' => 'En esta cuarentena, ¿estas aburrido?, invierte tu tiempo en cosas grandiosas...',
+        'img' => 'bigdata.jpg'
+    ],
+     (object)[
+        'titulo' => 'El impacto del COVID-19 en las MiPyMEs.', 
+        'fecha' => '20/10/2020', 
+        'categorias' => 'MiPyMEs, COVID-19 ',
+        'autor' => 'Guillermo Alvarez', 
+        'extracto' => 'Es indiscutible que el mundo ha cambiado desde que apareció el COVID-19...',
+        'img' => 'bigdata.jpg'
+    ],
+      (object)[
+        'titulo' => '¿Qué es Arduino?', 
+        'fecha' => '14/10/2020', 
+        'categorias' => 'Tecnología',
+        'autor' => 'Caleb Hernandez', 
+        'extracto' => 'Arduino es una placa programable que se utiliza normalmente en proyectos...',
+        'img' => 'bigdata.jpg'
+    ],
+        (object)[
+          'titulo' => 'E-learning', 
+          'fecha' => '13/10/2020', 
+          'categorias' => 'Tecnología, Informacion',
+          'autor' => 'Juan Marcos Muñoz', 
+          'extracto' => 'E-learning es un término abreviado en inglés para “electronic learning”...',
+          'img' => 'bigdata.jpg'
+    ],
+          (object)[
+            'titulo' => 'Importancia de la programación.', 
+            'fecha' => '12/10/2020', 
+            'categorias' => 'Tecnología',
+            'autor' => 'Amilcar Sosa', 
+            'extracto' => 'En el ámbito de la informática, la programación refiere a la acción de...',
+            'img' => 'bigdata.jpg'
+    ],
+    (object)[
+      'titulo' => 'El internet es más viejo',
+      'fecha' => '11/10/2020',
+      'autor' => 'Carlos Rodríguez',
+      'extracto' => 'El internet tiene más de 30 años y ha evolucionado enormemente desde sus inicios...',
+      'img' => 'bigdata.jpg'
+    ]
+
+];
+@endphp
+
+<section style="min-height:80vh; padding:8rem 5vw 4rem; background-color: #FAFAFA;">
+  <div style="max-width:1200px; margin:0 auto;">
+    
+    <div class="sec-label" style="text-transform:uppercase; letter-spacing:3px; margin-bottom:1rem; color:#1A4FFF; font-weight:600; font-size: 0.9rem;">
+        Blog
     </div>
-  </section>
+    
+    <h1 style="font-family:'Syne',sans-serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:800; line-height:1.15; margin-bottom:4rem;">
+      Insights &amp; Tecnología
+    </h1>
 
-  <div class="blog-topics blog-reveal" style="transition-delay:.08s">
-    <div class="blog-topics-inner">
-      <span class="blog-topics-label">Temas</span>
-      <a class="blog-topic" href="{{ url('/blog') }}">Python</a>
-      <a class="blog-topic" href="{{ url('/blog') }}">Seguridad</a>
-      <a class="blog-topic" href="{{ url('/blog') }}">QA</a>
-      <a class="blog-topic" href="{{ url('/blog') }}">Educación</a>
-      <a class="blog-topic" href="{{ url('/blog') }}">Performance</a>
-      <a class="blog-topic" href="{{ url('/blog') }}">Ciberseguridad</a>
-    </div>
-  </div>
-
-  <section class="blog-index-section">
-    <div class="blog-wrap">
-      <div class="blog-index-layout">
-        <div class="blog-main">
-          <section class="blog-list blog-list--joomla blog-list-featured">
-            <div class="blog-list-head blog-reveal">
-              <div>
-                <span class="sec-label" data-i18n="blog.featured">Destacados</span>
-                <p>Artículos seleccionados sobre desarrollo, innovación y buenas prácticas.</p>
-              </div>
-            </div>
-
-            <div class="blog-spotlight">
-              <article class="blog-card blog-card--joomla blog-card--spotlight rev">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo ¿Es Python el lenguaje del futuro?">
-                  <div class="blog-card-media">
-                    <span class="blog-card-badge">Destacado</span>
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1400&q=80" alt="¿Es Python el lenguaje del futuro?">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-11-11">11/11/2020</time>
-                      <div class="blog-chips">
-                        <span class="blog-chip">Python</span>
-                        <span class="blog-chip">Programación</span>
-                      </div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Omar Hernández</strong></p>
-                    <h2>¿Es Python el lenguaje del futuro?</h2>
-                    <p class="blog-excerpt">
-                      Python surgió en los 90 y hoy domina escenarios como desarrollo web, scripting, data science e inteligencia artificial por su simplicidad, versatilidad y gran ecosistema.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-            </div>
-
-            <div class="blog-featured-grid blog-featured-grid--duo">
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.06s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo Diferencias entre una mesa de mezclas analógica y una digital">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1400&q=80" alt="Diferencias entre una mesa de mezclas analógica y una digital">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-11-10">10/11/2020</time>
-                      <div class="blog-chips">
-                        <span class="blog-chip">Tecnología</span>
-                        <span class="blog-chip">Audio</span>
-                      </div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Raymundo Polo</strong></p>
-                    <h2>Diferencias entre una mesa de mezclas analógica y una digital</h2>
-                    <p class="blog-excerpt">
-                      Un recorrido claro por las diferencias clave entre consolas analógicas y digitales en entradas, ruido, tamaño, operación y eficiencia.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.12s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo Cifrado de datos">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1400&q=80" alt="Cifrado de datos">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-11-09">09/11/2020</time>
-                      <div class="blog-chips">
-                        <span class="blog-chip">Cifrado</span>
-                        <span class="blog-chip">Protección</span>
-                      </div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Victor Hugo Tamayo</strong></p>
-                    <h2>Cifrado de datos</h2>
-                    <p class="blog-excerpt">
-                      Cómo el cifrado protege mensajes, contraseñas e información crítica mediante algoritmos simétricos y asimétricos.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-            </div>
-          </section>
-
-          <section class="blog-list blog-list--joomla blog-list-more">
-            <div class="blog-list-head blog-reveal">
-              <div>
-                <span class="sec-label" data-i18n="blog.latest">Últimos artículos</span>
-                <p>Explora el archivo completo de publicaciones del equipo Softura.</p>
-              </div>
-            </div>
-
-            <div class="blog-cards-grid blog-cards-grid--joomla">
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.06s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo Objetos de aprendizaje">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80" alt="Objetos de aprendizaje: Herramienta de innovación educativa">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-11-06">06/11/2020</time>
-                      <div class="blog-chips"><span class="blog-chip">Educación</span></div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Sergey Sánchez</strong></p>
-                    <h2>Objetos de aprendizaje: Herramienta de innovación educativa</h2>
-                    <p class="blog-excerpt">
-                      Los objetos de aprendizaje combinan diseño instruccional y recursos multimedia para crear contenido reusable e interoperable.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.12s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo sobre spyware">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1400&q=80" alt="¿Qué es y cómo nos afecta el Spyware?">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-10-30">30/10/2020</time>
-                      <div class="blog-chips"><span class="blog-chip">Spyware</span></div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Nelly Osorno</strong></p>
-                    <h2>¿Qué es y cómo nos afecta el Spyware?</h2>
-                    <p class="blog-excerpt">
-                      Qué es el spyware, cómo opera en dispositivos y qué medidas prácticas tomar para reducir riesgos.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.18s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo Rendimiento web">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" alt="Rendimiento web: claves de optimización">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-10-28">28/10/2020</time>
-                      <div class="blog-chips"><span class="blog-chip">Performance</span></div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Softura Solutions</strong></p>
-                    <h2>Rendimiento web: claves de optimización</h2>
-                    <p class="blog-excerpt">
-                      Buenas prácticas para mejorar tiempos de carga, experiencia en móviles y métricas clave sin sacrificar diseño.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.24s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo QA">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" alt="QA: cómo asegurar calidad desde el inicio">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-10-26">26/10/2020</time>
-                      <div class="blog-chips"><span class="blog-chip">QA</span></div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Softura Solutions</strong></p>
-                    <h2>QA: cómo asegurar calidad desde el inicio</h2>
-                    <p class="blog-excerpt">
-                      Una guía práctica para integrar pruebas, criterios de aceptación y automatización ligera.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-
-              <article class="blog-card blog-card--joomla rev" style="transition-delay:.30s">
-                <a class="blog-card-link" href="{{ url('/blog') }}" aria-label="Ver más del artículo Seguridad en el correo">
-                  <div class="blog-card-media">
-                    <img class="blog-card-img" loading="lazy" src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=1400&q=80" alt="Seguridad en el correo: phishing y prevención">
-                  </div>
-                  <div class="blog-card-content">
-                    <div class="blog-card-meta-row">
-                      <time class="blog-card-date" datetime="2020-10-23">23/10/2020</time>
-                      <div class="blog-chips"><span class="blog-chip">Phishing</span></div>
-                    </div>
-                    <p class="blog-card-author">Escrito por <strong>Softura Solutions</strong></p>
-                    <h2>Seguridad en el correo: phishing y prevención</h2>
-                    <p class="blog-excerpt">
-                      Señales comunes de fraude y medidas concretas para proteger cuentas y datos sensibles.
-                    </p>
-                    <span class="blog-readmore" data-i18n="blog.readmore">Ver más</span>
-                  </div>
-                </a>
-              </article>
-            </div>
-          </section>
-        </div>
-
-        <aside class="blog-sidebar" aria-label="Suscripción y novedades">
-          <div class="blog-sidebar-card blog-sidebar-card--joomla blog-reveal" style="--blog-delay:.1s">
-            <p class="blog-sidebar-kicker" data-i18n="blog.subscribe.kicker">Suscríbete</p>
-            <h2 class="blog-sidebar-title" data-i18n="blog.subscribe.title">Mantente informado</h2>
-            <p class="blog-sidebar-text" data-i18n="blog.subscribe.text">
-              Regístrate para recibir novedades, cursos y artículos directamente en tu correo.
+    {{-- Grid de tarjetas --}}
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:2.5rem;">
+        
+        @foreach($posts as $post)
+        <article style="background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; display:flex; flex-direction:column;">
+          
+          <div style="width:100%; height:200px; background:#e2e8f0;">
+             </div>
+          
+          <div style="padding:1.8rem; flex-grow:1;">
+            <p style="font-size:0.75rem; color:#1A4FFF; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:0.8rem;">
+              {{ $post->fecha }} • {{ $post->autor }}
             </p>
-            <form class="blog-sidebar-form" action="#" method="post">
-              <label class="sr-only" for="blog-mc-email">Correo</label>
-              <input id="blog-mc-email" name="email" type="email" placeholder="Correo" required>
-              <label class="sr-only" for="blog-mc-name">Nombre</label>
-              <input id="blog-mc-name" name="nombre" type="text" placeholder="Nombre" required>
-              <label class="sr-only" for="blog-mc-lastname">Apellidos</label>
-              <input id="blog-mc-lastname" name="apellidos" type="text" placeholder="Apellidos" required>
-              <button type="submit" class="btn-nav blog-sidebar-btn" data-i18n="blog.subscribe.btn">Suscribirme</button>
-            </form>
-            <p class="blog-sidebar-foot" data-i18n="blog.subscribe.foot">Puedes darte de baja cuando quieras.</p>
+            
+            <h2 style="font-family:'Syne',sans-serif; font-size:1.3rem; font-weight:700; margin-bottom:1rem; line-height:1.3; color:#1e293b;">
+              {{ $post->titulo }}
+            </h2>
+            
+            <p style="color:#6B6B80; font-size:0.95rem; line-height:1.6; margin-bottom:1.5rem;">
+              {{ $post->extracto }}
+            </p>
+            
+            <a href="#" style="display:inline-block; background:#1A4FFF; color:#fff; padding:0.7rem 1.5rem; border-radius:8px; font-weight:600; font-size:0.9rem; text-decoration:none;">
+              Leer más
+            </a>
           </div>
-
-          <div class="blog-sidebar-card blog-sidebar-card--video blog-reveal" style="--blog-delay:.18s" aria-label="Video">
-            <div class="blog-video">
-              <iframe
-                src="https://www.youtube.com/embed/3qBXWUpoPHo"
-                title="Softura Solutions"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </section>
-</main>
-<footer class="blog-footer-joomla" aria-label="Pie de página">
-  <div class="blog-footer-wrap">
-    <div class="blog-footer-brand">
-      <div class="logo">Softura<b style="color:var(--blue)">.</b></div>
-      <p class="blog-footer-copy" data-i18n="footer.rights">Todos los derechos reservados 2026 ©</p>
-    </div>
-    <div class="blog-footer-info">
-      <a class="blog-footer-item" href="mailto:info@softura.com.mx">info@softura.com.mx</a>
-      <span class="blog-footer-item">Tlaxcala, México</span>
-    </div>
-    <div class="blog-footer-social" aria-label="Redes sociales">
-      <a href="https://www.facebook.com/SofturaSolutions" class="blog-social blog-social--fb" aria-label="Facebook" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.2-1.5 1.6-1.5H16.8V5.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V11H7.5v3h2.3v8h3.7z"/></svg>
-      </a>
-      <a href="https://www.linkedin.com/company/softura-solutions" class="blog-social blog-social--li" aria-label="LinkedIn" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6.94 6.5a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM4.5 21V8.98h4.88V21H4.5zm7.51 0V8.98h4.68v1.64h.07c.65-1.23 2.24-2.52 4.6-2.52 4.92 0 5.83 3.24 5.83 7.46V21h-4.88v-5.4c0-1.29-.02-2.94-1.79-2.94-1.8 0-2.08 1.4-2.08 2.85V21h-4.43z"/></svg>
-      </a>
-      <a href="#" class="blog-social blog-social--x" aria-label="X (Twitter)">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.9 7.9L23 22h-6.2l-4.9-6-5.2 6H3.6l7.4-8.5L1 2h6.4l4.4 5.5L18.9 2zm-1.1 18h1.7L6.5 3.9H4.7L17.8 20z"/></svg>
-      </a>
+        </article>
+        @endforeach
+        
     </div>
   </div>
-</footer>
-@endsection
+</section>
 
+@endsection
