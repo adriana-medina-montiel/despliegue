@@ -17,9 +17,18 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::firstOrCreate(
+            ['email' => 'admin@softurasolutions.com'],
+            [
+                'name'     => 'Admin Softura',
+                'password' => bcrypt('Softura@Admin2024!'),
+                'is_admin' => true,
+            ]
+        );
+
+        $this->call([
+            ConocenosHeroSeeder::class,
+            ConocenosDifferentiatorsSeeder::class,
         ]);
     }
 }

@@ -10,45 +10,55 @@
 
 @section('content')
 
+@php $hero = $sections->get('hero'); @endphp
+@if(!$hero || $hero->is_visible)
 <section class="cn-hero" id="portada">
   <div class="cn-hero-media" aria-hidden="true">
-    <img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/image67.png" alt="" loading="eager">
+    @php $bgImg = $hero?->content('background_image', 'https://softura.com.mx/SofturaSolutions/images/Conocenos/image67.png');
+         $bgSrc = ($bgImg && !str_starts_with($bgImg, 'http')) ? asset('storage/' . $bgImg) : $bgImg; @endphp
+    <img src="{{ $bgSrc }}" alt="" loading="eager">
     <div class="cn-hero-shade"></div>
   </div>
   <div class="cn-container cn-hero-content rev">
-    <span class="cn-hero-tag" data-i18n="about.badge">Quiénes somos</span>
-    <h1 data-i18n="cn.hero">Queremos ser tu aliado de negocio</h1>
-    <p class="cn-hero-lead" data-i18n="cn.hero.lead">Soluciones de software a la medida con consultoría, calidad y acompañamiento en cada etapa de tu proyecto.</p>
+    <span class="cn-hero-tag">{{ $hero?->content('badge_text', 'Quiénes somos') }}</span>
+    <h1>{{ $hero?->content('title', 'Queremos ser tu aliado de negocio') }}</h1>
+    <p class="cn-hero-lead">{{ $hero?->content('description', 'Soluciones de software a la medida con consultoría, calidad y acompañamiento en cada etapa de tu proyecto.') }}</p>
     <div class="cn-hero-btns">
-      <a href="{{ route('contacto') }}" class="btn-p" data-i18n="cn.cta.project">Iniciar un proyecto</a>
-      <a href="#form_correo" class="cn-btn-outline" data-i18n="cn.cta.talent">Únete al equipo →</a>
+      <a href="{{ route('contacto') }}" class="btn-p">Iniciar un proyecto</a>
+      <a href="#form_correo" class="cn-btn-outline">Únete al equipo →</a>
     </div>
   </div>
   <a href="#diferenciadores" class="cn-scroll-hint" aria-label="Explorar secciones">
-    <span data-i18n="cn.scroll">Explorar</span>
+    <span>Explorar</span>
     <span class="cn-scroll-chevron" aria-hidden="true"></span>
   </a>
 </section>
+@endif
 
+@php $diff = $sections->get('differentiators'); @endphp
+@if(!$diff || $diff->is_visible)
 <section class="cn-section cn-section-diff" id="diferenciadores">
   <div class="cn-container">
     <header class="cn-head rev">
-      <span class="cn-label" data-i18n="cn.label.diff">Por qué elegirnos</span>
-      <h2 data-i18n="cn.more.title">¡Te brindamos más que los demás!</h2>
-      <p data-i18n="cn.more.text">Complementamos el servicio de software con diferenciadores que hacen única cada colaboración con tu empresa.</p>
+      <span class="cn-label">{{ $diff?->content('badge_text', 'Por qué elegirnos') }}</span>
+      <h2>{{ $diff?->content('title', '¡Te brindamos más que los demás!') }}</h2>
+      <p>{{ $diff?->content('header_description', 'Complementamos el servicio de software con diferenciadores que hacen única cada colaboración con tu empresa.') }}</p>
     </header>
     <div class="cn-diff-split rev">
       <div class="cn-diff-left">
-        <img class="cn-medal" src="https://softura.com.mx/SofturaSolutions/images/Conocenos/images.png" alt="" loading="lazy">
-        <p class="cn-diff-intro" data-i18n="cn.more.text">En Softura Solutions nos esforzamos por brindarte la mejor experiencia. Complementamos el desarrollo de software con diferenciadores clave para que tu experiencia con nosotros sea única.</p>
+        @php $mImg = $diff?->content('medal_image','https://softura.com.mx/SofturaSolutions/images/Conocenos/images.png'); $mSrc = ($mImg && !str_starts_with($mImg,'http')) ? asset('storage/'.$mImg) : $mImg; @endphp
+        <img class="cn-medal" src="{{ $mSrc }}" alt="" loading="lazy">
+        <p class="cn-diff-intro">{{ $diff?->content('body_text', 'En Softura Solutions nos esforzamos por brindarte la mejor experiencia. Complementamos el desarrollo de software con diferenciadores clave para que tu experiencia con nosotros sea única.') }}</p>
       </div>
       <figure class="cn-diff-figure">
-        <img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/detalles.png" alt="Los detalles de valor" loading="lazy">
-        <figcaption class="cn-diff-caption" data-i18n="cn.wheel.center">Los detalles de valor</figcaption>
+        @php $dImg = $diff?->content('diagram_image','https://softura.com.mx/SofturaSolutions/images/Conocenos/detalles.png'); $dSrc = ($dImg && !str_starts_with($dImg,'http')) ? asset('storage/'.$dImg) : $dImg; @endphp
+        <img src="{{ $dSrc }}" alt="{{ $diff?->content('diagram_caption','Los detalles de valor') }}" loading="lazy">
+        <figcaption class="cn-diff-caption">{{ $diff?->content('diagram_caption', 'Los detalles de valor') }}</figcaption>
       </figure>
     </div>
   </div>
 </section>
+@endif
 
 <section class="cn-section cn-section-pillars">
   <div class="cn-container">
