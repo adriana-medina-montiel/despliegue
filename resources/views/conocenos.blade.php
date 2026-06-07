@@ -60,124 +60,129 @@
 </section>
 @endif
 
+@php $pillars = $sections->get('pillars'); @endphp
+@if(!$pillars || $pillars->is_visible)
 <section class="cn-section cn-section-pillars">
   <div class="cn-container">
     <header class="cn-head cn-head-light rev">
-      <h2 data-i18n="cn.pillars.title">Ayudarte a mejorar es nuestra motivación</h2>
-      <p data-i18n="cn.pillars.text">Especialistas en constante actualización, comprometidos con brindar el mejor servicio en cada entrega.</p>
+      <h2>{{ $pillars?->content('title', 'Ayudarte a mejorar es nuestra motivación') }}</h2>
+      <p>{{ $pillars?->content('description', 'Especialistas en constante actualización, comprometidos con brindar el mejor servicio en cada entrega.') }}</p>
     </header>
     <div class="cn-pillars rev" data-cn-stagger>
-      <article class="cn-pillar cn-stagger-item"><div class="cn-pillar-frame"><img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/ima1.png" alt="" loading="lazy"></div><h3 data-i18n="cn.pillar.1">Profesionalismo</h3></article>
-      <article class="cn-pillar cn-stagger-item"><div class="cn-pillar-frame"><img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/ima2.png" alt="" loading="lazy"></div><h3 data-i18n="cn.pillar.2">Responsabilidad</h3></article>
-      <article class="cn-pillar cn-stagger-item"><div class="cn-pillar-frame"><img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/ima3.png" alt="" loading="lazy"></div><h3 data-i18n="cn.pillar.3">Compromiso</h3></article>
-      <article class="cn-pillar cn-stagger-item"><div class="cn-pillar-frame"><img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/ima4.png" alt="" loading="lazy"></div><h3 data-i18n="cn.pillar.4">Expertiz</h3></article>
+      @foreach($pillars?->items ?? collect() as $item)
+        @php $iImg = $item->data('image',''); $iSrc = ($iImg && !str_starts_with($iImg,'http')) ? asset('storage/'.$iImg) : $iImg; @endphp
+        <article class="cn-pillar cn-stagger-item">
+          <div class="cn-pillar-frame"><img src="{{ $iSrc }}" alt="{{ $item->data('label') }}" loading="lazy"></div>
+          <h3>{{ $item->data('label') }}</h3>
+        </article>
+      @endforeach
     </div>
   </div>
 </section>
+@endif
 
+@php $support = $sections->get('support'); @endphp
+@if(!$support || $support->is_visible)
 <section class="cn-section">
   <div class="cn-container cn-accompany rev">
     <div class="cn-accompany-copy">
-      <span class="cn-label" data-i18n="cn.label.support">Soporte 360°</span>
-      <h2 data-i18n="cn.accompany.title">¡Te acompañamos en todo momento!</h2>
-      <p data-i18n="cn.accompany.text">Aliado de negocio a largo plazo: soporte técnico y creativo antes, durante y después de cada proyecto.</p>
+      <span class="cn-label">{{ $support?->content('badge_text', 'Soporte 360°') }}</span>
+      <h2>{{ $support?->content('title', '¡Te acompañamos en todo momento!') }}</h2>
+      <p>{{ $support?->content('description', 'Aliado de negocio a largo plazo: soporte técnico y creativo antes, durante y después de cada proyecto.') }}</p>
       <div class="cn-timeline-wrap">
         <div class="cn-timeline-rail" aria-hidden="true"><div class="cn-timeline-fill" id="cn-timeline-fill"></div></div>
         <ol class="cn-steps">
-          <li><span class="cn-step-dot" aria-hidden="true"></span><div class="cn-step-body"><strong data-i18n="cn.phase.1">Antes del proyecto</strong><span data-i18n="cn.phase.1.desc">Consultoría y definición de alcance</span></div></li>
-          <li><span class="cn-step-dot" aria-hidden="true"></span><div class="cn-step-body"><strong data-i18n="cn.phase.2">Durante el desarrollo</strong><span data-i18n="cn.phase.2.desc">Seguimiento y comunicación constante</span></div></li>
-          <li><span class="cn-step-dot" aria-hidden="true"></span><div class="cn-step-body"><strong data-i18n="cn.phase.3">Después de la entrega</strong><span data-i18n="cn.phase.3.desc">Soporte, evolución y mejora continua</span></div></li>
+          @foreach($support?->items ?? collect() as $item)
+          <li>
+            <span class="cn-step-dot" aria-hidden="true"></span>
+            <div class="cn-step-body">
+              <strong>{{ $item->data('phase_title') }}</strong>
+              <span>{{ $item->data('phase_description') }}</span>
+            </div>
+          </li>
+          @endforeach
         </ol>
       </div>
     </div>
     <div class="cn-accompany-photo">
-      <img src="https://softura.com.mx/SofturaSolutions/images/Conocenos/image5.png" alt="" loading="lazy">
+      @php $sImg = $support?->content('side_image','https://softura.com.mx/SofturaSolutions/images/Conocenos/image5.png'); $sSrc = ($sImg && !str_starts_with($sImg,'http')) ? asset('storage/'.$sImg) : $sImg; @endphp
+      <img src="{{ $sSrc }}" alt="" loading="lazy">
     </div>
   </div>
 </section>
+@endif
 
+@php
+$clients = $sections->get('clients');
+$clientSectors = $clients?->content('sectors', [
+    ['name' => 'Gobierno',  'tag' => 'Sector gobierno'],
+    ['name' => 'Educativo', 'tag' => 'Sector educativo'],
+    ['name' => "TIC's",     'tag' => "Sector TIC's"],
+    ['name' => 'Privado',   'tag' => 'Iniciativa privada'],
+]);
+@endphp
+@if(!$clients || $clients->is_visible)
 <section class="cn-section cn-section-clients" id="clientes">
   <div class="cn-container">
     <div class="cn-clients-stat rev">
-      <span class="cn-clients-stat-num" data-i18n="cn.clients.stat">100%</span>
-      <p data-i18n="cn.clients.stat.label">Clientes satisfechos con nuestro servicio y compromiso.</p>
+      <span class="cn-clients-stat-num">100%</span>
+      <p>Clientes satisfechos con nuestro servicio y compromiso.</p>
     </div>
     <header class="cn-head rev">
-      <span class="cn-label" data-i18n="cn.clients.endorse">Confianza</span>
-      <h2 data-i18n="cn.clients.title">Ellos nos avalan</h2>
-      <p data-i18n="cn.clients.text">Relaciones comerciales basadas en la confianza, en cualquier giro y modelo de negocio.</p>
+      <span class="cn-label">{{ $clients?->content('badge_text', 'Confianza') }}</span>
+      <h2>{{ $clients?->content('title', 'Ellos nos avalan') }}</h2>
+      <p>{{ $clients?->content('description', 'Relaciones comerciales basadas en la confianza, en cualquier giro y modelo de negocio.') }}</p>
     </header>
     <div class="cn-tabs rev" id="sector-tabs" role="tablist">
-      <button type="button" class="active" data-sector="0" data-i18n="cn.sector.gov.short">Gobierno</button>
-      <button type="button" data-sector="1" data-i18n="cn.sector.edu.short">Educativo</button>
-      <button type="button" data-sector="2" data-i18n="cn.sector.tic.short">TIC's</button>
-      <button type="button" data-sector="3" data-i18n="cn.sector.priv.short">Privado</button>
+      @foreach($clientSectors as $i => $sector)
+      <button type="button" {{ $i === 0 ? 'class="active"' : '' }} data-sector="{{ $i }}">{{ $sector['name'] }}</button>
+      @endforeach
     </div>
     <div class="cn-panel rev" id="clients-carousel">
-      <div class="cn-carousel-item active">
-        <p class="cn-panel-tag" data-i18n="cn.sector.gov">Sector gobierno</p>
+      @foreach($clientSectors as $i => $sector)
+      @php $sectorLogos = $clients?->items->filter(fn($item) => (int)$item->data('sector',0) === $i) ?? collect(); @endphp
+      <div class="cn-carousel-item {{ $i === 0 ? 'active' : '' }}">
+        <p class="cn-panel-tag">{{ $sector['tag'] }}</p>
         <div class="cn-logos">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/indesol.png" alt="Indesol">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/dgcft.png" alt="DGCFT">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/oportunidades-ch.png" alt="Oportunidades">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/sedesol.png" alt="SEDESOL">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/prospera.png" alt="PROSPERA">
+          @foreach($sectorLogos as $logo)
+            @php $img = $logo->data('image',''); $src = ($img && !str_starts_with($img,'http')) ? asset('storage/'.$img) : $img; @endphp
+            <img src="{{ $src }}" alt="{{ $logo->data('alt') }}" loading="lazy">
+          @endforeach
         </div>
       </div>
-      <div class="cn-carousel-item">
-        <p class="cn-panel-tag" data-i18n="cn.sector.edu">Sector educativo</p>
-        <div class="cn-logos">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/ipn.png" alt="IPN">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/uat2.png" alt="UAT">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/itsc-ch.png" alt="ITSC">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/iesm.png" alt="IESM">
-        </div>
-      </div>
-      <div class="cn-carousel-item">
-        <p class="cn-panel-tag" data-i18n="cn.sector.tic">Sector TIC's</p>
-        <div class="cn-logos">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/grupo_Red.png" alt="GrupoRed">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/core_one.png" alt="Core One">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/clusted.png" alt="CLUSTEC">
-        </div>
-      </div>
-      <div class="cn-carousel-item">
-        <p class="cn-panel-tag" data-i18n="cn.sector.priv">Iniciativa privada</p>
-        <div class="cn-logos">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/Omnilife-ch.png" alt="Omnilife">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/dentalia.png" alt="Dentalia">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/deloitte.png" alt="Deloitte">
-          <img src="https://softura.com.mx/SofturaSolutions/images/clientes/metalsa.png" alt="Metalsa">
-        </div>
-      </div>
+      @endforeach
     </div>
     <div class="cn-dots" id="clients-dots"></div>
   </div>
 </section>
+@endif
 
+@php $testimonials = $sections->get('testimonials'); @endphp
+@if(!$testimonials || $testimonials->is_visible)
 <section class="cn-section cn-section-quotes">
   <div class="cn-container">
     <header class="cn-head rev">
-      <span class="cn-label" data-i18n="cn.label.voices">Voces</span>
-      <h2 data-i18n="cn.testimonials.title">Lo que dicen nuestros clientes</h2>
+      <span class="cn-label">{{ $testimonials?->content('badge_text', 'Voces') }}</span>
+      <h2>{{ $testimonials?->content('title', 'Lo que dicen nuestros clientes') }}</h2>
     </header>
     <div class="cn-quotes rev" id="testimonial-carousel">
-      <article class="cn-quote">
-        <span class="cn-quote-mark" aria-hidden="true">"</span>
-        <header><img src="https://softura.com.mx/SofturaSolutions/images/grupo_Red.png" alt="GrupoRed"></header>
-        <blockquote data-i18n="cn.testimonial.1"></blockquote>
-        <footer><strong>Emeterio Flores Landaverde</strong><span data-i18n="cn.testimonial.role1"></span></footer>
-      </article>
-      <article class="cn-quote">
-        <span class="cn-quote-mark" aria-hidden="true">"</span>
-        <header><img src="https://softura.com.mx/SofturaSolutions/images/dentalia.png" alt="Dentalia" class="cn-logo-tall"></header>
-        <blockquote data-i18n="cn.testimonial.2"></blockquote>
-        <footer><strong>Eliud Arista González</strong><span data-i18n="cn.testimonial.role2"></span></footer>
-      </article>
+      @foreach($testimonials?->items ?? collect() as $item)
+        @php $logo = $item->data('logo_image',''); $logoSrc = ($logo && !str_starts_with($logo,'http')) ? asset('storage/'.$logo) : $logo; @endphp
+        <article class="cn-quote">
+          <span class="cn-quote-mark" aria-hidden="true">"</span>
+          <header><img src="{{ $logoSrc }}" alt="{{ $item->data('author_name') }}" loading="lazy"></header>
+          <blockquote>{{ $item->data('quote') }}</blockquote>
+          <footer>
+            <strong>{{ $item->data('author_name') }}</strong>
+            <span>{{ $item->data('author_role') }}</span>
+          </footer>
+        </article>
+      @endforeach
     </div>
     <div class="cn-dots" id="testimonial-dots"></div>
   </div>
 </section>
+@endif
 
 <section class="cn-talent" id="form_correo">
   <div class="cn-talent-glow" aria-hidden="true"></div>

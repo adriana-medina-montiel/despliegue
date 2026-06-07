@@ -136,8 +136,10 @@
             <h3>Ayudarte a mejorar es nuestra motivación</h3>
             <p>Pilares: profesionalismo, responsabilidad, compromiso y expertiz.</p>
         </div>
-        <span class="badge-soon">Próximamente</span>
-        <span class="edit-btn-disabled"><i class="fas fa-lock" style="font-size:10px"></i> Editar</span>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.conocenos.pillars.edit') }}" class="edit-btn" style="background:#0891b2">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
     </div>
 
     {{-- Soporte 360 --}}
@@ -149,8 +151,10 @@
             <h3>Soporte 360°</h3>
             <p>Acompañamiento antes, durante y después de cada proyecto.</p>
         </div>
-        <span class="badge-soon">Próximamente</span>
-        <span class="edit-btn-disabled"><i class="fas fa-lock" style="font-size:10px"></i> Editar</span>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.conocenos.support.edit') }}" class="edit-btn" style="background:#ea580c">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
     </div>
 
     {{-- Clientes --}}
@@ -162,8 +166,10 @@
             <h3>Clientes — Quiénes nos avalan</h3>
             <p>Logos por sector: gobierno, educativo, TIC's e iniciativa privada.</p>
         </div>
-        <span class="badge-soon">Próximamente</span>
-        <span class="edit-btn-disabled"><i class="fas fa-lock" style="font-size:10px"></i> Editar</span>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.conocenos.clients.edit') }}" class="edit-btn" style="background:#16a34a">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
     </div>
 
     {{-- Testimonios --}}
@@ -175,8 +181,10 @@
             <h3>Lo que dicen nuestros clientes</h3>
             <p>Testimonios y reseñas de clientes actuales.</p>
         </div>
-        <span class="badge-soon">Próximamente</span>
-        <span class="edit-btn-disabled"><i class="fas fa-lock" style="font-size:10px"></i> Editar</span>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.conocenos.testimonials.edit') }}" class="edit-btn" style="background:#ca8a04">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
     </div>
 
     {{-- Carreras --}}

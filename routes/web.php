@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\Conocenos\ClientsController as AdminClientsController;
+use App\Http\Controllers\Admin\Conocenos\TestimonialsController as AdminTestimonialsController;
 use App\Http\Controllers\Admin\Conocenos\DifferentiatorsController as AdminDifferentiatorsController;
 use App\Http\Controllers\Admin\Conocenos\HeroController as AdminHeroController;
+use App\Http\Controllers\Admin\Conocenos\PillarsController as AdminPillarsController;
+use App\Http\Controllers\Admin\Conocenos\SupportController as AdminSupportController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\ConocenosController;
@@ -36,6 +40,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::post('/hero',            [AdminHeroController::class, 'update'])->name('hero.update');
         Route::get('/differentiators',  [AdminDifferentiatorsController::class, 'edit'])->name('differentiators.edit');
         Route::post('/differentiators', [AdminDifferentiatorsController::class, 'update'])->name('differentiators.update');
+        Route::get('/pillars',          [AdminPillarsController::class, 'edit'])->name('pillars.edit');
+        Route::post('/pillars',         [AdminPillarsController::class, 'update'])->name('pillars.update');
+        Route::get('/support',          [AdminSupportController::class, 'edit'])->name('support.edit');
+        Route::post('/support',         [AdminSupportController::class, 'update'])->name('support.update');
+        Route::get('/clients',          [AdminClientsController::class, 'edit'])->name('clients.edit');
+        Route::post('/clients',         [AdminClientsController::class, 'update'])->name('clients.update');
+        Route::get('/testimonials',     [AdminTestimonialsController::class, 'edit'])->name('testimonials.edit');
+        Route::post('/testimonials',    [AdminTestimonialsController::class, 'update'])->name('testimonials.update');
     });
 });
 

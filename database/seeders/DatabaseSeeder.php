@@ -29,6 +29,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ConocenosHeroSeeder::class,
             ConocenosDifferentiatorsSeeder::class,
+            ConocenosPillarsSeeder::class,
+            ConocenosSupportSeeder::class,
+            ConocenosClientsSeeder::class,
+            ConocenosTestimonialsSeeder::class,
         ]);
     }
 }
