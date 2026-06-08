@@ -73,7 +73,7 @@ $posts = [
         'img' => 'bigdata.jpg'
     ],
       (object)[
-        'titulo' => '¿Qué es Arduino?', 
+        'titulo' => '¿Qué es Arduino?', Ñ
         'fecha' => '14/10/2020', 
         'categorias' => 'Tecnología',
         'autor' => 'Caleb Hernandez', 
