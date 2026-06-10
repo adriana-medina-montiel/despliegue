@@ -13,30 +13,53 @@
 @endpush
 
 @section('content')
+@php
+  $hero = $sections->get('hero');
+@endphp
+@if(!$hero || $hero->is_visible)
 <section class="hero hero--photo" id="hero-section">
   <div class="hero-media" aria-hidden="true">
-    <img src="{{ asset('img/official/Conocenos/software.jpg') }}" alt="" loading="eager">
+    @php
+      $heroSrc = cms_asset($hero?->content('background_image', 'img/official/Conocenos/software.jpg'));
+    @endphp
+    <img src="{{ $heroSrc }}" alt="" loading="eager">
     <div class="hero-overlay"></div>
   </div>
 
   <div class="hero-content">
-    <h1 data-i18n-html="home.hero.title">Un poco de software <em>hace la diferencia</em></h1>
+    <h1 data-i18n-html="home.hero.title">{!! $hero?->content('title', 'Un poco de software <em>hace la diferencia</em>') !!}</h1>
     <p class="hero-sub" data-i18n="home.hero.sub">
-      Ayudamos a las empresas a crecer con soluciones de software a la medida, respaldadas por consultoría especializada y más de 20 años de experiencia.
+      {{ $hero?->content('description', 'Ayudamos a las empresas a crecer con soluciones de software a la medida, respaldadas por consultoría especializada y más de 20 años de experiencia.') }}
     </p>
     <div class="hero-actions">
-      <a href="#servicios" class="btn-p btn-p--hero">
+      <a href="{{ $hero?->content('cta1_url', '#servicios') }}" class="btn-p btn-p--hero">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <span data-i18n="home.hero.cta1">Conoce nuestros servicios</span>
+        <span data-i18n="home.hero.cta1">{{ $hero?->content('cta1_text', 'Conoce nuestros servicios') }}</span>
       </a>
-      <a href="{{ route('conocenos') }}" class="btn-g btn-g--hero">
+      <a href="{{ $hero?->content('cta2_url', route('conocenos')) }}" class="btn-g btn-g--hero">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <span data-i18n="home.hero.cta2">Ver más</span>
+        <span data-i18n="home.hero.cta2">{{ $hero?->content('cta2_text', 'Ver más') }}</span>
       </a>
     </div>
   </div>
 </section>
+@endif
 
+@if($hero && $hero->is_visible && $hero->items->count() > 0)
+<div class="stats-float rev">
+  <div class="stats-inner">
+    @foreach($hero->items as $stat)
+    <div class="stat">
+      <div class="stat-icon stat-icon--{{ $stat->data('color', 'blue') }}" aria-hidden="true">
+        <i class="fas fa-{{ $stat->data('icon', 'chart-bar') }}" style="font-size:18px"></i>
+      </div>
+      <div class="stat-n" data-target="{{ preg_replace('/[^0-9]/', '', $stat->data('value')) }}" data-suffix="{{ preg_replace('/[0-9]/', '', $stat->data('value')) }}">{{ $stat->data('value') }}</div>
+      <div class="stat-l">{{ $stat->data('label') }}</div>
+    </div>
+    @endforeach
+  </div>
+</div>
+@else
 <div class="stats-float rev">
   <div class="stats-inner">
     <div class="stat">
@@ -76,212 +99,271 @@
     </div>
   </div>
 </div>
+@endif
 
+@php $nosotros = $sections->get('nosotros'); @endphp
+@if(!$nosotros || $nosotros->is_visible)
 <section class="ss-section ss-section--light" id="nosotros">
   <div class="ss-container ss-split rev">
     <div class="ss-split-text">
-      <span class="ss-kicker">Somos diferentes</span>
-      <h2 class="ss-title">20 años impulsando la innovación</h2>
-      <p class="ss-lead">Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.</p>
+      <span class="ss-kicker">{{ $nosotros?->content('badge_text', 'Somos diferentes') }}</span>
+      <h2 class="ss-title">{{ $nosotros?->content('title', '20 años impulsando la innovación') }}</h2>
+      <p class="ss-lead">{!! $nosotros?->content('description', 'Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.') !!}</p>
       <div class="ss-badges">
         <img src="{{ asset('img/official/aliados/clustec.png') }}" alt="CLUSTEC Tlaxcala" class="ss-partner-logo">
         <img src="{{ asset('img/official/aliados/smartsoft.png') }}" alt="SmartSoft" class="ss-partner-logo">
       </div>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/official/Conocenos/equipo.png') }}" alt="Equipo Softura Solutions" class="ss-media-photo" loading="lazy">
+      @php
+        $nosotrosSrc = cms_asset($nosotros?->content('image', 'img/official/Conocenos/equipo.png'));
+      @endphp
+      <img src="{{ $nosotrosSrc }}" alt="Equipo Softura Solutions" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
+@endif
 
+@php $srvIntro = $sections->get('services_intro'); @endphp
+@if(!$srvIntro || $srvIntro->is_visible)
 <section class="ss-section ss-section--white" id="servicios">
   <div class="ss-container">
     <header class="ss-head rev">
-      <span class="ss-kicker">Fábrica de software</span>
-      <h2 class="ss-title">Descubre cómo podemos <span>ayudarte</span></h2>
-      <p class="ss-lead ss-lead--center">Soluciones integrales de desarrollo, consultoría y acompañamiento para llevar tu negocio al siguiente nivel.</p>
+      <span class="ss-kicker">{{ $srvIntro?->content('badge_text', 'Fábrica de software') }}</span>
+      <h2 class="ss-title">{!! $srvIntro?->content('title', 'Descubre cómo podemos <span>ayudarte</span>') !!}</h2>
+      <p class="ss-lead ss-lead--center">{{ $srvIntro?->content('description', 'Soluciones integrales de desarrollo, consultoría y acompañamiento para llevar tu negocio al siguiente nivel.') }}</p>
     </header>
     <div class="ss-services-grid ss-services-grid--icons rev">
-      @foreach(config('softura-content.servicios') as $servicio)
-      <a href="{{ route('fabrica') }}#svc-{{ $servicio['slug'] }}" class="ss-card ss-card--icon">
-        @if(!empty($servicio['imagen']) && file_exists(public_path($servicio['imagen'])))
-          <img src="{{ asset($servicio['imagen']) }}" alt="" loading="lazy">
-        @endif
-        <h3>{{ $servicio['titulo'] }}</h3>
-      </a>
-      @endforeach
+      @php
+        $fabricaSvc = \App\Models\PageSection::get('fabrica', 'servicios');
+        $serviciosList = $fabricaSvc ? $fabricaSvc->items : collect();
+      @endphp
+      @if($serviciosList->count() > 0)
+        @foreach($serviciosList as $svc)
+        @php
+          $slug = Str::slug($svc->data('title', ''));
+          $imgSrc = cms_asset($svc->data('image', ''));
+        @endphp
+        <a href="{{ route('fabrica') }}#svc-{{ $slug }}" class="ss-card ss-card--icon">
+          @if($imgSrc)
+            <img src="{{ $imgSrc }}" alt="" loading="lazy">
+          @endif
+          <h3>{{ $svc->data('title') }}</h3>
+        </a>
+        @endforeach
+      @else
+        @foreach(config('softura-content.servicios') as $servicio)
+        <a href="{{ route('fabrica') }}#svc-{{ $servicio['slug'] }}" class="ss-card ss-card--icon">
+          @if(!empty($servicio['imagen']) && file_exists(public_path($servicio['imagen'])))
+            <img src="{{ asset($servicio['imagen']) }}" alt="" loading="lazy">
+          @endif
+          <h3>{{ $servicio['titulo'] }}</h3>
+        </a>
+        @endforeach
+      @endif
     </div>
     <div class="ss-head-cta rev">
       <a href="{{ route('fabrica') }}" class="btn-p">Ver fábrica de software</a>
     </div>
   </div>
 </section>
+@endif
 
+@php $devops = $sections->get('devops'); @endphp
+@if(!$devops || $devops->is_visible)
 <section class="ss-section ss-section--dark" id="devops">
   <div class="ss-container ss-split ss-split--reverse rev">
     <div class="ss-split-media ss-devops-visual">
-      <img src="{{ asset('img/official/productos/devops.jpg') }}" alt="Entrega continua y DevOps" class="ss-media-photo" loading="lazy">
+      <img src="{{ cms_asset($devops?->content('image', 'img/official/productos/devops.jpg')) }}" alt="Entrega continua y DevOps" class="ss-media-photo" loading="lazy">
     </div>
     <div class="ss-split-text">
-      <span class="ss-kicker ss-kicker--gold">DevOps</span>
-      <h2 class="ss-title ss-title--light">Entrega continua y confiable</h2>
-      <p class="ss-lead ss-lead--light">Podemos ejecutar proyectos utilizando una filosofía para entregar software de forma más rápida, confiable y continua:</p>
+      <span class="ss-kicker ss-kicker--gold">{{ $devops?->content('kicker', 'DevOps') }}</span>
+      <h2 class="ss-title ss-title--light">{{ $devops?->content('title', 'Entrega continua y confiable') }}</h2>
+      <p class="ss-lead ss-lead--light">{{ $devops?->content('lead', 'Podemos ejecutar proyectos utilizando una filosofía para entregar software de forma más rápida, confiable y continua:') }}</p>
       <ul class="ss-list ss-list--light">
-        <li>Integración y entrega continua</li>
-        <li>Automatización de pruebas y despliegues</li>
-        <li>Monitoreo y retroalimentación constante</li>
-        <li>Cultura de colaboración entre equipos</li>
+        @foreach(($devops?->items ?? collect()) as $bullet)
+        <li>{{ $bullet->data('text') }}</li>
+        @endforeach
       </ul>
     </div>
   </div>
 </section>
+@endif
 
+@php $onshoring = $sections->get('onshoring'); @endphp
+@if(!$onshoring || $onshoring->is_visible)
 <section class="ss-section ss-section--dark ss-section--alt" id="onshoring">
   <div class="ss-container ss-split rev">
     <div class="ss-split-text">
-      <span class="ss-kicker ss-kicker--gold">Onshoring</span>
-      <h2 class="ss-title ss-title--light">Onshoring</h2>
-      <p class="ss-lead ss-lead--light">En esta modalidad, tu empresa nos transfiere las responsabilidades referentes al cumplimiento de tareas relacionadas con el desarrollo de software. No necesitas crecer tu nómina. Contamos con células especializadas para comenzar.</p>
-      <p class="ss-lead ss-lead--light ss-repse"><i class="fas fa-certificate" aria-hidden="true"></i> Pertenecemos al padrón del <strong>REPSE</strong> (Registro de Prestadoras de Servicios Especializados u Obras Especializadas), obligatorio de la STPS para regular a las empresas que ofrecen servicios especializados.</p>
+      <span class="ss-kicker ss-kicker--gold">{{ $onshoring?->content('kicker', 'Onshoring') }}</span>
+      <h2 class="ss-title ss-title--light">{{ $onshoring?->content('title', 'Onshoring') }}</h2>
+      <p class="ss-lead ss-lead--light">{{ $onshoring?->content('description') }}</p>
+      <p class="ss-lead ss-lead--light ss-repse"><i class="fas fa-certificate" aria-hidden="true"></i> {!! $onshoring?->content('repse_text') !!}</p>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/official/productos/onshoring.jpg') }}" alt="Equipo de desarrollo en México" class="ss-media-photo" loading="lazy">
+      <img src="{{ cms_asset($onshoring?->content('image', 'img/official/productos/onshoring.jpg')) }}" alt="Equipo de desarrollo en México" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
+@endif
 
+@php $calidad = $sections->get('calidad'); @endphp
+@if(!$calidad || $calidad->is_visible)
 <section class="ss-section ss-section--dark" id="calidad">
   <div class="ss-container">
     <header class="ss-head ss-head--light rev">
-      <span class="ss-kicker ss-kicker--gold">Calidad certificada</span>
-      <h2 class="ss-title ss-title--light">La calidad es nuestra prioridad</h2>
-      <p class="ss-lead ss-lead--light ss-lead--center">Desarrollamos con estándares internacionales — CMMi, PSP, MoProSoft y MAAGTICSI — combinados con metodologías ágiles y equipos certificados en Scrum.</p>
+      <span class="ss-kicker ss-kicker--gold">{{ $calidad?->content('kicker', 'Calidad certificada') }}</span>
+      <h2 class="ss-title ss-title--light">{{ $calidad?->content('title', 'La calidad es nuestra prioridad') }}</h2>
+      <p class="ss-lead ss-lead--light ss-lead--center">{{ $calidad?->content('description') }}</p>
     </header>
     <div class="ss-certs ss-certs--logos rev">
-      @foreach(config('softura-content.certificaciones') as $cert)
+      @foreach(($calidad?->items ?? collect()) as $cert)
       <div class="ss-cert ss-cert--logo">
         @include('partials.official-logo', [
-          'file' => $cert['file'] ?? null,
-          'cdn' => $cert['cdn'] ?? null,
-          'alt' => $cert['nombre'],
+          'file' => $cert->data('file') ?: null,
+          'cdn' => $cert->data('cdn') ?: null,
+          'alt' => $cert->data('name'),
           'class' => 'sp-official-logo sp-official-logo--cert',
         ])
-        <span>{{ $cert['nombre'] }}</span>
+        <span>{{ $cert->data('name') }}</span>
       </div>
       @endforeach
     </div>
   </div>
 </section>
+@endif
 
+@php $valor = $sections->get('valor'); @endphp
+@if(!$valor || $valor->is_visible)
 <section class="ss-section ss-section--light" id="valor">
   <div class="ss-container">
     <header class="ss-head rev">
-      <span class="ss-kicker">Experiencia integral</span>
-      <h2 class="ss-title">Mejoramos tu <span>experiencia</span></h2>
-      <p class="ss-lead ss-lead--center">Brindamos una experiencia integral de servicio combinando desarrollo a la medida, buenas prácticas de ingeniería y metodologías ágiles.</p>
+      <span class="ss-kicker">{{ $valor?->content('kicker', 'Experiencia integral') }}</span>
+      <h2 class="ss-title">{!! $valor?->content('title', 'Mejoramos tu <span>experiencia</span>') !!}</h2>
+      <p class="ss-lead ss-lead--center">{{ $valor?->content('description') }}</p>
     </header>
     <div class="ss-values rev">
-      @foreach(config('softura-content.valores_experiencia') as $valor)
+      @foreach(($valor?->items ?? collect()) as $item)
       <article class="ss-value">
-        <div class="ss-value-num">{{ $valor['num'] }}</div>
-        <h3>{{ $valor['titulo'] }}</h3>
-        <p>{{ $valor['texto'] }}</p>
+        <div class="ss-value-num">{{ $item->data('num') }}</div>
+        <h3>{{ $item->data('title') }}</h3>
+        <p>{{ $item->data('text') }}</p>
       </article>
       @endforeach
     </div>
   </div>
 </section>
+@endif
 
+@php $equipo = $sections->get('equipo'); @endphp
+@if(!$equipo || $equipo->is_visible)
 <section class="ss-section ss-section--white" id="equipo">
   <div class="ss-container">
     <header class="ss-head rev">
-      <span class="ss-kicker">Talento</span>
-      <h2 class="ss-title">Contamos con un equipo de <span>especialistas</span></h2>
-      <p class="ss-lead ss-lead--center">Personal de ingenieros con diferentes perfiles, enfocados al desarrollo de software.</p>
+      <span class="ss-kicker">{{ $equipo?->content('kicker', 'Talento') }}</span>
+      <h2 class="ss-title">{!! $equipo?->content('title', 'Contamos con un equipo de <span>especialistas</span>') !!}</h2>
+      <p class="ss-lead ss-lead--center">{{ $equipo?->content('description') }}</p>
     </header>
     <div class="ss-roles rev">
-      @foreach(config('softura-content.equipo_roles') as $rol)
-      <div class="ss-role"><span>{{ $rol }}</span></div>
+      @foreach(($equipo?->items ?? collect()) as $rol)
+      <div class="ss-role"><span>{{ $rol->data('label') }}</span></div>
       @endforeach
     </div>
   </div>
 </section>
+@endif
 
+@php $tecnologias = $sections->get('tecnologias'); @endphp
+@if(!$tecnologias || $tecnologias->is_visible)
 <section class="ss-section ss-section--light" id="tecnologias">
   <div class="ss-container ss-split rev">
     <div class="ss-tech-visual ss-tech-panel">
       @include('partials.deck-tech-logos')
     </div>
     <div class="ss-split-text">
-      <span class="ss-kicker">Stack tecnológico</span>
-      <h2 class="ss-title">Somos especialistas</h2>
-      <p class="ss-lead">Nuestro equipo de profesionales está integrado por especialistas, responsables y comprometidos, mismos que se encuentran en constante actualización, con el objetivo de brindar el mejor servicio en cualquiera de las siguientes tecnologías:</p>
-      <blockquote class="ss-quote">"Nuestro principal enfoque son tecnologías de software libre"</blockquote>
+      <span class="ss-kicker">{{ $tecnologias?->content('kicker', 'Stack tecnológico') }}</span>
+      <h2 class="ss-title">{{ $tecnologias?->content('title', 'Somos especialistas') }}</h2>
+      <p class="ss-lead">{{ $tecnologias?->content('description') }}</p>
+      <blockquote class="ss-quote">"{{ $tecnologias?->content('quote', 'Nuestro principal enfoque son tecnologías de software libre') }}"</blockquote>
     </div>
   </div>
 </section>
+@endif
 
+@php $capacitacion = $sections->get('capacitacion'); @endphp
+@if(!$capacitacion || $capacitacion->is_visible)
 <section class="ss-section ss-section--white" id="capacitacion">
   <div class="ss-container">
     <header class="ss-head rev">
-      <span class="ss-kicker">Formación continua</span>
-      <h2 class="ss-title">Equipo de profesionales <span>comprometidos</span></h2>
+      <span class="ss-kicker">{{ $capacitacion?->content('kicker', 'Formación continua') }}</span>
+      <h2 class="ss-title">{!! $capacitacion?->content('title', 'Equipo de profesionales <span>comprometidos</span>') !!}</h2>
     </header>
     <div class="ss-capacitacion-wrap rev">
       <div class="ss-metrics">
-        @foreach(config('softura-content.capacitacion') as $metric)
+        @foreach(($capacitacion?->items ?? collect()) as $metric)
         <article class="ss-metric">
-          <strong class="ss-metric-n">{{ $metric['valor'] }}</strong>
-          <p>{{ $metric['texto'] }}</p>
+          <strong class="ss-metric-n">{{ $metric->data('value') }}</strong>
+          <p>{{ $metric->data('text') }}</p>
         </article>
         @endforeach
       </div>
-      <img src="{{ asset('img/official/Conocenos/equipo.png') }}" alt="" class="ss-capacitacion-char" loading="lazy" aria-hidden="true">
+      <img src="{{ cms_asset($capacitacion?->content('image', 'img/official/Conocenos/equipo.png')) }}" alt="" class="ss-capacitacion-char" loading="lazy" aria-hidden="true">
     </div>
-    <p class="ss-quote ss-quote--center rev">La capacitación es la llave que desbloquea el potencial de la excelencia</p>
+    <p class="ss-quote ss-quote--center rev">{{ $capacitacion?->content('quote') }}</p>
   </div>
 </section>
+@endif
 
+@php $acompanamiento = $sections->get('acompanamiento'); @endphp
+@if(!$acompanamiento || $acompanamiento->is_visible)
 <section class="ss-section ss-section--dark" id="acompanamiento">
   <div class="ss-container ss-split rev">
     <div class="ss-split-text">
-      <span class="ss-kicker ss-kicker--gold">Aliado tecnológico</span>
-      <h2 class="ss-title ss-title--light">Te acompañamos en todo momento</h2>
-      <p class="ss-lead ss-lead--light"><strong>Más que un proveedor, somos tu aliado tecnológico a largo plazo.</strong></p>
-      <p class="ss-lead ss-lead--light">Te acompañamos antes, durante y después de cada proyecto, brindando soporte técnico y creatividad para asegurar que tus soluciones evolucionen, generen valor y sigan impulsando el crecimiento de tu negocio.</p>
+      <span class="ss-kicker ss-kicker--gold">{{ $acompanamiento?->content('kicker', 'Aliado tecnológico') }}</span>
+      <h2 class="ss-title ss-title--light">{{ $acompanamiento?->content('title', 'Te acompañamos en todo momento') }}</h2>
+      <p class="ss-lead ss-lead--light">{!! $acompanamiento?->content('paragraph_1') !!}</p>
+      <p class="ss-lead ss-lead--light">{{ $acompanamiento?->content('paragraph_2') }}</p>
     </div>
     <div class="ss-split-media">
-      <img src="{{ asset('img/official/Conocenos/image5.png') }}" alt="Acompañamiento Softura" class="ss-media-photo" loading="lazy">
+      <img src="{{ cms_asset($acompanamiento?->content('image', 'img/official/Conocenos/image5.png')) }}" alt="Acompañamiento Softura" class="ss-media-photo" loading="lazy">
     </div>
   </div>
 </section>
+@endif
 
+@php
+  $ecosistema = $sections->get('ecosistema');
+  $ecoCtaUrl = ($ecosistema?->content('cta_url')) ?: '/conocenos';
+  $ecoCtaHref = str_starts_with($ecoCtaUrl, 'http') ? $ecoCtaUrl : url($ecoCtaUrl);
+@endphp
+@if(!$ecosistema || $ecosistema->is_visible)
 <section class="ss-section ss-section--dark" id="ecosistema">
   <div class="ss-container">
     <header class="ss-head ss-head--light rev">
-      <span class="ss-kicker ss-kicker--gold">Red de aliados</span>
-      <h2 class="ss-title ss-title--light">Tenemos un gran <span>respaldo</span></h2>
-      <p class="ss-lead ss-lead--light ss-lead--center">Como socios fundadores del Clúster de TI de Tlaxcala (CLUSTEC), accedemos a una red de más de 100 ingenieros expertos para proyectos de mayor escala.</p>
+      <span class="ss-kicker ss-kicker--gold">{{ $ecosistema?->content('kicker', 'Red de aliados') }}</span>
+      <h2 class="ss-title ss-title--light">{!! $ecosistema?->content('title', 'Tenemos un gran <span>respaldo</span>') !!}</h2>
+      <p class="ss-lead ss-lead--light ss-lead--center">{{ $ecosistema?->content('description') }}</p>
     </header>
     <div class="ss-eco-grid rev">
-      @foreach(config('softura-content.respaldo') as $aliado)
+      @foreach(($ecosistema?->items ?? collect()) as $aliado)
       <article class="ss-eco-card">
         @include('partials.official-logo', [
-          'file' => $aliado['file'] ?? null,
-          'cdn' => $aliado['cdn'] ?? null,
-          'alt' => $aliado['alt'],
+          'file' => $aliado->data('file') ?: null,
+          'cdn' => $aliado->data('cdn') ?: null,
+          'alt' => $aliado->data('alt'),
           'class' => 'sp-official-logo sp-official-logo--eco',
         ])
-        <p>{{ $aliado['texto'] }}</p>
+        <p>{{ $aliado->data('text') }}</p>
       </article>
       @endforeach
     </div>
     <div class="ss-eco-highlight rev">
-      <p>Software and Delivery Center — ampliamos capacidades con aliados estratégicos del ecosistema tecnológico nacional.</p>
-      <a href="{{ route('conocenos') }}" class="btn-p btn-p--hero">Conoce más sobre nosotros</a>
+      <p>{{ $ecosistema?->content('highlight_text') }}</p>
+      <a href="{{ $ecoCtaHref }}" class="btn-p btn-p--hero">{{ $ecosistema?->content('cta_text', 'Conoce más sobre nosotros') }}</a>
     </div>
   </div>
 </section>
+@endif
 
 <section class="ss-section ss-section--light" id="clientes">
   <div class="ss-container">
@@ -294,122 +376,138 @@
   </div>
 </section>
 
+@php
+  $rse = $sections->get('rse');
+  $rsePoints = ($rse?->items ?? collect())->filter(fn ($i) => $i->data('kind') === 'point');
+  $rseLogos = ($rse?->items ?? collect())->filter(fn ($i) => $i->data('kind') === 'logo');
+@endphp
+@if(!$rse || $rse->is_visible)
 <section class="ss-section ss-section--dark" id="rse">
   <div class="ss-container">
     <header class="ss-head ss-head--light rev">
-      <span class="ss-kicker ss-kicker--gold">Responsabilidad social</span>
-      <h2 class="ss-title ss-title--light">Generadora de sinergia tecnológica con responsabilidad social</h2>
+      <span class="ss-kicker ss-kicker--gold">{{ $rse?->content('kicker', 'Responsabilidad social') }}</span>
+      <h2 class="ss-title ss-title--light">{{ $rse?->content('title') }}</h2>
     </header>
     <div class="ss-rse-list rev">
+      @foreach($rsePoints as $point)
       <article class="ss-rse-item">
-        <div class="ss-rse-icon"><i class="fas fa-handshake"></i></div>
-        <p><strong>Estrecha vinculación con IES</strong> para detectar, desarrollar y captar talento de manera temprana — estancias, estadías, prácticas profesionales — reduciendo tiempos de capacitación y fortaleciendo nuestro compromiso social.</p>
+        <div class="ss-rse-icon"><i class="fas fa-{{ $point->data('icon', 'circle') }}"></i></div>
+        <p>{!! $point->data('text') !!}</p>
       </article>
-      <article class="ss-rse-item">
-        <div class="ss-rse-icon"><i class="fas fa-users"></i></div>
-        <p>Participamos en proyectos de <strong>Formación Dual</strong> con IES de la región para fortalecer el modelo de la Triple Hélice, incorporando talento al trabajo (ej. Jóvenes Construyendo el Futuro).</p>
-      </article>
-      <article class="ss-rse-item">
-        <div class="ss-rse-icon"><i class="fas fa-book-open"></i></div>
-        <p>Fomentamos la <strong>formación continua</strong> entre nuestro personal mediante autocapacitación, certificaciones y programas educativos con IES (ej. Diplomado en Ciencias de Datos Softura-UATx).</p>
-      </article>
+      @endforeach
     </div>
     <div class="ss-rse-logos rev">
-      @foreach(config('softura-content.rse_ies') as $ies)
+      @foreach($rseLogos as $ies)
         @include('partials.official-logo', [
-          'file' => $ies['file'] ?? null,
-          'cdn' => $ies['cdn'] ?? null,
-          'alt' => $ies['alt'],
+          'file' => $ies->data('file') ?: null,
+          'cdn' => $ies->data('cdn') ?: null,
+          'alt' => $ies->data('alt'),
           'class' => 'sp-official-logo sp-official-logo--rse',
         ])
       @endforeach
     </div>
   </div>
 </section>
+@endif
 
+@php
+  $bituyu = $sections->get('bituyu_preview');
+  $bituyuCtaUrl = ($bituyu?->content('cta_url')) ?: '/productos#sec-bituyu';
+  $bituyuCtaHref = str_starts_with($bituyuCtaUrl, 'http') ? $bituyuCtaUrl : url($bituyuCtaUrl);
+@endphp
+@if(!$bituyu || $bituyu->is_visible)
 <section class="ss-section ss-section--light" id="bituyu-preview">
   <div class="ss-container">
     <header class="ss-head rev">
-      <span class="ss-kicker">Producto destacado</span>
-      <h2 class="ss-title">Ecosistema <span>Bituyú</span></h2>
-      <p class="ss-lead ss-lead--center">Plataforma tecnológica para la gestión de promociones y digitalización de MiPyMEs para Sindicatos, IES, Grupos Empresariales y Municipios.</p>
+      <span class="ss-kicker">{{ $bituyu?->content('kicker', 'Producto destacado') }}</span>
+      <h2 class="ss-title">{!! $bituyu?->content('title', 'Ecosistema <span>Bituyú</span>') !!}</h2>
+      <p class="ss-lead ss-lead--center">{{ $bituyu?->content('description') }}</p>
     </header>
     <div class="ss-bituyu-preview-media rev">
-      <img src="{{ asset('img/ecosistema bituyu.png') }}" alt="Ecosistema Bituyú" loading="lazy">
+      <img src="{{ cms_asset($bituyu?->content('diagram_image', 'img/ecosistema bituyu.png')) }}" alt="Ecosistema Bituyú" loading="lazy">
     </div>
     <div class="ss-bituyu-stats rev">
-      <article class="ss-bituyu-stat"><strong>1,000+</strong><span>MiPyME's</span></article>
-      <article class="ss-bituyu-stat"><strong>6,000+</strong><span>Productos y servicios</span></article>
-      <article class="ss-bituyu-stat"><strong>100+</strong><span>Promociones exclusivas</span></article>
+      @foreach(($bituyu?->items ?? collect()) as $stat)
+      <article class="ss-bituyu-stat"><strong>{{ $stat->data('value') }}</strong><span>{{ $stat->data('label') }}</span></article>
+      @endforeach
     </div>
     <div class="ss-head-cta rev">
-      <a href="{{ route('productos') }}#sec-bituyu" class="btn-p">Conoce Bituyú</a>
+      <a href="{{ $bituyuCtaHref }}" class="btn-p">{{ $bituyu?->content('cta_text', 'Conoce Bituyú') }}</a>
     </div>
   </div>
 </section>
+@endif
 
+@php $proceso = $sections->get('proceso'); @endphp
+@if(!$proceso || $proceso->is_visible)
 <section class="ss-section ss-section--white" id="proceso">
   <div class="ss-container process-wrap">
-    
     <div class="process-header rev">
-      <h2>Con nuestros modelos de externalización,<br>seremos tus verdaderos <strong>aliados de negocio</strong></h2>
+      <h2>{!! $proceso?->content('title') !!}</h2>
     </div>
-    
     <div class="process-cards rev">
+      @foreach(($proceso?->items ?? collect()) as $idx => $card)
       <div class="p-card">
         <div class="p-icon-wrap">
+          @if($idx % 2 === 0)
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
             <path d="M2 12h20"/>
             <path d="M16 14a2 2 0 0 0-3-1.73V11a1 1 0 0 0-2 0v1.27a2 2 0 0 0-3 1.73 2 2 0 0 0 4 0h2a2 2 0 0 0 2 0z"/>
           </svg>
-        </div>
-        <h3>Onshoring</h3>
-        <p>Nuestros ingenieros trabajan directamente en tus instalaciones ubicadas en México cuando así se requiera.</p>
-      </div>
-
-      <div class="p-card">
-        <div class="p-icon-wrap">
+          @else
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
             <circle cx="12" cy="10" r="3"/>
             <path d="M7 21h10"/>
           </svg>
+          @endif
         </div>
-        <h3>Nearshoring</h3>
-        <p>Nuestros ingenieros trabajan remotamente en proyectos para tu empresa ubicada en E.U.A o Latinoamérica.</p>
+        <h3>{{ $card->data('title') }}</h3>
+        <p>{{ $card->data('description') }}</p>
       </div>
+      @endforeach
     </div>
-
     <div class="process-footer rev">
-      <p>Hagamos equipo y <strong>deja de preocuparte</strong> de los costos de reclutamiento, selección, capacitación y continuidad del personal.</p>
-    </div>
-
-  </div>
-</section> 
-
-<section class="ss-section ss-section--light" id="stack">
-  <div class="ss-container">
-    <header class="ss-head rev">
-      <span class="ss-kicker">Portafolio</span>
-      <h2 class="ss-title">Nuestros <span>productos</span></h2>
-      <p class="ss-lead ss-lead--center">Soluciones diseñadas para optimizar procesos, automatizar tareas y acelerar el crecimiento de tu organización.</p>
-    </header>
-    <div class="ss-products rev">
-      <a href="{{ route('productos') }}#sec-bituyu" class="ss-product"><img src="{{ asset('img/bituyu compras.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Bituyú</span><span>Red virtual de negocios</span></a>
-      <a href="{{ route('productos') }}#sec-binibiaa" class="ss-product"><img src="{{ asset('img/binibia.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Binibiaa</span><span>Comercio artesanal</span></a>
-      <a href="{{ route('productos') }}#sec-academika" class="ss-product"><img src="{{ asset('img/academica.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Academika</span><span>Plataforma académica</span></a>
-      <a href="{{ route('productos') }}#sec-siga" class="ss-product"><img src="{{ asset('img/official/siga.png') }}" alt="" class="ss-product-logo" onerror="this.src='{{ asset('img/siga.png') }}'"><span class="ss-product-name">SIGA</span><span>E-Learning</span></a>
-      <a href="{{ route('productos') }}#sec-fenix-orbit" class="ss-product"><img src="{{ asset('img/fenix.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">Fenyx Admin</span><span>Punto de venta</span></a>
-      <a href="{{ route('productos') }}#pbr-full-section" class="ss-product"><img src="{{ asset('img/official/pbr.png') }}" alt="" class="ss-product-logo" onerror="this.src='{{ asset('img/pbr.png') }}'"><span class="ss-product-name">MI PBR</span><span>Presupuesto por resultados</span></a>
-      <a href="{{ route('productos') }}#sec-sspip" class="ss-product"><img src="{{ asset('img/sspip.png') }}" alt="" class="ss-product-logo"><span class="ss-product-name">SSPIP</span><span>Industria petrolera</span></a>
-    </div>
-    <div class="ss-head-cta rev">
-      <a href="{{ route('productos') }}" class="btn-p">Ver todos los productos</a>
+      <p>{!! $proceso?->content('footer_text') !!}</p>
     </div>
   </div>
 </section>
+@endif
+
+@php
+  $stack = $sections->get('stack');
+  $stackCtaUrl = ($stack?->content('cta_url')) ?: '/productos';
+  $stackCtaHref = str_starts_with($stackCtaUrl, 'http') ? $stackCtaUrl : url($stackCtaUrl);
+@endphp
+@if(!$stack || $stack->is_visible)
+<section class="ss-section ss-section--light" id="stack">
+  <div class="ss-container">
+    <header class="ss-head rev">
+      <span class="ss-kicker">{{ $stack?->content('kicker', 'Portafolio') }}</span>
+      <h2 class="ss-title">{!! $stack?->content('title', 'Nuestros <span>productos</span>') !!}</h2>
+      <p class="ss-lead ss-lead--center">{{ $stack?->content('description') }}</p>
+    </header>
+    <div class="ss-products rev">
+      @foreach(($stack?->items ?? collect()) as $product)
+      @php
+        $prodUrl = $product->data('url') ?: '#';
+        $prodHref = str_starts_with($prodUrl, 'http') ? $prodUrl : url($prodUrl);
+      @endphp
+      <a href="{{ $prodHref }}" class="ss-product">
+        <img src="{{ cms_asset($product->data('logo')) }}" alt="" class="ss-product-logo">
+        <span class="ss-product-name">{{ $product->data('name') }}</span>
+        <span>{{ $product->data('description') }}</span>
+      </a>
+      @endforeach
+    </div>
+    <div class="ss-head-cta rev">
+      <a href="{{ $stackCtaHref }}" class="btn-p">{{ $stack?->content('cta_text', 'Ver todos los productos') }}</a>
+    </div>
+  </div>
+</section>
+@endif
 
 
 
@@ -420,19 +518,21 @@
 
 
 
+@php $cta = $sections->get('cta'); @endphp
+@if(!$cta || $cta->is_visible)
 <section class="cta-section" id="contacto" style="position:relative; z-index:10; background:#020714; padding:5rem 5vw; color:#fff; font-family:'Inter', sans-serif;">
   
   <div class="rev" style="max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:4rem; align-items: center;">
     
     <div>
-      <div class="sec-label" style="color:#1A4FFF; text-transform:uppercase; letter-spacing:2px; font-weight:600; margin-bottom:1rem; font-size:0.9rem;">Contacto</div>
+      <div class="sec-label" style="color:#1A4FFF; text-transform:uppercase; letter-spacing:2px; font-weight:600; margin-bottom:1rem; font-size:0.9rem;">{{ $cta?->content('badge_text', 'Contacto') }}</div>
       
       <h2 style="font-family:'Syne', sans-serif; font-size:clamp(2.2rem, 4vw, 3.5rem); font-weight:800; line-height:1.2; margin-bottom:1.5rem;">
-        Emprende este <br>viaje <span style="color:#1A4FFF;">con nosotros</span>
+        {!! $cta?->content('title', 'Emprende este <br>viaje <span style="color:#1A4FFF;">con nosotros</span>') !!}
       </h2>
       
       <p style="color:#94a3b8; font-size:1.1rem; line-height:1.6; max-width:480px; margin-bottom:3.5rem;">
-        Cuéntanos tu idea y construyamos juntos soluciones tecnológicas que impulsen tu negocio.
+        {{ $cta?->content('description', 'Cuéntanos tu idea y construyamos juntos soluciones tecnológicas que impulsen tu negocio.') }}
       </p>
 
       <div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center;">
@@ -512,6 +612,7 @@
 
   </div>
 </section>
+@endif
 
 
 

@@ -33,6 +33,13 @@ class DatabaseSeeder extends Seeder
             ConocenosSupportSeeder::class,
             ConocenosClientsSeeder::class,
             ConocenosTestimonialsSeeder::class,
+            ConocenosCareersSeeder::class,
+            InicioSeeder::class,
+            InicioExtendedSeeder::class,
+            FabricaSeeder::class,
+            NearshoringSeeder::class,
+            ProductosSeeder::class,
+            BlogSeeder::class,
         ]);
     }
 }

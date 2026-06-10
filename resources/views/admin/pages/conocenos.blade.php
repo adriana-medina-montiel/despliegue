@@ -196,8 +196,10 @@
             <h3>Carreras — Buscamos talento</h3>
             <p>Formulario de contacto para candidatos interesados.</p>
         </div>
-        <span class="badge-soon">Próximamente</span>
-        <span class="edit-btn-disabled"><i class="fas fa-lock" style="font-size:10px"></i> Editar</span>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.conocenos.careers.edit') }}" class="edit-btn" style="background:#db2777">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
     </div>
 
 </div>

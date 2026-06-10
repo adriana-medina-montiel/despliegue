@@ -14,8 +14,7 @@
 @if(!$hero || $hero->is_visible)
 <section class="cn-hero" id="portada">
   <div class="cn-hero-media" aria-hidden="true">
-    @php $bgImg = $hero?->content('background_image', 'https://softura.com.mx/SofturaSolutions/images/Conocenos/image67.png');
-         $bgSrc = ($bgImg && !str_starts_with($bgImg, 'http')) ? asset('storage/' . $bgImg) : $bgImg; @endphp
+    @php $bgSrc = cms_asset(($hero?->content('background_image')) ?: 'https://softura.com.mx/SofturaSolutions/images/Conocenos/image67.png'); @endphp
     <img src="{{ $bgSrc }}" alt="" loading="eager">
     <div class="cn-hero-shade"></div>
   </div>
@@ -46,12 +45,12 @@
     </header>
     <div class="cn-diff-split rev">
       <div class="cn-diff-left">
-        @php $mImg = $diff?->content('medal_image','https://softura.com.mx/SofturaSolutions/images/Conocenos/images.png'); $mSrc = ($mImg && !str_starts_with($mImg,'http')) ? asset('storage/'.$mImg) : $mImg; @endphp
+        @php $mSrc = cms_asset(($diff?->content('medal_image')) ?: 'https://softura.com.mx/SofturaSolutions/images/Conocenos/images.png'); @endphp
         <img class="cn-medal" src="{{ $mSrc }}" alt="" loading="lazy">
         <p class="cn-diff-intro">{{ $diff?->content('body_text', 'En Softura Solutions nos esforzamos por brindarte la mejor experiencia. Complementamos el desarrollo de software con diferenciadores clave para que tu experiencia con nosotros sea única.') }}</p>
       </div>
       <figure class="cn-diff-figure">
-        @php $dImg = $diff?->content('diagram_image','https://softura.com.mx/SofturaSolutions/images/Conocenos/detalles.png'); $dSrc = ($dImg && !str_starts_with($dImg,'http')) ? asset('storage/'.$dImg) : $dImg; @endphp
+        @php $dSrc = cms_asset(($diff?->content('diagram_image')) ?: 'https://softura.com.mx/SofturaSolutions/images/Conocenos/detalles.png'); @endphp
         <img src="{{ $dSrc }}" alt="{{ $diff?->content('diagram_caption','Los detalles de valor') }}" loading="lazy">
         <figcaption class="cn-diff-caption">{{ $diff?->content('diagram_caption', 'Los detalles de valor') }}</figcaption>
       </figure>
@@ -70,7 +69,7 @@
     </header>
     <div class="cn-pillars rev" data-cn-stagger>
       @foreach($pillars?->items ?? collect() as $item)
-        @php $iImg = $item->data('image',''); $iSrc = ($iImg && !str_starts_with($iImg,'http')) ? asset('storage/'.$iImg) : $iImg; @endphp
+        @php $iSrc = cms_asset($item->data('image') ?: ''); @endphp
         <article class="cn-pillar cn-stagger-item">
           <div class="cn-pillar-frame"><img src="{{ $iSrc }}" alt="{{ $item->data('label') }}" loading="lazy"></div>
           <h3>{{ $item->data('label') }}</h3>
@@ -105,7 +104,7 @@
       </div>
     </div>
     <div class="cn-accompany-photo">
-      @php $sImg = $support?->content('side_image','https://softura.com.mx/SofturaSolutions/images/Conocenos/image5.png'); $sSrc = ($sImg && !str_starts_with($sImg,'http')) ? asset('storage/'.$sImg) : $sImg; @endphp
+      @php $sSrc = cms_asset(($support?->content('side_image')) ?: 'https://softura.com.mx/SofturaSolutions/images/Conocenos/image5.png'); @endphp
       <img src="{{ $sSrc }}" alt="" loading="lazy">
     </div>
   </div>
@@ -145,7 +144,7 @@ $clientSectors = $clients?->content('sectors', [
         <p class="cn-panel-tag">{{ $sector['tag'] }}</p>
         <div class="cn-logos">
           @foreach($sectorLogos as $logo)
-            @php $img = $logo->data('image',''); $src = ($img && !str_starts_with($img,'http')) ? asset('storage/'.$img) : $img; @endphp
+            @php $src = cms_asset($logo->data('image') ?: ''); @endphp
             <img src="{{ $src }}" alt="{{ $logo->data('alt') }}" loading="lazy">
           @endforeach
         </div>
@@ -167,7 +166,7 @@ $clientSectors = $clients?->content('sectors', [
     </header>
     <div class="cn-quotes rev" id="testimonial-carousel">
       @foreach($testimonials?->items ?? collect() as $item)
-        @php $logo = $item->data('logo_image',''); $logoSrc = ($logo && !str_starts_with($logo,'http')) ? asset('storage/'.$logo) : $logo; @endphp
+        @php $logoSrc = cms_asset($item->data('logo_image') ?: ''); @endphp
         <article class="cn-quote">
           <span class="cn-quote-mark" aria-hidden="true">"</span>
           <header><img src="{{ $logoSrc }}" alt="{{ $item->data('author_name') }}" loading="lazy"></header>
@@ -184,19 +183,21 @@ $clientSectors = $clients?->content('sectors', [
 </section>
 @endif
 
+@php $careers = $sections->get('careers'); @endphp
+@if(!$careers || $careers->is_visible)
 <section class="cn-talent" id="form_correo">
   <div class="cn-talent-glow" aria-hidden="true"></div>
   <div class="cn-container cn-talent-grid rev">
     <div class="cn-talent-copy">
-      <span class="cn-label cn-label-light" data-i18n="cn.label.careers">Carreras</span>
-      <h2 data-i18n="cn.talent.title">Buscamos talento</h2>
-      <p data-i18n="cn.talent.sub">¿Te gustaría construir tecnología con nosotros? Cuéntanos sobre ti.</p>
+      <span class="cn-label cn-label-light">{{ $careers?->content('badge_text', 'Carreras') }}</span>
+      <h2>{{ $careers?->content('title', 'Buscamos talento') }}</h2>
+      <p>{{ $careers?->content('description', '¿Te gustaría construir tecnología con nosotros? Cuéntanos sobre ti.') }}</p>
       <ul class="cn-perks">
-        <li data-i18n="cn.perk.1">Proyectos retadores</li>
-        <li data-i18n="cn.perk.2">Crecimiento profesional</li>
-        <li data-i18n="cn.perk.3">Cultura colaborativa</li>
+        @foreach($careers?->items ?? collect() as $perk)
+        <li>{{ $perk->data('label') }}</li>
+        @endforeach
       </ul>
-      <p class="cn-talent-mail"><a href="mailto:info@softura.com.mx">info@softura.com.mx</a></p>
+      <p class="cn-talent-mail"><a href="mailto:{{ $careers?->content('email', 'info@softura.com.mx') }}">{{ $careers?->content('email', 'info@softura.com.mx') }}</a></p>
     </div>
     <div class="cn-talent-form-wrap">
       <div class="cn-loader" id="cn-loader" aria-hidden="true"></div>
@@ -211,6 +212,7 @@ $clientSectors = $clients?->content('sectors', [
     </div>
   </div>
 </section>
+@endif
 
 @endsection
 
