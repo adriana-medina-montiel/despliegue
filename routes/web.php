@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Conocenos\DifferentiatorsController as AdminDiffe
 use App\Http\Controllers\Admin\Conocenos\HeroController as AdminHeroController;
 use App\Http\Controllers\Admin\Conocenos\PillarsController as AdminPillarsController;
 use App\Http\Controllers\Admin\Conocenos\SupportController as AdminSupportController;
+use App\Http\Controllers\Admin\Nearshoring\HeroController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\ConocenosController;
@@ -49,6 +50,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::get('/testimonials',     [AdminTestimonialsController::class, 'edit'])->name('testimonials.edit');
         Route::post('/testimonials',    [AdminTestimonialsController::class, 'update'])->name('testimonials.update');
     });
+
+  
+   
+        Route::prefix('nearshoring')->name('nearshoring.')->group(function () {
+            
+            Route::get('/hero', [\App\Http\Controllers\Admin\Nearshoring\HeroController::class, 'edit'])->name('hero.edit');
+            Route::post('/hero', [\App\Http\Controllers\Admin\Nearshoring\HeroController::class, 'update'])->name('hero.update');
+           Route::get('/onshoring', [\App\Http\Controllers\Admin\Nearshoring\OnshoringController::class, 'edit'])->name('onshoring.edit');
+           Route::post('/onshoring', [\App\Http\Controllers\Admin\Nearshoring\OnshoringController::class, 'update'])->name('onshoring.update');
+        });
+  
+
+
 });
 
 require __DIR__.'/auth.php';

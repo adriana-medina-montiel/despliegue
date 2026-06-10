@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             ConocenosSupportSeeder::class,
             ConocenosClientsSeeder::class,
             ConocenosTestimonialsSeeder::class,
+            NearshoringHeroSeeder::class,
         ]);
     }
 }
