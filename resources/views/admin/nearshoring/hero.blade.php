@@ -3,7 +3,6 @@
 @section('breadcrumb', 'Nearshoring › Banner / Hero')
 
 @section('content')
-{{-- Nota: Mantenemos los mismos estilos CSS que en la sección Conócenos para mantener la consistencia visual --}}
 <style>
         /* ── Page header ── */
     .form-page-header {
@@ -249,6 +248,38 @@
 
     <div>
         {{-- Visibilidad y Vista Previa (mismo contenido que en tu código original) --}}
+         {{-- Visibilidad --}}
+      <div>
+        <div class="visibility-card">
+            <div class="visibility-card-top"></div>
+            <div class="visibility-body">
+                <div class="visibility-row">
+                    <div class="visibility-info">
+                        <h4>Visibilidad de la sección</h4>
+                        <p>Controla si este banner aparece en el sitio.</p>
+                    </div>
+                    <div class="toggle-wrap">
+                        <span class="toggle-label" id="vis-label">{{ $section->is_visible ? 'Sí' : 'No' }}</span>
+                        <label class="switch">
+                            <input
+                                type="checkbox"
+                                name="is_visible"
+                                id="is_visible"
+                                {{ $section->is_visible ? 'checked' : '' }}
+                                onchange="updateVisLabel(this)"
+                            >
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-top:14px;padding-top:12px;border-top:1px solid #f1f5f9">
+                    <div id="vis-status" style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;{{ $section->is_visible ? 'color:#16a34a' : 'color:#94a3b8' }}">
+                        <span style="width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block"></span>
+                        <span id="vis-status-text">{{ $section->is_visible ? 'Visible en el sitio' : 'Oculto en el sitio' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{-- ... (Copia el resto del bloque "Columna lateral" que me enviaste) ... --}}
     </div>
 </div>
@@ -256,6 +287,8 @@
 <div class="save-bar">
     <button type="submit" class="btn-save"><i class="fas fa-save"></i> Guardar cambios</button>
 </div>
+
+
 </form>
 
 <script>

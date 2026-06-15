@@ -57,8 +57,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
             
             Route::get('/hero', [\App\Http\Controllers\Admin\Nearshoring\HeroController::class, 'edit'])->name('hero.edit');
             Route::post('/hero', [\App\Http\Controllers\Admin\Nearshoring\HeroController::class, 'update'])->name('hero.update');
-           Route::get('/onshoring', [\App\Http\Controllers\Admin\Nearshoring\OnshoringController::class, 'edit'])->name('onshoring.edit');
-           Route::post('/onshoring', [\App\Http\Controllers\Admin\Nearshoring\OnshoringController::class, 'update'])->name('onshoring.update');
+            Route::get('/onshoring', [\App\Http\Controllers\Admin\Nearshoring\OnshoringController::class, 'edit'])->name('onshoring.edit');
+            Route::post('/onshoring', [\App\Http\Controllers\Admin\Nearshoring\OnshoringController::class, 'update'])->name('onshoring.update');
+            Route::get('/nearsh', [\App\Http\Controllers\Admin\Nearshoring\NearshController::class, 'edit'])->name('nearsh.edit');
+            Route::post('/nearsh', [\App\Http\Controllers\Admin\Nearshoring\NearshController::class, 'update'])->name('nearsh.update');
+            Route::get('/cta', [\App\Http\Controllers\Admin\Nearshoring\CtaController::class, 'edit'])->name('cta.edit');
+            Route::post('/cta', [\App\Http\Controllers\Admin\Nearshoring\CtaController::class, 'update'])->name('cta.update');
         });
   
 

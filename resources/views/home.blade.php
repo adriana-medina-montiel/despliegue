@@ -66,7 +66,6 @@
       </div>
       <h3 class="svc-title">Software a la medida</h3>
       <p class="svc-desc">Apps web y móviles construidas desde cero. Código limpio, arquitectura escalable y entrega continua.</p>
-      <div class="svc-arrow">→</div>
     </div>
     <div class="svc rev" style="transition-delay:.1s">
       <div class="svc-num">02</div>
@@ -81,7 +80,6 @@
       </div>
       <h3 class="svc-title">Maquila de software</h3>
       <p class="svc-desc">Desarrollo de software a bajo costo, manteniendo calidad, escalabilidad y tiempos de entrega rápidos.</p>
-      <div class="svc-arrow">→</div>
     </div>
     <div class="svc rev" style="transition-delay:.2s">
       <div class="svc-num">03</div>
@@ -95,7 +93,6 @@
       </div>
       <h3 class="svc-title">Desarrollo de apps</h3>
       <p class="svc-desc">Aplicaciones móviles y web desarrolladas con tecnologías modernas para brindar experiencias rápidas y atractivas.</p>
-      <div class="svc-arrow">→</div>
     </div>
   </div>
 </section>

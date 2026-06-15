@@ -13,6 +13,7 @@
     $sections = \App\Models\PageSection::forPage('nearshoring');
 @endphp
 
+    @if($sections->get('hero')?->is_visible)    
 {{-- 1. HERO / BANNER PRINCIPAL --}}
 <section style="min-height:80vh;display:flex;align-items:center;justify-content:center;padding:8rem 5vw 4rem;text-align:center;">
   <div style="max-width:800px;margin:0 auto;">
@@ -31,76 +32,131 @@
   </div>
 </section>
 
+    @endif
+
 {{-- 2. ONSHORING --}}
+@if($sections->get('onshoring')?->is_visible)
 <section class="softura-service-row">
     <div class="onsh-free-images">
-        <div class="onsh-card-back left"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&h=400&auto=format&fit=crop" alt="Desarrolladores Softura"></div>
-        <div class="onsh-card-back right"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&h=400&auto=format&fit=crop" alt="Métricas de desarrollo"></div> 
-        <div class="onsh-card-main"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&h=480&auto=format&fit=crop" alt="Reunión Onshoring"></div>
+        <div class="onsh-card-back left">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&h=400&auto=format&fit=crop" alt="Desarrolladores Softura">
+        </div>
+
+        <div class="onsh-card-back right">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&h=400&auto=format&fit=crop" alt="Métricas de desarrollo">
+        </div>
+
+        <div class="onsh-card-main">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=600&h=480&auto=format&fit=crop" alt="Reunión Onshoring">
+        </div>
     </div>
+
     <div class="onsh-free-content">
-        <h2 class="onsh-title-fluid">{{ $sections->get('onshoring')?->content('title') ?? 'ONSHORING' }}</h2>  
+        <h2 class="onsh-title-fluid">
+            {{ $sections->get('onshoring')?->content('title') ?? 'ONSHORING' }}
+        </h2>
+
         <p class="onsh-desc-fluid">
             {{ $sections->get('onshoring')?->content('description') ?? 'Descripción del servicio de Onshoring...' }}
         </p>
     </div>
+
     <div class="onsh-line-decorator right-side"></div>
 </section>
 
+@endif
+
 {{-- 3. NEARSHORING --}}
+@php
+    $nearshoringSection = $sections->get('nearshoring');
+@endphp
+
+@if($nearshoringSection && $nearshoringSection->is_visible)
+
 <section class="nearsh-section-wrapper">
-    <div class="nearsh-container-split">   
+    <div class="nearsh-container-split">
+
         <div class="onsh-line-decorator left-side"></div>
+
         <div class="nearsh-content-col">
-            <h2 class="nearsh-title-fluid">{{ $sections->get('nearshoring')?->content('title') ?? 'NEARSHORING' }}</h2>
+            <h2 class="nearsh-title-fluid">
+                {{ $nearshoringSection->content('title') ?? 'NEARSHORING' }}
+            </h2>
+
             <p class="nearsh-desc-fluid">
-                {{ $sections->get('nearshoring')?->content('description') ?? 'Descripción del servicio de Nearshoring...' }}
+                {{ $nearshoringSection->content('description') ?? 'Descripción del servicio de Nearshoring...' }}
             </p>
-        </div>   
+        </div>
+
         <div class="nearsh-image-col">
             <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&h=600&auto=format&fit=crop" alt="Conectividad">
         </div>
+
     </div>
 </section>
 
+@endif
+
 {{-- 4. SOPORTE --}}
-<section class="softura-support-fluid-row"> 
+
+@if($sections->get('cta')?->is_visible)
+<section class="softura-support-fluid-row">
     <div class="supp-fluid-header">
-        <h2 class="supp-fluid-title">{{ $sections->get('support')?->content('title') ?? 'TE ACOMPAÑAMOS EN TODO MOMENTO' }}</h2>
-    </div> 
-    <div class="supp-fluid-body-grid">     
+        <h2 class="supp-fluid-title">
+            {{ $sections->get('cta')?->content('title') ?? 'TE ACOMPAÑAMOS EN TODO MOMENTO' }}
+        </h2>
+    </div>
+
+    <div class="supp-fluid-body-grid">
         <div class="supp-fluid-content">
             <p class="supp-fluid-desc">
-                {{ $sections->get('support')?->content('description') ?? 'Texto de soporte...' }}
+                {{ $sections->get('cta')?->content('description') ?? 'Texto de soporte...' }}
             </p>
         </div>
+
         <div class="supp-fluid-image-col">
             <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=600&h=420&auto=format&fit=crop" alt="Soporte">
-        </div>      
-    </div>   
+        </div>
+    </div>
+
     <div class="supp-line-decorator bottom-side"></div>
 </section>
 
-{{-- Script de animaciones (mantenido igual) --}}
+@endif
+
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const opciones = { root: null, rootMargin: "0px", threshold: 0.1 };
-        const activarMovimiento = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add("visible"); } 
-                else { entry.target.classList.remove("visible"); }
-            });
-        };
-        const descriptorScroll = new IntersectionObserver(activarMovimiento, opciones);
-        
-        const elementos = [
-            document.querySelector("section.softura-service-row"),
-            document.querySelector(".nearsh-container-split"),
-            document.querySelector("section.softura-support-fluid-row")
-        ];
-        
-        elementos.forEach(el => { if(el) descriptorScroll.observe(el); });
+document.addEventListener("DOMContentLoaded", () => {
+    const opciones = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1
+    };
+
+    const activarMovimiento = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            } else {
+                entry.target.classList.remove("visible");
+            }
+        });
+    };
+
+    const descriptorScroll = new IntersectionObserver(
+        activarMovimiento,
+        opciones
+    );
+
+    const elementos = [
+        document.querySelector("section.softura-service-row"),
+        document.querySelector(".nearsh-container-split"),
+        document.querySelector("section.softura-support-fluid-row")
+    ];
+
+    elementos.forEach(el => {
+        if (el) descriptorScroll.observe(el);
     });
+});
 </script>
 
 @endsection

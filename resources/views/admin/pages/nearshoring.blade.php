@@ -123,7 +123,7 @@
             <i class="fas fa-layer-group"></i>
         </div>
         <div class="section-row-info">
-            <h3>Nearshoring y Onshoring</h3>
+            <h3>Onshoring</h3>
             <p>Título, descripción y llamada a la acción principal.</p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
@@ -131,6 +131,41 @@
             <i class="fas fa-pen" style="font-size:10px"></i> Editar
         </a>
     </div>
+
+
+    {{-- Sección Nearshoring --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#fefce8;color:#ca8a04">
+            <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="section-row-info">
+            <h3>Nearshoring</h3>
+            <p>Título, descripción y llamada a la acción principal.</p>
+        </div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.nearshoring.nearsh.edit') }}" class="edit-btn" style="background:#ca8a04">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
+    </div>
+
+
+    {{-- Sección CTA --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#fefce8;color:#ca8a04">
+            <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="section-row-info">
+            <h3>CTA</h3>
+            <p>Título, descripción y llamada a la acción principal.</p>
+        </div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.nearshoring.cta.edit') }}" class="edit-btn" style="background:#ca8a04">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
+    </div>
+
+
+
 
 </div>
 @endsection
