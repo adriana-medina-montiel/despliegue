@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Nearshoring & Outsourcing')
-@section('breadcrumb', 'Nearshoring')
+@section('breadcrumb', 'Nearshoring & Outsourcing')
 
 @section('content')
 <style>
@@ -16,11 +16,11 @@
         width: 48px; height: 48px; border-radius: 12px;
         display: flex; align-items: center; justify-content: center;
         font-size: 20px; flex-shrink: 0;
-        background: #eff6ff; color: #1e3a8a;
+        background: #ecfeff; color: #0891b2;
     }
     .pg-header-text h2 { font-size: 20px; font-weight: 700; color: #0f172a; margin: 0 0 3px; }
     .pg-header-text .route { font-size: 12px; color: #94a3b8; font-family: ui-monospace, monospace; }
-    .pg-header-text .route span { color: #1e3a8a; }
+    .pg-header-text .route span { color: #0891b2; }
     .pg-back-btn {
         margin-left: auto; display: inline-flex; align-items: center; gap: 7px;
         padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
@@ -30,7 +30,7 @@
     .pg-back-btn:hover { background: #e2e8f0; color: #1e293b; }
 
     .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-    .section-header-line { width: 3px; height: 20px; background: #1e3a8a; border-radius: 2px; }
+    .section-header-line { width: 3px; height: 20px; background: #0891b2; border-radius: 2px; }
     .section-header h2 { font-size: 15px; font-weight: 700; color: #1e293b; margin: 0; }
 
     .sections-list { display: flex; flex-direction: column; gap: 12px; }
@@ -60,11 +60,6 @@
         font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
         letter-spacing: 0.06em; text-transform: uppercase; margin-right: 12px;
     }
-    .badge-soon {
-        font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
-        background: #f1f5f9; color: #94a3b8; letter-spacing: 0.06em;
-        text-transform: uppercase; margin-right: 12px;
-    }
 
     .edit-btn {
         display: inline-flex; align-items: center; gap: 6px;
@@ -72,16 +67,8 @@
         color: white; text-decoration: none; transition: filter 0.15s;
     }
     .edit-btn:hover { filter: brightness(1.1); }
-    .edit-btn-disabled {
-        display: inline-flex; align-items: center; gap: 6px;
-        padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 600;
-        color: #cbd5e1; background: #f8fafc; border: 1px solid #e2e8f0; cursor: default;
-    }
 </style>
 
-
-
-{{-- Usamos exactamente las mismas clases de 'Conócenos' para asegurar el mismo diseño --}}
 <div class="pg-header">
     <div class="pg-header-icon"><i class="fas fa-globe-americas"></i></div>
     <div class="pg-header-text">
@@ -100,34 +87,62 @@
 
 <div class="sections-list">
 
-    {{-- 1. HERO --}}
+    {{-- Hero --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#eff6ff;color:#1e3a8a">
             <i class="fas fa-image"></i>
         </div>
         <div class="section-row-info">
-            <h3>Banner / Hero</h3>
-            <p>Imagen de fondo, título, subtítulo y descripción principal.</p>
+            <h3>Hero / Portada</h3>
+            <p>Título, etiqueta y descripción general de entrada.</p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.nearshoring.hero.edit') }}" class="edit-btn" style="background:#1e3a8a">
+        <a href="{{ route('admin.nearshoring.hero.edit') }}" class="edit-btn" style="background:#0891b2">
             <i class="fas fa-pen" style="font-size:10px"></i> Editar
         </a>
     </div>
 
-    {{-- Aquí podemos añadir las otras secciones siguiendo el mismo formato --}}
-
-    {{-- Sección Onshoring --}}
+    {{-- Propuesta de valor --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#fefce8;color:#ca8a04">
-            <i class="fas fa-layer-group"></i>
+        <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed">
+            <i class="fas fa-star"></i>
         </div>
         <div class="section-row-info">
-            <h3>Nearshoring y Onshoring</h3>
-            <p>Título, descripción y llamada a la acción principal.</p>
+            <h3>Propuesta de valor</h3>
+            <p>Tarjetas de externalización (Nearshoring / Onshoring) y frase final con CTA.</p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.nearshoring.onshoring.edit') }}" class="edit-btn" style="background:#ca8a04">
+        <a href="{{ route('admin.nearshoring.propuesta.edit') }}" class="edit-btn" style="background:#0891b2">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
+    </div>
+
+    {{-- Ventajas --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#ecfeff;color:#0891b2">
+            <i class="fas fa-certificate"></i>
+        </div>
+        <div class="section-row-info">
+            <h3>Células y Onshoring</h3>
+            <p>Células especializadas (STPS/REPSE) y el bloque de Onshoring con galería de imágenes.</p>
+        </div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.nearshoring.ventajas.edit') }}" class="edit-btn" style="background:#0891b2">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
+    </div>
+
+    {{-- Proceso --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#fff7ed;color:#ea580c">
+            <i class="fas fa-route"></i>
+        </div>
+        <div class="section-row-info">
+            <h3>Proceso y Soporte</h3>
+            <p>Modelo Nearshoring, viñetas de servicios de staffing/outsourcing y soporte creativo.</p>
+        </div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.nearshoring.proceso.edit') }}" class="edit-btn" style="background:#0891b2">
             <i class="fas fa-pen" style="font-size:10px"></i> Editar
         </a>
     </div>

@@ -1,0 +1,581 @@
+/* Softura — sistema de secciones corporativas (presentación v2) */
+
+.site-marketing .ss-section {
+  position: relative;
+  padding: 5.5rem 5vw;
+  overflow: hidden;
+}
+
+.site-marketing .ss-section--light {
+  background: linear-gradient(180deg, #f4f7fc 0%, #ffffff 100%);
+  color: #0f172a;
+}
+
+.site-marketing .ss-section--white {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.site-marketing .ss-section--dark {
+  background: linear-gradient(135deg, #020714 0%, #0a1e4a 50%, #0d2d6b 100%);
+  color: #ffffff;
+}
+
+.site-marketing .ss-section--dark.ss-section--alt {
+  background: linear-gradient(160deg, #000a1a 0%, #003366 60%, #0a1e4a 100%);
+}
+
+.site-marketing .ss-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-marketing .ss-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3rem;
+}
+
+.site-marketing .ss-head--light .ss-title,
+.site-marketing .ss-head--light .ss-lead {
+  color: inherit;
+}
+
+.site-marketing .ss-kicker {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #1a4fff;
+  margin-bottom: 0.85rem;
+}
+
+.site-marketing .ss-kicker--gold {
+  color: #c9a227;
+}
+
+.site-marketing .ss-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.75rem, 3.5vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.site-marketing .ss-title span {
+  color: #1a4fff;
+}
+
+.site-marketing .ss-title--light {
+  color: #ffffff;
+}
+
+.site-marketing .ss-title--light span {
+  color: #60a5fa;
+}
+
+.site-marketing .ss-lead {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #64748b;
+  max-width: 640px;
+}
+
+.site-marketing .ss-lead--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.site-marketing .ss-lead--light {
+  color: #94a3b8;
+}
+
+.site-marketing .ss-lead--light strong {
+  color: #ffffff;
+}
+
+.site-marketing .ss-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.site-marketing .ss-split--reverse .ss-split-text {
+  order: 2;
+}
+
+.site-marketing .ss-split--reverse .ss-split-media {
+  order: 1;
+}
+
+.site-marketing .ss-media-photo {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 24px 56px rgba(5, 11, 26, 0.18);
+}
+
+.site-marketing .ss-section--dark .ss-media-photo {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.35);
+}
+
+/* Servicios grid — iconos de presentación */
+.site-marketing .ss-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.site-marketing .ss-services-grid--icons {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+}
+
+.site-marketing .ss-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  padding: 1.75rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.site-marketing .ss-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(26, 79, 255, 0.12);
+  border-color: rgba(26, 79, 255, 0.2);
+}
+
+.site-marketing .ss-card--icon {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.site-marketing .ss-card--icon img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+.site-marketing .ss-card--icon h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: #0f172a;
+}
+
+.site-marketing .ss-card--official h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem;
+  color: #0f172a;
+}
+
+.site-marketing .ss-card--official p {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: #64748b;
+  margin: 0;
+}
+
+.site-marketing .ss-card--official .ss-card-visual {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+}
+
+/* Listas */
+.site-marketing .ss-list {
+  list-style: none;
+  margin-top: 1.25rem;
+  padding: 0;
+}
+
+.site-marketing .ss-list li {
+  padding: 0.55rem 0 0.55rem 1.5rem;
+  position: relative;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.site-marketing .ss-list--light li {
+  color: #94a3b8;
+}
+
+.site-marketing .ss-list--light li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #1a4fff;
+}
+
+.site-marketing .ss-repse {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+}
+
+.site-marketing .ss-repse i {
+  color: #c9a227;
+  margin-top: 0.15rem;
+}
+
+/* Certificaciones */
+.site-marketing .ss-certs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.site-marketing .ss-cert {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+/* Valores */
+.site-marketing .ss-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.site-marketing .ss-value {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+}
+
+.site-marketing .ss-value-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a4fff;
+  opacity: 0.35;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.site-marketing .ss-value h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.site-marketing .ss-value p {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Roles */
+.site-marketing .ss-roles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.85rem;
+}
+
+.site-marketing .ss-role {
+  text-align: center;
+  padding: 0.85rem 0.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Métricas capacitación — estilo slide */
+.site-marketing .ss-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.site-marketing .ss-metric {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.75rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+}
+
+.site-marketing .ss-metric-n {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #1a4fff;
+  line-height: 1;
+  margin-bottom: 0.65rem;
+}
+
+.site-marketing .ss-metric p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+.site-marketing .ss-capacitacion-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.site-marketing .ss-capacitacion-char {
+  max-width: 280px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.site-marketing .ss-quote {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-style: italic;
+  color: #c9a227;
+  border-left: 3px solid #c9a227;
+  padding-left: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.site-marketing .ss-quote--center {
+  text-align: center;
+  border-left: none;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 2rem 1rem 0;
+  margin-top: 2.5rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ecosistema */
+.site-marketing .ss-eco-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.site-marketing .ss-eco-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.site-marketing .ss-eco-card img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.site-marketing .ss-eco-card p {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.site-marketing .ss-eco-highlight {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-marketing .ss-eco-highlight p {
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.site-marketing .ss-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.site-marketing .ss-partner-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* RSE */
+.site-marketing .ss-rse-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.site-marketing .ss-rse-item {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-marketing .ss-rse-item:last-child {
+  border-bottom: none;
+}
+
+.site-marketing .ss-rse-icon {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  background: rgba(26, 79, 255, 0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+  font-size: 1.2rem;
+}
+
+.site-marketing .ss-rse-item p {
+  color: #94a3b8;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.site-marketing .ss-rse-item strong {
+  color: #ffffff;
+}
+
+/* Productos preview */
+.site-marketing .ss-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.site-marketing .ss-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.35rem 1rem;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.site-marketing .ss-product:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(26, 79, 255, 0.12);
+}
+
+.site-marketing .ss-head-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.site-marketing .btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #1a4fff 0%, #2563eb 100%);
+  color: #ffffff;
+  padding: 0.9rem 1.75rem;
+  border-radius: 999px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(26, 79, 255, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.site-marketing .btn-p:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(26, 79, 255, 0.45);
+}
+
+@media (max-width: 900px) {
+  .site-marketing .ss-split,
+  .site-marketing .ss-capacitacion-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .site-marketing .ss-split--reverse .ss-split-text,
+  .site-marketing .ss-split--reverse .ss-split-media {
+    order: unset;
+  }
+
+  .site-marketing .ss-capacitacion-char {
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .site-marketing .ss-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .site-marketing .ss-services-grid--icons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .site-marketing .ss-section {
+    padding: 4rem 5vw;
+  }
+
+  .site-marketing .ss-services-grid--icons {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}

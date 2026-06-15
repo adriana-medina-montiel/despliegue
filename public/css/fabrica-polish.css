@@ -1,0 +1,133 @@
+/* Fábrica de Software — página deck */
+
+.page-fabrica {
+  background: var(--deck-navy, #020714);
+  color: #fff;
+}
+
+.page-fabrica .fab-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: min(88vh, 820px);
+  padding-top: 7rem;
+}
+
+.page-fabrica .fab-hero .deck-container {
+  position: relative;
+  z-index: 2;
+}
+
+.page-fabrica .fab-hero-visual {
+  position: relative;
+  z-index: 1;
+  padding-right: 5vw;
+}
+
+.page-fabrica .fab-hero-visual img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  border-radius: 20px;
+  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
+}
+
+.page-fabrica .deck-service-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #020714 0%, #0a1e4a 100%);
+}
+
+.page-fabrica .deck-service-block--reverse {
+  background: linear-gradient(160deg, #000a1a 0%, #0d2d6b 100%);
+}
+
+.page-fabrica .deck-visual img {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  max-height: 420px;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-fabrica .fab-repse {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+}
+
+.page-fabrica .fab-repse i {
+  color: var(--deck-gold, #c9a227);
+  margin-top: 0.2rem;
+}
+
+.page-fabrica .fab-partner-logo {
+  height: 40px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.page-fabrica .deck-partners .fab-partner-logo {
+  filter: none;
+  opacity: 1;
+}
+
+.page-fabrica .fab-cloud-wrap {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-fabrica .deck-cloud-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-fabrica .deck-cloud-card li {
+  padding: 0.2rem 0;
+}
+
+.page-fabrica .deck-cloud-card li::before {
+  content: '• ';
+  color: var(--deck-blue-light, #1a4fff);
+}
+
+.page-fabrica .deck-svc-card {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.page-fabrica .deck-svc-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.page-fabrica .deck-svc-img {
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  .page-fabrica .fab-hero {
+    grid-template-columns: 1fr;
+    padding-top: 6rem;
+    min-height: auto;
+    padding-bottom: 3rem;
+  }
+
+  .page-fabrica .fab-hero-visual {
+    padding: 0 5vw;
+    order: -1;
+  }
+
+  .page-fabrica .fab-hero-visual img {
+    max-height: 280px;
+  }
+}

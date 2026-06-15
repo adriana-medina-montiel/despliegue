@@ -1,0 +1,535 @@
+/* Softura — capa global de interfaz (marketing) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sp-navy);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border: 2px solid var(--sp-navy);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sp-blue);
+}
+
+.site-marketing {
+  --sp-navy: #050b1a;
+  --sp-blue: #1a4fff;
+  --sp-cyan: #00c6ff;
+  --sp-muted: #64748b;
+  --sp-radius: 20px;
+  --sp-shadow: 0 10px 30px -10px rgba(2, 6, 23, 0.3);
+  --sp-shadow-hover: 0 20px 40px -15px rgba(2, 6, 23, 0.4);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  padding-top: 0 !important; /* Elimina el hueco blanco superior de estilos2.css */
+  cursor: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-marketing #cur,
+.site-marketing #cur-r {
+  display: none !important;
+}
+
+.site-marketing button,
+.site-marketing a,
+.site-marketing input,
+.site-marketing textarea,
+.site-marketing select {
+  cursor: pointer;
+}
+
+.site-marketing input,
+.site-marketing textarea {
+  cursor: text;
+}
+
+/* Accesibilidad */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.65rem 1rem;
+  background: var(--sp-blue);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.site-marketing :focus-visible {
+  outline: 2px solid var(--sp-blue);
+  outline-offset: 2px;
+}
+
+/* Nav corporativa (todas las páginas) — anula estilos legacy de estilos.css */
+.site-marketing nav#site-nav {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: block !important;
+  padding: 0 !important;
+  background: rgba(5, 11, 26, 0.94) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.site-marketing nav.nav-dark {
+  background: rgba(5, 11, 26, 0.94) !important;
+}
+
+.site-marketing nav.nav-dark.nav-scrolled {
+  background: rgba(5, 11, 26, 0.98) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.32);
+}
+
+.site-marketing .nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.85rem 5vw;
+  gap: 1rem;
+}
+
+.site-marketing .logo img {
+  height: 42px;
+  max-height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.site-marketing .nav-links {
+  display: flex !important;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-marketing .nav-links a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-transform: none !important;
+  letter-spacing: 0.02em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 8px;
+}
+
+.site-marketing .nav-links a:hover,
+.site-marketing .nav-links a:focus-visible {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.site-marketing .nav-links a.nav-active {
+  color: #fff !important;
+  position: relative;
+  background: rgba(26, 79, 255, 0.15);
+}
+
+.site-marketing .nav-social {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.25rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.site-marketing .nav-social-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0 !important;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.site-marketing .nav-social-btn:hover,
+.site-marketing .nav-social-btn:focus-visible {
+  background: rgba(26, 79, 255, 0.28) !important;
+  border-color: rgba(96, 165, 250, 0.45);
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.site-marketing .nav-links a.nav-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--sp-cyan), var(--sp-blue));
+}
+
+.site-marketing .btn-nav-cta {
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1a4fff 0%, #6366f1 100%);
+  box-shadow: 0 4px 14px 0 rgba(26, 79, 255, 0.39);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-marketing .btn-nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(26, 79, 255, 0.45);
+}
+
+/* Subpáginas sin hero completo */
+.site-marketing .subpage-hero-pad {
+  padding-top: 7.5rem;
+}
+
+/* Tarjetas de servicios */
+.site-marketing .ss-card {
+  border-radius: var(--sp-radius);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(to bottom right, #ffffff, #f8fafc);
+  box-shadow: var(--sp-shadow);
+  transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.site-marketing .ss-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--sp-shadow-hover);
+  border-color: rgba(26, 79, 255, 0.18);
+}
+
+.site-marketing .ss-card-icon {
+  transition: transform 0.28s ease, background 0.28s ease;
+}
+
+.site-marketing .ss-card:hover .ss-card-icon {
+  transform: scale(1.05);
+}
+
+/* Footer corporativo */
+.site-marketing .sp-site-footer {
+  background: var(--sp-navy);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2.75rem 5vw;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.site-marketing .sp-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+}
+
+.site-marketing .sp-footer-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.75rem;
+}
+
+.site-marketing .sp-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-marketing .sp-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.site-marketing .sp-social-btn:hover {
+  background: rgba(26, 79, 255, 0.25);
+  border-color: rgba(96, 165, 250, 0.4);
+  color: #fff;
+}
+
+.site-marketing .sp-footer-brand .logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.site-marketing .sp-footer-brand .logo b {
+  color: var(--sp-cyan);
+}
+
+.site-marketing .sp-footer-brand p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.site-marketing .sp-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.75rem;
+}
+
+.site-marketing .sp-footer-links a {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.site-marketing .sp-footer-links a:hover {
+  color: #fff;
+}
+
+.site-marketing.footer-dark .sp-site-footer,
+.site-marketing .footer-dark.sp-site-footer {
+  background: #010510;
+}
+
+/* WhatsApp */
+.site-marketing .fab-whatsapp {
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 180;
+}
+
+/* Logos oficiales (global) */
+.sp-official-logo {
+  display: block;
+  height: auto;
+  max-height: 48px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+}
+
+.sp-official-logo--hero {
+  max-height: 88px;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.deck-page .sp-official-logo--client {
+  filter: none;
+  max-height: 40px;
+}
+
+/* Formulario contacto */
+.site-marketing .contact-form-card {
+  backdrop-filter: blur(12px);
+}
+
+.site-marketing .btn-submit {
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+/* Backdrop menú móvil */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: rgba(5, 11, 26, 0.55);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+body.nav-open .nav-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+.site-marketing .logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.site-marketing .logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.site-marketing .logo-text b {
+  color: var(--sp-cyan);
+}
+
+/* Menú móvil unificado */
+@media (max-width: 1100px) {
+  .site-marketing .nav-links > li:not(.nav-cta-wrap):not(.nav-social):not(.lang-switch) > a {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 901px) {
+  .site-marketing nav#site-nav .nav-links {
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    flex-direction: row !important;
+    pointer-events: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .site-marketing .nav-toggle {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-marketing .nav-toggle {
+    display: flex;
+  }
+
+  .site-marketing .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 88vw);
+    height: 100vh;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 5rem 1.5rem 2rem;
+    background: rgba(5, 11, 26, 0.98);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 250;
+  }
+
+  body.nav-open .site-marketing .nav-links {
+    transform: translateX(0);
+  }
+
+  .site-marketing .nav-links > li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 0.5rem 0;
+  }
+
+  .site-marketing .nav-social {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 0.35rem;
+  }
+
+  .site-marketing .nav-links .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: rgba(5, 11, 26, 0.98);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 0.35rem 0 0.35rem 0;
+    display: none;
+  }
+
+  .site-marketing .nav-links .dropdown-menu a {
+    color: #e5eefb;
+  }
+
+  .site-marketing .nav-links .dropdown-menu a:hover {
+    color: #fff;
+    background: rgba(26, 79, 255, 0.18);
+  }
+
+  .site-marketing .nav-links .dropdown.open .dropdown-menu {
+    display: block;
+  }
+
+  .site-marketing .nav-links a.nav-active::after {
+    display: none;
+  }
+
+  .site-marketing .btn-nav-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .site-marketing .sp-footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .site-marketing .sp-footer-end {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-marketing .sp-footer-links {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-marketing .ss-card,
+  .site-marketing .btn-nav-cta,
+  .site-marketing .nav-links {
+    transition: none;
+  }
+}

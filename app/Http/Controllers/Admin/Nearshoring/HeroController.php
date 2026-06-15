@@ -5,42 +5,29 @@ namespace App\Http\Controllers\Admin\Nearshoring;
 use App\Http\Controllers\Controller;
 use App\Models\PageSection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class HeroController extends Controller
 {
     public function edit()
     {
-        $section = PageSection::firstOrCreate(
-            ['page_slug' => 'nearshoring', 'section_key' => 'hero'],
-            ['content' => [], 'is_visible' => true]
-        );
+        $section = PageSection::get('nearshoring', 'hero') ?? abort(404);
         return view('admin.nearshoring.hero', compact('section'));
     }
 
     public function update(Request $request)
     {
         $request->validate([
-            'badge_text'       => 'required|string|max:80',
-            'title'            => 'required|string|max:255',
-            'description'      => 'required|string|max:600',
-            'background_image' => 'nullable|image|max:4096',
+            'badge_text'  => 'required|string|max:100',
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
         ]);
 
-        $section = PageSection::firstOrCreate(['page_slug' => 'nearshoring', 'section_key' => 'hero']);
+        $section = PageSection::get('nearshoring', 'hero') ?? abort(404);
         $content = $section->content ?? [];
 
         $content['badge_text']  = $request->badge_text;
         $content['title']       = $request->title;
         $content['description'] = $request->description;
-
-        if ($request->hasFile('background_image')) {
-            $old = $content['background_image'] ?? null;
-            if ($old && !str_starts_with($old, 'http')) {
-                Storage::disk('public')->delete($old);
-            }
-            $content['background_image'] = $request->file('background_image')->store('nearshoring/hero', 'public');
-        }
 
         $section->update([
             'content'    => $content,
@@ -48,6 +35,6 @@ class HeroController extends Controller
         ]);
 
         return redirect()->route('admin.nearshoring.hero.edit')
-                         ->with('success', 'Sección actualizada correctamente.');
+            ->with('success', 'Banner principal de Nearshoring actualizado correctamente.');
     }
 }
