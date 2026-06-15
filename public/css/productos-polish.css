@@ -3,36 +3,9 @@
 body.page-productos {
   padding: 0 !important;
   min-height: 100vh;
-  background: #f4f7fc;
-  cursor: auto;
+  background: var(--bg, #FAFAFA);
+  cursor: none;
   display: block !important;
-}
-
-.page-productos .lang-switch-track {
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
-.page-productos .lang-option {
-  color: #94a3b8;
-}
-
-.page-productos .lang-option.active {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
-
-.page-productos .nav-toggle {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.page-productos .nav-toggle span {
-  background: #fff;
-}
-
-.page-productos #cur,
-.page-productos #cur-r {
-  display: none;
 }
 
 /* Hero */
@@ -107,18 +80,13 @@ body.page-productos {
 /* Catálogo */
 .page-productos .products-section {
   max-width: 1200px;
-  margin: -2.5rem auto 3rem;
-  padding: 2.5rem 1.25rem 0;
+  margin: 0 auto 3rem;
+  padding: 5rem 1.25rem 0;
   position: relative;
   z-index: 3;
 }
 
 .page-productos .products-header {
-  background: #fff;
-  border-radius: 24px;
-  padding: 2rem 2rem 1.5rem;
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
-  border: 1px solid rgba(15, 23, 42, 0.06);
   margin-bottom: 2rem;
 }
 
@@ -163,10 +131,10 @@ body.page-productos {
   scroll-margin-top: 100px;
 }
 
-/* Bituyú — bloque destacado */
+/* Bituyú — bloque destacado (diseño claro) */
 .bituyu-section--corp {
-  background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 45%, #312e81 100%);
-  border-top: none;
+  background: linear-gradient(180deg, #f0f4ff 0%, #ffffff 100%);
+  border-top: 1px solid rgba(99, 102, 241, 0.08);
   padding: 5rem 0;
 }
 
@@ -223,11 +191,8 @@ body.page-productos {
   font-weight: 800;
   letter-spacing: 0.04em;
   line-height: 1;
-  color: #fff;
-  text-shadow:
-    0 0 0 #111,
-    2px 2px 0 rgba(236, 72, 153, 0.85),
-    -1px -1px 0 rgba(251, 191, 36, 0.75);
+  color: #1e1b4b;
+  text-shadow: none;
 }
 
 .bituyu-logo-main {
@@ -241,7 +206,7 @@ body.page-productos {
 }
 
 .bituyu-tagline {
-  color: rgba(255, 255, 255, 0.78);
+  color: #64748b;
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 1.5rem;
@@ -260,9 +225,9 @@ body.page-productos {
   gap: 0.15rem;
   padding: 0.7rem 1.25rem;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #1e1b4b;
   text-decoration: none;
   font-size: 0.72rem;
   font-weight: 500;
@@ -273,10 +238,11 @@ body.page-productos {
 .bituyu-store strong {
   font-size: 0.95rem;
   font-weight: 700;
+  color: #312e81;
 }
 
 .bituyu-store:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(99, 102, 241, 0.14);
   transform: translateY(-2px);
 }
 
@@ -292,9 +258,10 @@ body.page-productos {
   width: 100%;
   border-radius: 20px;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.04);
+  background: #fff;
   padding: 0.75rem;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+  border: 1px solid #e2e8f0;
 }
 
 .bituyu-eco-stats {
@@ -304,17 +271,18 @@ body.page-productos {
 }
 
 .bituyu-eco-stat {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #fff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
   text-align: center;
-  color: #fff;
+  color: #0f172a;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.06);
 }
 
 .bituyu-eco-stat i {
   font-size: 1.25rem;
-  color: #a5b4fc;
+  color: #6366f1;
   margin-bottom: 0.5rem;
 }
 
@@ -324,11 +292,12 @@ body.page-productos {
   font-size: 1.75rem;
   font-weight: 800;
   line-height: 1.1;
+  color: #1e1b4b;
 }
 
 .bituyu-eco-stat span {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.65);
+  color: #64748b;
 }
 
 .bituyu-features-grid {
@@ -339,41 +308,43 @@ body.page-productos {
 }
 
 .bituyu-section--corp .bituyu-feature {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #fff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 1.25rem;
   display: flex;
   gap: 1rem;
   align-items: flex-start;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.06);
 }
 
 .bituyu-section--corp .bituyu-feature h3 {
-  color: #fff;
+  color: #0f172a;
   font-family: 'Syne', sans-serif;
   font-size: 1rem;
   margin-bottom: 0.35rem;
 }
 
 .bituyu-section--corp .bituyu-feature p {
-  color: rgba(255, 255, 255, 0.65);
+  color: #64748b;
   font-size: 0.88rem;
   line-height: 1.55;
   margin: 0;
 }
 
 .bituyu-section--corp .bituyu-bar {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #fff;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
 }
 
 .bituyu-section--corp .bituyu-bar-text {
-  color: rgba(255, 255, 255, 0.85);
+  color: #334155;
 }
 
 .bituyu-section--corp .bituyu-bar-btn {
-  background: linear-gradient(135deg, #1a4fff, #6366f1);
+  background: #6366f1;
 }
 
 /* Animaciones scroll */
@@ -388,66 +359,6 @@ body.page-productos {
   transform: none;
 }
 
-/* Nav en productos — armonizar con layout global */
-.page-productos nav {
-  background: rgba(5, 11, 26, 0.88) !important;
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 0 !important;
-}
-
-.page-productos .nav-inner {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem 5vw;
-}
-
-.page-productos .nav-links a {
-  color: rgba(255, 255, 255, 0.75) !important;
-  text-transform: none;
-  letter-spacing: 0.02em;
-}
-
-.page-productos .nav-links a:hover,
-.page-productos .nav-links a.nav-active {
-  color: #fff !important;
-}
-
-.page-productos .nav-links .dropdown-menu {
-  background: #0f172a !important;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-}
-
-.page-productos .nav-links .dropdown-menu a {
-  color: #cbd5e1 !important;
-}
-
-.page-productos .nav-links .dropdown-menu a:hover {
-  background: rgba(255, 255, 255, 0.06) !important;
-  color: #fff !important;
-}
-
-.page-productos .btn-nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: #1a4fff;
-  color: #fff !important;
-  text-decoration: none;
-  padding: 0.6rem 1.15rem;
-  border-radius: 10px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.page-productos .btn-nav-cta:hover {
-  background: #0a2fcc;
-  transform: translateY(-1px);
-}
 
 @media (max-width: 900px) {
   .bituyu-hero-grid {
@@ -581,7 +492,7 @@ body.page-productos {
     padding-top: 6.5rem;
   }
   .page-productos .products-section {
-    margin-top: -1.5rem;
-    padding-top: 1.5rem;
+    margin-top: 0;
+    padding-top: 4rem;
   }
 }

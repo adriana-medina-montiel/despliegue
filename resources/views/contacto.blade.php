@@ -2,6 +2,7 @@
 
 @section('title', 'Contacto — Softura Solutions')
 @section('body-class', 'subpage subpage-dark')
+@section('nav-class', 'nav-dark')
 @section('footer-class', 'footer-dark')
 
 @section('content')

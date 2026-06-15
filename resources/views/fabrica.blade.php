@@ -4,6 +4,7 @@
 @section('body-class', 'page-fabrica deck-page')
 
 @push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/softura-deck.css') }}">
 <link rel="stylesheet" href="{{ asset('css/fabrica-polish.css') }}">
 @endpush

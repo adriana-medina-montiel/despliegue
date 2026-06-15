@@ -3,6 +3,7 @@
 @section('title', 'Productos — Softura Solutions')
 @section('body-class', 'page-productos')
 @push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="{{ asset('css/estilos2.css') }}">
 <link rel="stylesheet" href="{{ asset('css/productos-polish.css') }}">
 @endpush
@@ -22,17 +23,6 @@
     $sspip = $sections->get('sspip');
 @endphp
 
-@if(!$hero || $hero->is_visible)
-<section class="prod-hero">
-  <div class="prod-hero-bg" style="background-image:url('{{ cms_asset($hero?->content('background_image', 'img/empresas.png')) }}');" aria-hidden="true"></div>
-  <div class="prod-hero-overlay" aria-hidden="true"></div>
-  <div class="prod-hero-inner rev">
-    <span class="prod-hero-badge"><i class="fas fa-box-open"></i> Portafolio</span>
-    <h1>{!! $hero?->content('title', 'Productos que <em>impulsan</em> tu organización') !!}</h1>
-    <p class="prod-hero-lead">{{ $hero?->content('description', 'Soluciones de software personalizables para digitalizar procesos, conectar negocios y escalar resultados.') }}</p>
-  </div>
-</section>
-@endif
 
 @if((!$intro || $intro->is_visible) || (!$catalogo || $catalogo->is_visible))
 <section class="products-section">

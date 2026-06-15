@@ -113,7 +113,6 @@ nav {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 html {
@@ -137,10 +136,6 @@ body {
     cursor: auto;
 }
 
-.page-productos #cur,
-.page-productos #cur-r {
-    display: none;
-}
 
 /* --- Contenedor Sección --- */
 .products-section {
