@@ -8,8 +8,8 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .logo img {
-  height: 40px;        /* tamaño visible del logo */
-  max-height: 40px;    /* evita que crezca más */
+  height: 54px;        /* tamaño visible del logo */
+  max-height: 54px;    /* evita que crezca más */
   width: auto;         /* mantiene proporción */
   object-fit: contain; /* evita deformaciones */
   vertical-align: middle;
@@ -663,6 +663,7 @@ body {
     width: 100%;
     max-width: 1200px;
     padding: 0 20px;
+    margin: 0 auto;
 }
 
 /* Encabezado limpio directamente sobre fondo blanco */
@@ -688,7 +689,7 @@ body {
 
 .binibiaa-header .brand-slogan {
     display: block;
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', sans-serif;
     font-style: italic;
     font-size: 1.3rem;
     color: #701a75;
@@ -858,7 +859,7 @@ body {
     font-size: 0.9rem;
     font-weight: 700;
     color: #1e293b;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .separator-line {
@@ -908,9 +909,9 @@ body {
 .academika-section-flat {
     width: 100%;
     max-width: 1200px;
-    margin: 90px auto;
-    padding: 0 20px;
-    background: transparent; /* Remueve cualquier fondo o caja externa */
+    margin: 60px auto;
+    padding: 0;
+    background: transparent;
     clear: both;
 }
 
@@ -1304,8 +1305,8 @@ body {
 
 .fenix-orbit-container {
     width: 100%;
-    max-width: 1440px;
-    padding: 0 40px;
+    max-width: 1200px;
+    padding: 0 20px;
     display: grid;
     grid-template-columns: 350px 1fr;
     gap: 40px;
@@ -1544,7 +1545,7 @@ body {
 
 .pbr-fluid-wrapper {
     width: 100%;
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px;
 }
@@ -1824,7 +1825,7 @@ body {
 
 .sspip-wrapper {
     width: 100%;
-    max-width: 1340px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 25px;
 }

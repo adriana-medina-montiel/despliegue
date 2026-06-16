@@ -27,11 +27,11 @@
   margin-bottom: 2.5rem;
 }
 .cn-head h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   margin-bottom: 0.85rem;
 }
 .cn-head p {
@@ -121,11 +121,12 @@
   margin-bottom: 1rem;
 }
 .cn-hero h1 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(2rem, 4.8vw, 3.35rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
   margin-bottom: 1rem;
 }
 .cn-hero-lead {
@@ -186,11 +187,11 @@
   50% { transform: rotate(45deg) translateY(5px); }
 }
 
-/* Diferenciadores — 2 columnas, diagrama grande */
+/* Diferenciadores — 2 columnas, imagen circular contenida */
 .cn-diff-split {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(2rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
 .cn-diff-left {
@@ -199,9 +200,9 @@
   gap: 1.5rem;
 }
 .cn-medal {
-  width: min(200px, 55%);
+  width: min(180px, 50%);
   height: auto;
-  filter: drop-shadow(0 12px 28px rgba(26, 79, 255, 0.15));
+  filter: drop-shadow(0 12px 28px rgba(26, 79, 255, 0.18));
 }
 .cn-diff-intro {
   font-size: 1.05rem;
@@ -209,29 +210,35 @@
   color: var(--gray);
 }
 .cn-diff-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
   margin: 0;
-  text-align: center;
 }
 .cn-diff-figure img {
-  width: 100%;
-  max-width: 560px;
+  width: min(340px, 100%);
+  aspect-ratio: 1;
   height: auto;
   display: block;
-  margin: 0 auto;
-  border-radius: 16px;
-  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.1);
+  object-fit: contain;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #eef2ff 0%, #f0f9ff 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(26, 79, 255, 0.1),
+              0 20px 52px rgba(26, 79, 255, 0.12);
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .cn-diff-figure:hover img {
-  transform: scale(1.02);
+  transform: scale(1.04);
 }
 .cn-diff-caption {
-  margin-top: 0.85rem;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--blue);
   letter-spacing: 0.02em;
+  text-align: center;
 }
 
 /* Pilares */
@@ -273,7 +280,7 @@
   padding: 0.5rem;
 }
 .cn-pillar h3 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-weight: 700;
 }
@@ -286,10 +293,11 @@
   align-items: center;
 }
 .cn-accompany-copy h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.6rem, 3vw, 2.35rem);
-  font-weight: 800;
-  line-height: 1.12;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   margin-bottom: 1rem;
 }
 .cn-accompany-copy > p {
@@ -361,7 +369,7 @@
 }
 .cn-step-body strong {
   display: block;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   margin-bottom: 0.25rem;
 }
@@ -384,7 +392,7 @@
   border-radius: 16px;
 }
 .cn-clients-stat-num {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 800;
   color: var(--blue);
@@ -518,7 +526,7 @@
   position: absolute;
   top: 0.75rem;
   right: 1rem;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 3.5rem;
   line-height: 1;
   color: rgba(26, 79, 255, 0.1);
@@ -542,7 +550,7 @@
 }
 .cn-quote footer strong {
   display: block;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 0.92rem;
 }
 .cn-quote footer span {
@@ -579,9 +587,11 @@
   align-items: start;
 }
 .cn-talent-copy h2 {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.75rem, 3.2vw, 2.5rem);
-  font-weight: 800;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   margin-bottom: 0.75rem;
 }
 .cn-talent-copy > p {
@@ -660,7 +670,7 @@
   border: none;
   padding: 0.95rem;
   border-radius: 10px;
-  font-family: 'Syne', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   cursor: none;
@@ -712,7 +722,7 @@
   gap: 1rem;
   margin-bottom: 0.75rem;
 }
-.cn-footer-row .logo { font-family: 'Syne', sans-serif; }
+.cn-footer-row .logo { font-family: 'Inter', sans-serif; }
 .cn-footer-row > p { font-size: 0.85rem; color: var(--gray); }
 .cn-footer-links { display: flex; gap: 0.75rem; }
 .cn-footer-links a {
@@ -805,7 +815,7 @@
     grid-template-columns: 1fr;
   }
   .cn-diff-figure { order: -1; }
-  .cn-diff-figure img { max-width: 100%; }
+  .cn-diff-figure img { width: min(280px, 85%); }
   .cn-pillars { grid-template-columns: repeat(2, 1fr); }
   .cn-accompany,
   .cn-talent-grid { grid-template-columns: 1fr; }

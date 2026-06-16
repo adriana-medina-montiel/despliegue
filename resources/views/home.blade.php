@@ -1,6 +1,13 @@
 @extends('layouts.web')
 
 @section('title', 'Softura Solutions')
+@section('body-class', 'page-home')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/home-inicio.css') }}">
+<link rel="stylesheet" href="{{ asset('css/home-polish.css') }}">
+<link rel="stylesheet" href="{{ asset('css/conocenos.css') }}">
+@endpush
 
 @push('head-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -62,34 +69,6 @@
 </div>
 @endif
 
-{{-- ─── SOMOS DIFERENTES ───────────────────────────────────────────────────── --}}
-@php $nosotros = $sections->get('nosotros'); @endphp
-@if(!$nosotros || $nosotros->is_visible)
-<section class="section" id="nosotros" style="background:var(--card);">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="sec-label rev">{{ $nosotros?->content('badge_text', 'Somos diferentes') }}</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;" class="rev">
-      <div>
-        <h2 style="margin-bottom:1.5rem;">{{ $nosotros?->content('title', '20 años impulsando la innovación') }}</h2>
-        <p style="font-size:1.05rem;line-height:1.8;color:var(--gray);">{!! $nosotros?->content('description', 'Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.') !!}</p>
-        <div style="display:flex;gap:1.5rem;align-items:center;margin-top:2rem;flex-wrap:wrap;">
-          @if(file_exists(public_path('img/official/aliados/clustec.png')))
-          <img src="{{ asset('img/official/aliados/clustec.png') }}" alt="CLUSTEC Tlaxcala" style="max-height:38px;object-fit:contain;opacity:.85;">
-          @endif
-          @if(file_exists(public_path('img/official/aliados/smartsoft.png')))
-          <img src="{{ asset('img/official/aliados/smartsoft.png') }}" alt="SmartSoft" style="max-height:38px;object-fit:contain;opacity:.85;">
-          @endif
-        </div>
-      </div>
-      <div style="position:relative;">
-        @php $nosotrosSrc = cms_asset($nosotros?->content('image', 'img/official/Conocenos/equipo.png')); @endphp
-        <img src="{{ $nosotrosSrc }}" alt="Equipo Softura Solutions" style="width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.08);" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-@endif
-
 {{-- ─── FÁBRICA DE SOFTWARE ─────────────────────────────────────────────────── --}}
 @php $srvIntro = $sections->get('services_intro'); @endphp
 @if(!$srvIntro || $srvIntro->is_visible)
@@ -146,128 +125,118 @@
 </section>
 @endif
 
-{{-- ─── DEVOPS ─────────────────────────────────────────────────────────────── --}}
-@php $devops = $sections->get('devops'); @endphp
-@if(!$devops || $devops->is_visible)
-<section class="section" id="devops" style="background:#020714;color:#fff;padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4rem;align-items:center;" class="rev">
-    <div>
-      <div style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#00C9A7;margin-bottom:1rem;font-weight:500;">{{ $devops?->content('kicker', 'DevOps') }}</div>
-      <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3rem);color:#fff;margin-bottom:1.5rem;letter-spacing:-.03em;line-height:1.1;">{{ $devops?->content('title', 'Entrega continua y confiable') }}</h2>
-      <p style="color:#94a3b8;font-size:1.05rem;line-height:1.75;margin-bottom:1.5rem;">{{ $devops?->content('lead', 'Podemos ejecutar proyectos utilizando una filosofía para entregar software de forma más rápida, confiable y continua.') }}</p>
-      @if($devops?->items?->count() > 0)
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;">
-        @foreach($devops->items as $bullet)
-        <li style="display:flex;align-items:center;gap:.75rem;color:#cbd5e1;font-size:.95rem;">
-          <span style="width:6px;height:6px;border-radius:50%;background:#00C9A7;flex-shrink:0;"></span>
-          {{ $bullet->data('text') }}
-        </li>
-        @endforeach
-      </ul>
-      @endif
+{{-- ─── PRODUCTOS ───────────────────────────────────────────────────────────── --}}
+@php
+  $stack       = $sections->get('stack');
+  $stackCtaUrl = ($stack?->content('cta_url')) ?: '/productos';
+  $stackCtaHref = str_starts_with($stackCtaUrl, 'http') ? $stackCtaUrl : url($stackCtaUrl);
+@endphp
+@if(!$stack || $stack->is_visible)
+<section class="stack-section ht-spot" id="stack">
+  <div class="ht-spot__inner">
+
+    <div class="ht-spot__head rev">
+      <div class="sec-label">{{ $stack?->content('kicker', 'Portafolio') }}</div>
+      <h2>{!! $stack?->content('title', 'Nuestros <span>productos</span>') !!}</h2>
     </div>
-    <div>
-      @php $devImg = cms_asset($devops?->content('image', 'img/official/productos/devops.jpg')); @endphp
-      <img src="{{ $devImg }}" alt="DevOps" style="width:100%;border-radius:20px;box-shadow:0 25px 60px rgba(0,0,0,.4);" loading="lazy">
+
+    <div class="ht-spot__card rev">
+      <div class="ht-spot__copy">
+        <span class="ht-spot__pill">✦ Producto estrella</span>
+        <div class="ht-spot__brand">
+          <img src="{{ asset('img/bituyu.png') }}" alt="Bituyú" class="ht-spot__logo">
+          <h3>Bituyú</h3>
+        </div>
+        <p>Red virtual de negocios que conecta empresas, automatiza procesos y centraliza operaciones en una sola plataforma.</p>
+        <ul class="ht-spot__list">
+          <li>Catálogo digital y comercio electrónico</li>
+          <li>Facturación electrónica CFDI</li>
+          <li>Gestión multi-empresa en tiempo real</li>
+        </ul>
+        <a href="{{ url('/productos') }}#bituyu-full-section" class="ht-spot__link">Conoce Bituyú →</a>
+      </div>
+      <div class="ht-spot__visual">
+        <img src="{{ asset('img/official/productos/bituyu-slide.png') }}" alt="Bituyú" loading="lazy">
+      </div>
     </div>
+
+    <div class="ht-spot__cta rev">
+      <a href="{{ $stackCtaHref }}" class="btn-p" style="text-decoration:none;display:inline-block;">
+        {{ $stack?->content('cta_text', 'Ver todos los productos') }}
+      </a>
+    </div>
+
   </div>
 </section>
 @endif
 
-{{-- ─── ONSHORING ───────────────────────────────────────────────────────────── --}}
-@php $onshoring = $sections->get('onshoring'); @endphp
-@if(!$onshoring || $onshoring->is_visible)
-<section class="section" id="onshoring" style="background:var(--bg);padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;" class="rev">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4rem;align-items:center;">
+{{-- ─── CLIENTES ─────────────────────────────────────────────────────────────── --}}
+@php
+  $homeClients = $sections->get('home_clients');
+  $cnClients   = \App\Models\PageSection::forPage('conocenos')->get('clients');
+  $cnClientSectors = $cnClients?->content('sectors', [
+    ['name' => 'Gobierno',  'tag' => 'Sector gobierno'],
+    ['name' => 'Educativo', 'tag' => 'Sector educativo'],
+    ['name' => "TIC's",     'tag' => "Sector TIC's"],
+    ['name' => 'Privado',   'tag' => 'Iniciativa privada'],
+  ]);
+@endphp
+@if(!$homeClients || $homeClients->is_visible)
+<section class="cn-section" id="home-clientes">
+  <div class="cn-container">
+    <header class="cn-head rev">
+      <span class="cn-label">{{ $cnClients?->content('badge_text', 'Confianza') }}</span>
+      <h2>{{ $cnClients?->content('title', 'Ellos nos avalan') }}</h2>
+      <p>{{ $cnClients?->content('description', 'A lo largo de los años hemos establecido relaciones comerciales basadas en la confianza con clientes de distintos giros y modelos de negocio.') }}</p>
+    </header>
+    <div class="cn-tabs rev" id="home-sector-tabs" role="tablist">
+      @foreach($cnClientSectors as $i => $sector)
+      <button type="button" {{ $i === 0 ? 'class="active"' : '' }} data-sector="{{ $i }}">{{ $sector['name'] }}</button>
+      @endforeach
+    </div>
+    <div class="cn-panel rev" id="home-clients-carousel">
+      @foreach($cnClientSectors as $i => $sector)
+      @php $sectorLogos = $cnClients?->items->filter(fn($item) => (int)$item->data('sector', 0) === $i) ?? collect(); @endphp
+      <div class="cn-carousel-item {{ $i === 0 ? 'active' : '' }}">
+        <p class="cn-panel-tag">{{ $sector['tag'] }}</p>
+        <div class="cn-logos">
+          @foreach($sectorLogos as $logo)
+            @php $src = cms_asset($logo->data('image') ?: ''); @endphp
+            <img src="{{ $src }}" alt="{{ $logo->data('alt','') }}" loading="lazy">
+          @endforeach
+        </div>
+      </div>
+      @endforeach
+    </div>
+    <div class="cn-dots" id="home-clients-dots"></div>
+  </div>
+</section>
+@endif
+
+{{-- ─── SOMOS DIFERENTES ───────────────────────────────────────────────────── --}}
+@php $nosotros = $sections->get('nosotros'); @endphp
+@if(!$nosotros || $nosotros->is_visible)
+<section class="section" id="nosotros" style="background:var(--card);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="sec-label rev">{{ $nosotros?->content('badge_text', 'Somos diferentes') }}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;" class="rev">
       <div>
-        @php $onshrImg = cms_asset($onshoring?->content('image', 'img/official/productos/onshoring.jpg')); @endphp
-        <img src="{{ $onshrImg }}" alt="Onshoring" style="width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.07);" loading="lazy">
+        <h2 style="margin-bottom:1.5rem;">{{ $nosotros?->content('title', '20 años impulsando la innovación') }}</h2>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--gray);">{!! $nosotros?->content('description', 'Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.') !!}</p>
+        <div style="display:flex;gap:1.5rem;align-items:center;margin-top:2rem;flex-wrap:wrap;">
+          @if(file_exists(public_path('img/official/aliados/clustec.png')))
+          <img src="{{ asset('img/official/aliados/clustec.png') }}" alt="CLUSTEC Tlaxcala" style="max-height:38px;object-fit:contain;opacity:.85;">
+          @endif
+          @if(file_exists(public_path('img/official/aliados/smartsoft.png')))
+          <img src="{{ asset('img/official/aliados/smartsoft.png') }}" alt="SmartSoft" style="max-height:38px;object-fit:contain;opacity:.85;">
+          @endif
+        </div>
       </div>
-      <div>
-        <div style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem;font-weight:500;">{{ $onshoring?->content('kicker', 'Onshoring') }}</div>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3rem);color:var(--ink);margin-bottom:1.5rem;letter-spacing:-.03em;line-height:1.1;">{{ $onshoring?->content('title', 'Onshoring') }}</h2>
-        <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;margin-bottom:1rem;">{{ $onshoring?->content('description') }}</p>
-        @if($onshoring?->content('repse_text'))
-        <p style="color:var(--gray);font-size:.95rem;line-height:1.6;border-left:3px solid var(--blue);padding-left:1rem;">{!! $onshoring->content('repse_text') !!}</p>
-        @endif
+      <div style="position:relative;">
+        @php $nosotrosSrc = cms_asset($nosotros?->content('image', 'img/official/Conocenos/equipo.png')); @endphp
+        <img src="{{ $nosotrosSrc }}" alt="Equipo Softura Solutions" style="width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.08);" loading="lazy">
       </div>
     </div>
-  </div>
-</section>
-@endif
-
-{{-- ─── CALIDAD CERTIFICADA ─────────────────────────────────────────────────── --}}
-@php $calidad = $sections->get('calidad'); @endphp
-@if(!$calidad || $calidad->is_visible)
-<section class="section" id="calidad" style="background:var(--card);padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="rev" style="text-align:center;margin-bottom:3.5rem;">
-      <div class="sec-label">{{ $calidad?->content('kicker', 'Calidad certificada') }}</div>
-      <h2 style="margin-bottom:1rem;">{{ $calidad?->content('title', 'La calidad es nuestra prioridad') }}</h2>
-      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;max-width:640px;margin:0 auto;">{{ $calidad?->content('description') }}</p>
-    </div>
-    @if($calidad?->items?->count() > 0)
-    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;align-items:center;" class="rev">
-      @foreach($calidad->items as $cert)
-      <div style="text-align:center;">
-        @include('partials.official-logo', [
-          'file' => $cert->data('file') ?: null,
-          'cdn'  => $cert->data('cdn') ?: null,
-          'alt'  => $cert->data('name'),
-          'class'=> '',
-        ])
-        <span style="display:block;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);margin-top:.5rem;">{{ $cert->data('name') }}</span>
-      </div>
-      @endforeach
-    </div>
-    @endif
-  </div>
-</section>
-@endif
-
-{{-- ─── EXPERIENCIA INTEGRAL ────────────────────────────────────────────────── --}}
-@php $valor = $sections->get('valor'); @endphp
-@if(!$valor || $valor->is_visible)
-<section class="section" id="valor" style="padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="rev" style="margin-bottom:3.5rem;">
-      <div class="sec-label">{{ $valor?->content('kicker', 'Experiencia integral') }}</div>
-      <h2>{!! $valor?->content('title', 'Mejoramos tu <span>experiencia</span>') !!}</h2>
-      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;max-width:640px;margin-top:1rem;">{{ $valor?->content('description') }}</p>
-    </div>
-    @if($valor?->items?->count() > 0)
-    <div class="value-grid rev">
-      @foreach($valor->items as $item)
-      <div class="value-card">
-        <div class="value-icon">{{ $item->data('num') }}</div>
-        <h3>{{ $item->data('title') }}</h3>
-        <p>{{ $item->data('text') }}</p>
-      </div>
-      @endforeach
-    </div>
-    @endif
-  </div>
-</section>
-@endif
-
-{{-- ─── TALENTO ─────────────────────────────────────────────────────────────── --}}
-@php $equipo = $sections->get('equipo'); @endphp
-@if(!$equipo || $equipo->is_visible)
-<section class="section" id="equipo" style="background:var(--card);padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="rev" style="text-align:center;margin-bottom:3rem;">
-      <div class="sec-label">{{ $equipo?->content('kicker', 'Talento') }}</div>
-      <h2>{!! $equipo?->content('title', 'Contamos con un equipo de <span>especialistas</span>') !!}</h2>
-      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;max-width:640px;margin:1rem auto 0;">{{ $equipo?->content('description') }}</p>
-    </div>
-    @if($equipo?->items?->count() > 0)
-    <div class="rev" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;">
-      @foreach($equipo->items as $rol)
-      <span style="background:var(--bg);border:1px solid var(--border);color:var(--ink);font-family:'Syne',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:.6rem 1.2rem;border-radius:50px;">{{ $rol->data('label') }}</span>
-      @endforeach
-    </div>
-    @endif
   </div>
 </section>
 @endif
@@ -275,19 +244,111 @@
 {{-- ─── STACK TECNOLÓGICO ───────────────────────────────────────────────────── --}}
 @php $tecnologias = $sections->get('tecnologias'); @endphp
 @if(!$tecnologias || $tecnologias->is_visible)
-<section class="section" id="tecnologias" style="padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4rem;align-items:center;" class="rev">
-    <div>
+<section class="section ht-stack-section" id="tecnologias">
+  <div class="ht-stack-inner">
+    <div class="ht-stack-header rev">
+      <div class="sec-label">{{ $tecnologias?->content('kicker', 'Stack tecnológico') }}</div>
+      <h2>{{ $tecnologias?->content('title', 'Somos especialistas') }}</h2>
+      <p>{{ $tecnologias?->content('description', 'Nuestro equipo trabaja con las tecnologías más relevantes del mercado, manteniéndose en constante actualización.') }}</p>
+    </div>
+    <div class="rev">
       @include('partials.deck-tech-logos')
     </div>
-    <div>
-      <div class="sec-label">{{ $tecnologias?->content('kicker', 'Stack tecnológico') }}</div>
-      <h2 style="margin-bottom:1.5rem;">{{ $tecnologias?->content('title', 'Somos especialistas') }}</h2>
-      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;margin-bottom:1.5rem;">{{ $tecnologias?->content('description') }}</p>
-      @if($tecnologias?->content('quote'))
-      <blockquote style="border-left:3px solid var(--blue);padding-left:1.2rem;font-style:italic;color:var(--gray);font-size:.98rem;line-height:1.7;">"{{ $tecnologias->content('quote') }}"</blockquote>
+    @if($tecnologias?->content('quote'))
+    <p class="ht-stack-quote rev">"{{ $tecnologias->content('quote') }}"</p>
+    @endif
+  </div>
+</section>
+@endif
+
+{{-- ─── PROCESO (ONSHORING / NEARSHORING) ──────────────────────────────────── --}}
+@php $proceso = $sections->get('proceso'); @endphp
+@if(!$proceso || $proceso->is_visible)
+<section class="ht-ext rev" id="proceso">
+  <div class="ht-ext__inner">
+
+    <div class="ht-ext__copy">
+      <span class="sec-label">{{ $proceso?->content('kicker', 'Externalización') }}</span>
+      <h2>{!! $proceso?->content('title', 'Tus verdaderos <span>aliados</span> de negocio') !!}</h2>
+      <p>{{ $proceso?->content('footer_text', 'Hagamos equipo y deja de preocuparte de los costos de reclutamiento, selección y capacitación del personal.') }}</p>
+      <a href="{{ route('nearshoring') }}" class="ht-ext__cta">
+        Conoce Nearshoring y Onshoring
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="ht-ext__services">
+      @php
+        $extItems = $proceso?->items ?? collect();
+        $fallback = [
+          ['icon' => 'globe', 'title' => 'Onshoring', 'desc' => 'Ingenieros en tus instalaciones en México.'],
+          ['icon' => 'pin',   'title' => 'Nearshoring', 'desc' => 'Trabajo remoto para E.U.A. y Latinoamérica.'],
+        ];
+      @endphp
+      @if($extItems->count() > 0)
+        @foreach($extItems as $idx => $card)
+        <div class="ht-ext__pill">
+          <div class="ht-ext__pill-icon">
+            @if($idx % 2 === 0)
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            @else
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            @endif
+          </div>
+          <div>
+            <strong>{{ $card->data('title') }}</strong>
+            <span>{{ $card->data('description') }}</span>
+          </div>
+        </div>
+        @endforeach
+      @else
+        @foreach($fallback as $idx => $f)
+        <div class="ht-ext__pill">
+          <div class="ht-ext__pill-icon">
+            @if($idx === 0)
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            @else
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            @endif
+          </div>
+          <div>
+            <strong>{{ $f['title'] }}</strong>
+            <span>{{ $f['desc'] }}</span>
+          </div>
+        </div>
+        @endforeach
       @endif
     </div>
+
+  </div>
+</section>
+@endif
+
+{{-- ─── CALIDAD CERTIFICADA ─────────────────────────────────────────────────── --}}
+@php $calidad = $sections->get('calidad'); @endphp
+@if(!$calidad || $calidad->is_visible)
+<section class="ht-calidad rev" id="calidad">
+  <div class="ht-calidad__inner">
+    <div class="ht-calidad__copy">
+      <span class="sec-label">{{ $calidad?->content('kicker', 'Calidad certificada') }}</span>
+      <h2>{{ $calidad?->content('title', 'La calidad es nuestra prioridad') }}</h2>
+      <p>{{ $calidad?->content('description', 'Desarrollamos con estándares internacionales — CMMi, PSP, MoProSoft y MAAGTICSI — combinados con metodologías ágiles y equipos certificados en Scrum.') }}</p>
+    </div>
+    @if($calidad?->items?->count() > 0)
+    <div class="ht-calidad__logos">
+      @foreach($calidad->items as $cert)
+      <div class="ht-calidad__cert">
+        @include('partials.official-logo', [
+          'file'  => $cert->data('file') ?: null,
+          'cdn'   => $cert->data('cdn') ?: null,
+          'alt'   => $cert->data('name'),
+          'class' => 'ht-calidad__img',
+        ])
+        <span>{{ $cert->data('name') }}</span>
+      </div>
+      @endforeach
+    </div>
+    @endif
   </div>
 </section>
 @endif
@@ -305,7 +366,7 @@
     <div class="rev" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-bottom:2.5rem;">
       @foreach($capacitacion->items as $metric)
       <div style="text-align:center;padding:2rem;background:var(--bg);border-radius:20px;border:1px solid var(--border);">
-        <strong style="display:block;font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:.5rem;">{{ $metric->data('value') }}</strong>
+        <strong style="display:block;font-size:2.5rem;font-weight:700;color:var(--blue);line-height:1.1;margin-bottom:.5rem;">{{ $metric->data('value') }}</strong>
         <p style="color:var(--gray);font-size:.9rem;line-height:1.5;margin:0;">{{ $metric->data('text') }}</p>
       </div>
       @endforeach
@@ -318,225 +379,133 @@
 </section>
 @endif
 
-{{-- ─── RED DE ALIADOS ──────────────────────────────────────────────────────── --}}
-@php
-  $ecosistema = $sections->get('ecosistema');
-  $ecoCtaUrl  = ($ecosistema?->content('cta_url')) ?: '/conocenos';
-  $ecoCtaHref = str_starts_with($ecoCtaUrl, 'http') ? $ecoCtaUrl : url($ecoCtaUrl);
-@endphp
-@if(!$ecosistema || $ecosistema->is_visible)
-<section id="ecosistema" class="rev" style="position:relative;z-index:10;background:#000000;color:#fff;padding:6rem 0;overflow:hidden;font-family:'Inter',sans-serif;">
-  <div style="position:absolute;top:-10%;left:-10%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(26,79,255,0.15) 0%,transparent 70%);pointer-events:none;"></div>
-  <div style="position:absolute;bottom:-10%;right:-10%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none;"></div>
-  <div style="max-width:1300px;margin:0 auto;padding:0 5vw;">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <div style="text-transform:uppercase;letter-spacing:3px;color:#00C9A7;font-weight:700;font-size:0.85rem;margin-bottom:.75rem;">{{ $ecosistema?->content('kicker', 'Red de aliados') }}</div>
-      <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-family:'Syne',sans-serif;font-weight:800;line-height:1.15;margin:0 0 1.5rem 0;color:#ffffff;">{!! $ecosistema?->content('title', 'Tenemos un gran <span style="background:linear-gradient(90deg,#00C6FF,#0072FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">respaldo</span>') !!}</h2>
-      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.6;max-width:600px;margin:0 auto;">{{ $ecosistema?->content('description') }}</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
-      @if($ecosistema?->items?->count() > 0)
-        @foreach($ecosistema->items as $aliado)
-        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:2rem;text-align:center;transition:border-color .3s;" onmouseover="this.style.borderColor='rgba(26,79,255,0.5)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
-          @include('partials.official-logo', [
-            'file'  => $aliado->data('file') ?: null,
-            'cdn'   => $aliado->data('cdn') ?: null,
-            'alt'   => $aliado->data('alt'),
-            'class' => '',
-          ])
-          <p style="color:#94A3B8;font-size:.9rem;line-height:1.55;margin:1rem 0 0;">{{ $aliado->data('text') }}</p>
-        </div>
-        @endforeach
-      @else
-      {{-- Fallback: nodos satélite interactivos --}}
-      <div style="grid-column:1/-1;position:relative;height:550px;display:flex;align-items:center;justify-content:center;">
-        <div style="position:absolute;border:1px dashed rgba(26,79,255,0.2);border-radius:50%;width:320px;height:320px;animation:spin 40s linear infinite;"></div>
-        <div style="position:absolute;border:1px solid rgba(255,255,255,0.05);border-radius:50%;width:460px;height:460px;"></div>
-        <div id="eco-core" style="position:relative;z-index:5;width:190px;height:190px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;color:#030816;box-shadow:0 0 40px rgba(26,79,255,0.4);border:6px solid rgba(26,79,255,0.15);transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);">
-          <div id="core-logo-placeholder" style="height:40px;display:flex;align-items:center;margin-bottom:0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#1A4FFF;">SOFTURA</div>
-          <p id="core-desc" style="font-size:0.72rem;color:#475569;line-height:1.3;margin:0;font-weight:500;">Pasa el cursor sobre un aliado.</p>
-        </div>
-        @foreach([
-          ['img'=>'/img/Imagen1.png','title'=>'CLUSTEC','desc'=>'Impulsando la innovación y competitividad tecnológica regional.','bg'=>'#fff','pos'=>'top:5%'],
-          ['img'=>'/img/Imagen2.png','title'=>'AMITI','desc'=>'Fortaleciendo la industria de TI y el desarrollo de talento en México.','bg'=>'#454545','pos'=>'top:25%;right:5%'],
-          ['img'=>'/img/Imagen3.png','title'=>'COPARMEX','desc'=>'Unidos por la justicia social, un México próspero y lleno de oportunidades.','bg'=>'#fff','pos'=>'bottom:25%;right:5%'],
-          ['img'=>'/img/Imagen4.png','title'=>'mxTI','desc'=>'Promoviendo el desarrollo y la internacionalización de la industria de software nacional.','bg'=>'#fff','pos'=>'bottom:5%'],
-          ['img'=>'/img/Imagen5.png','title'=>'Aliado 5','desc'=>'Descripción del aliado estratégico.','bg'=>'#3f3e3e','pos'=>'bottom:25%;left:5%'],
-          ['img'=>'/img/Imagen1.1.png','title'=>'Aliado 6','desc'=>'Descripción del aliado estratégico.','bg'=>'#383838','pos'=>'top:25%;left:5%'],
-        ] as $node)
-        <div class="sat-node" data-title="{{ $node['title'] }}" data-desc="{{ $node['desc'] }}" data-img="{{ $node['img'] }}" style="position:absolute;{{ $node['pos'] }};background:{{ $node['bg'] }};border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-          <img src="{{ $node['img'] }}" alt="{{ $node['title'] }}" style="max-width:100%;max-height:100%;object-fit:contain;">
-        </div>
-        @endforeach
-      </div>
-      @endif
-    </div>
-    @if($ecosistema?->content('highlight_text') || $ecosistema?->content('cta_text'))
-    <div style="text-align:center;margin-top:3rem;">
-      @if($ecosistema?->content('highlight_text'))
-      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.6;margin-bottom:1.5rem;">{{ $ecosistema->content('highlight_text') }}</p>
-      @endif
-      @if($ecosistema?->content('cta_text'))
-      <a href="{{ $ecoCtaHref }}" class="btn-p" style="text-decoration:none;display:inline-block;">{{ $ecosistema->content('cta_text', 'Conoce más sobre nosotros') }}</a>
-      @endif
-    </div>
-    @endif
-  </div>
-</section>
-@endif
-
-{{-- ─── CLIENTES ─────────────────────────────────────────────────────────────── --}}
-<section class="section" id="clientes" style="background:var(--card);">
+{{-- ─── TALENTO ─────────────────────────────────────────────────────────────── --}}
+@php $equipo = $sections->get('equipo'); @endphp
+@if(!$equipo || $equipo->is_visible)
+<section class="section" id="equipo" style="background:var(--bg);padding:6rem 5vw;">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="rev" style="text-align:center;margin-bottom:3rem;">
-      <div class="sec-label">Confianza</div>
-      <h2>Ellos nos <span>avalan</span></h2>
-      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;max-width:620px;margin:1rem auto 0;">A lo largo de los años hemos establecido relaciones comerciales basadas en la confianza con clientes de distintos giros y modelos de negocio.</p>
+      <div class="sec-label">{{ $equipo?->content('kicker', 'Talento') }}</div>
+      <h2>{!! $equipo?->content('title', 'Contamos con un equipo de <span>especialistas</span>') !!}</h2>
+      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;max-width:640px;margin:1rem auto 0;">{{ $equipo?->content('description') }}</p>
     </div>
-    @include('partials.official-clientes-grid')
-  </div>
-</section>
-
-{{-- ─── PROCESO (ONSHORING / NEARSHORING) ──────────────────────────────────── --}}
-@php $proceso = $sections->get('proceso'); @endphp
-@if(!$proceso || $proceso->is_visible)
-<section class="section" id="proceso">
-  <div class="process-wrap">
-    <div class="process-header rev">
-      <h2>{!! $proceso?->content('title', 'Con nuestros modelos de externalización,<br>seremos tus verdaderos <strong>aliados de negocio</strong>') !!}</h2>
-    </div>
-    <div class="process-cards rev">
-      @if($proceso?->items?->count() > 0)
-        @foreach($proceso->items as $idx => $card)
-        <div class="p-card">
-          <div class="p-icon-wrap">
-            @if($idx % 2 === 0)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
-            </svg>
-            @else
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-            </svg>
-            @endif
-          </div>
-          <h3>{{ $card->data('title') }}</h3>
-          <p>{{ $card->data('description') }}</p>
-        </div>
-        @endforeach
-      @else
-      <div class="p-card">
-        <div class="p-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
-          </svg>
-        </div>
-        <h3>Onshoring</h3>
-        <p>Nuestros ingenieros trabajan directamente en tus instalaciones ubicadas en México cuando así se requiera.</p>
-      </div>
-      <div class="p-card">
-        <div class="p-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
-        <h3>Nearshoring</h3>
-        <p>Nuestros ingenieros trabajan remotamente en proyectos para tu empresa ubicada en E.U.A o Latinoamérica.</p>
-      </div>
-      @endif
-    </div>
-    @if($proceso?->content('footer_text'))
-    <div class="process-footer rev">
-      <p>{!! $proceso->content('footer_text') !!}</p>
-    </div>
-    @else
-    <div class="process-footer rev">
-      <p>Hagamos equipo y <strong>deja de preocuparte</strong> de los costos de reclutamiento, selección, capacitación y continuidad del personal.</p>
-    </div>
-    @endif
-  </div>
-</section>
-@endif
-
-{{-- ─── PRODUCTOS ───────────────────────────────────────────────────────────── --}}
-@php
-  $stack       = $sections->get('stack');
-  $stackCtaUrl = ($stack?->content('cta_url')) ?: '/productos';
-  $stackCtaHref = str_starts_with($stackCtaUrl, 'http') ? $stackCtaUrl : url($stackCtaUrl);
-@endphp
-@if(!$stack || $stack->is_visible)
-<section class="stack-section" id="stack">
-  <div class="products-top rev">
-    <div class="sec-label">{{ $stack?->content('kicker', 'Portafolio') }}</div>
-    <h2>{!! $stack?->content('title', 'Descubre nuestros <span>productos</span>') !!}</h2>
-    <p class="products-sub">{{ $stack?->content('description', 'Soluciones diseñadas para optimizar procesos, automatizar tareas y acelerar el crecimiento de tu empresa.') }}</p>
-  </div>
-  <div class="stack-grid">
-    @if($stack?->items?->count() > 0)
-      @foreach($stack->items as $product)
-      @php
-        $prodUrl  = $product->data('url') ?: '#';
-        $prodHref = str_starts_with($prodUrl, 'http') ? $prodUrl : url($prodUrl);
-      @endphp
-      <a href="{{ $prodHref }}" class="stack-tag rev" style="text-decoration:none;">
-        <div class="dot">✦</div>
-        <div>
-          <h3>{{ $product->data('name') }}</h3>
-          <p>{{ $product->data('description') }}</p>
-        </div>
-      </a>
+    @if($equipo?->items?->count() > 0)
+    <div data-cn-stagger class="talento-grid" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.85rem;">
+      @foreach($equipo->items as $rol)
+      <span class="cn-stagger-item talento-pill">{{ $rol->data('label') }}</span>
       @endforeach
-    @else
-    <div class="stack-tag rev"><div class="dot">✦</div><div><h3>Bituyú</h3><p>Gestión moderna y automatización empresarial.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⬡</div><div><h3>Binibiaa</h3><p>Soluciones inteligentes para procesos digitales.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">▣</div><div><h3>Academica</h3><p>Plataforma educativa moderna y eficiente.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">◫</div><div><h3>SIGA</h3><p>Administración y control de información avanzada.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">◈</div><div><h3>Fenyx Admin</h3><p>Herramientas administrativas ágiles y escalables.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⬢</div><div><h3>MI PBR</h3><p>Monitoreo y gestión estratégica de recursos.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⌘</div><div><h3>SSPIP</h3><p>Solución tecnológica segura y eficiente.</p></div></div>
+    </div>
     @endif
-  </div>
-  <div class="rev" style="text-align:center;margin-top:3rem;">
-    <a href="{{ $stackCtaHref }}" class="btn-p" style="text-decoration:none;display:inline-block;">{{ $stack?->content('cta_text', 'Ver todos los productos') }}</a>
   </div>
 </section>
 @endif
 
-{{-- ─── CTA CONTACTO ────────────────────────────────────────────────────────── --}}
-@php $cta = $sections->get('cta'); @endphp
-@if(!$cta || $cta->is_visible)
-<section class="cta-section" id="contacto" style="position:relative;z-index:10;background:#020714;padding:5rem 5vw;color:#fff;font-family:'Inter',sans-serif;">
-  <div class="rev" style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;">
-    <div>
-      <div class="sec-label" style="color:#1A4FFF;">{{ $cta?->content('badge_text', 'Contacto') }}</div>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:800;line-height:1.2;margin-bottom:1.5rem;color:#fff;">
-        {!! $cta?->content('title', 'Emprende este <br>viaje <span style="color:#1A4FFF;">con nosotros</span>') !!}
-      </h2>
-      <p style="color:#94a3b8;font-size:1.1rem;line-height:1.6;max-width:480px;margin-bottom:3.5rem;">
-        {{ $cta?->content('description', 'Cuéntanos tu idea y construyamos juntos soluciones tecnológicas que impulsen tu negocio.') }}
-      </p>
-    </div>
-    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);backdrop-filter:blur(10px);padding:2.5rem;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.4);">
-      <form data-contact novalidate style="display:flex;flex-direction:column;gap:1.2rem;">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;">
-          <input type="text" name="nombre" data-i18n-placeholder="contact.name" placeholder="Nombre completo" required style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-          <input type="text" name="empresa" data-i18n-placeholder="contact.company" placeholder="Empresa (opcional)" style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-        </div>
-        <input type="email" name="email" data-i18n-placeholder="contact.email" placeholder="Correo electrónico" required style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-        <input type="tel" name="telefono" data-i18n-placeholder="contact.phone" placeholder="Teléfono (opcional)" style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;box-sizing:border-box;">
-        <textarea name="mensaje" data-i18n-placeholder="contact.message" placeholder="Cuéntanos sobre tu proyecto..." rows="4" required style="width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);padding:0.9rem 1rem;border-radius:10px;color:#fff;font-family:inherit;font-size:0.9rem;outline:none;resize:none;box-sizing:border-box;display:block;"></textarea>
-        <button type="submit" data-i18n="contact.send" style="width:100%;background:linear-gradient(90deg,#1A4FFF 0%,#3b82f6 100%);color:#fff;border:none;padding:1rem;border-radius:10px;font-family:inherit;font-weight:600;font-size:1rem;cursor:pointer;">
-          Enviar mensaje
-        </button>
-      </form>
-    </div>
-  </div>
-</section>
-@endif
+{{-- Red de aliados eliminada del home — se mantiene solo en conócenos --}}
+{{-- Sección DevOps eliminada del home --}}
+{{-- Sección Onshoring eliminada del home --}}
+{{-- Sección Experiencia Integral eliminada del home --}}
+{{-- Sección CTA Contacto eliminada del home --}}
 
 @endsection
 
 @push('scripts')
+<script>
+/* Animación stagger del home (independiente de page-conocenos, que es donde vive el observer original) */
+(function () {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.page-home [data-cn-stagger]').forEach((group) => {
+    const items = group.querySelectorAll('.cn-stagger-item');
+    if (!items.length) return;
+    if (reduced) {
+      items.forEach((item) => item.classList.add('cn-visible'));
+      return;
+    }
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          items.forEach((item, i) => {
+            item.style.transitionDelay = i * 0.08 + 's';
+            item.classList.add('cn-visible');
+          });
+          obs.unobserve(group);
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    obs.observe(group);
+  });
+})();
+</script>
+<script>
+/* Carousel de clientes del home (independiente del de conócenos) — autoplay + spotlight de logos */
+(function () {
+  const section  = document.getElementById('home-clientes');
+  const tabs     = document.querySelectorAll('#home-sector-tabs button');
+  const carousel = document.getElementById('home-clients-carousel');
+  const dotsEl   = document.getElementById('home-clients-dots');
+  if (!section || !carousel || !tabs.length) return;
+
+  const slides = carousel.querySelectorAll('.cn-carousel-item');
+  let current = 0;
+  let panelTimer = null;
+  let spotTimer  = null;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', 'Panel ' + (i + 1));
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => show(i, true));
+    dotsEl.appendChild(dot);
+  });
+
+  function show(i, userTriggered) {
+    current = i;
+    slides.forEach((s, j) => s.classList.toggle('active', j === i));
+    tabs.forEach((t, j)   => t.classList.toggle('active', j === i));
+    dotsEl.querySelectorAll('button').forEach((d, j) => d.classList.toggle('active', j === i));
+    startSpotlight();
+    if (userTriggered) restartPanelAutoplay();
+  }
+
+  function nextPanel() {
+    show((current + 1) % slides.length, false);
+  }
+
+  function startPanelAutoplay() {
+    panelTimer = setInterval(nextPanel, 5000);
+  }
+
+  function restartPanelAutoplay() {
+    clearInterval(panelTimer);
+    startPanelAutoplay();
+  }
+
+  function startSpotlight() {
+    clearInterval(spotTimer);
+    const activeSlide = slides[current];
+    if (!activeSlide) return;
+    const logos = activeSlide.querySelectorAll('.cn-logos img');
+    if (!logos.length) return;
+    let idx = 0;
+    logos.forEach(l => l.classList.remove('cn-spotlight'));
+    logos[0].classList.add('cn-spotlight');
+    spotTimer = setInterval(() => {
+      logos[idx].classList.remove('cn-spotlight');
+      idx = (idx + 1) % logos.length;
+      logos[idx].classList.add('cn-spotlight');
+    }, 1400);
+  }
+
+  tabs.forEach((tab, i) => tab.addEventListener('click', () => show(i, true)));
+
+  section.addEventListener('mouseenter', () => { clearInterval(panelTimer); clearInterval(spotTimer); });
+  section.addEventListener('mouseleave', () => { startPanelAutoplay(); startSpotlight(); });
+
+  startSpotlight();
+  startPanelAutoplay();
+})();
+</script>
 <script>
 (function(){
   const canvas = document.getElementById('three-hero');

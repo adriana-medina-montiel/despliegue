@@ -32,7 +32,6 @@ class InicioHeroSeeder extends Seeder
                 ['value' => '30+', 'label' => 'Profesionales especializados', 'color' => 'green', 'icon' => 'users'],
                 ['value' => '100+', 'label' => 'Ingenieros aliados CLUSTEC', 'color' => 'orange', 'icon' => 'globe'],
                 ['value' => '7', 'label' => 'Servicios especializados', 'color' => 'purple', 'icon' => 'shield-alt'],
-                ['value' => '4+', 'label' => 'Normas de calidad', 'color' => 'teal', 'icon' => 'box'],
             ];
 
             foreach ($stats as $i => $stat) {
