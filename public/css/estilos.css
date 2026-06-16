@@ -439,3 +439,59 @@ section.softura-support-fluid-row { position: relative; max-width: 1350px; width
 .softura-support-fluid-row.visible .supp-fluid-image-col img {   animation: imagenPrincipalPop 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;}
 /* --- RESPONSIVE OPTIMIZADO PARA MÓVILES --- */
 @media (max-width: 991px) {   .supp-fluid-body-grid {     grid-template-columns: 1fr;    gap: 2.5rem; } .supp-fluid-image-col {     order: 2;   }  .supp-fluid-content {      order: 1;  }  .supp-fluid-title {     font-size: 2.1rem;   }   .supp-fluid-lead,   .supp-fluid-desc {   text-align: center;    align-items: center;  }  section.softura-support-fluid-row {     padding: 2rem 1.5rem 4rem 1.5rem;       margin: 3rem auto;   }}
+
+/* Contenedor del círculo */
+.prod-icon {
+  width: 100px;         /* Tamaño del círculo */
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;    /* Esto recorta cualquier cosa que se salga del círculo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-bottom: 15px;
+  background-color: #fff; /* Fondo blanco si tu logo tiene partes transparentes */
+}
+
+.prod-icon img {
+  width: 100%;         /* La imagen ocupa el 100% del ancho del círculo */
+  height: 100%;        /* La imagen ocupa el 100% de la altura del círculo */
+  object-fit: cover;   /* Esto expande la imagen hasta llenar el área, recortando los bordes si es necesario */
+  display: block;      /* Elimina posibles espacios en blanco debajo de la imagen */
+}
+.stack-tag {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  text-align: center;
+  padding: 20px;
+}
+
+
+.stats-header{
+  text-align:center;
+  max-width:800px;
+  margin:0 auto 50px;
+}
+
+.section-tag{
+  display:inline-block;
+  color:#2954ff;
+  font-size:.85rem;
+  font-weight:600;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.stats-header h2{
+  font-size:2.5rem;
+  margin-bottom:15px;
+  color:#0f172a;
+}
+
+.stats-header p{
+  color:#64748b;
+  line-height:1.7;
+  font-size:1.05rem;
+}

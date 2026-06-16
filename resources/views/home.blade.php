@@ -26,24 +26,34 @@
   </div>
 </section>
 
-<div class="stats rev">
-  <div class="stat">
-    <div class="stat-n" data-target="120" data-suffix="+">0</div>
-    <div class="stat-l">Proyectos entregados</div>
+<section class="stats-section">
+
+  <div class="stats-header">
+    <h2><span class="section-tag">NUESTROS RESULTADOS</span></h2>
   </div>
-  <div class="stat">
-    <div class="stat-n" data-target="98" data-suffix="%">0</div>
-    <div class="stat-l">Satisfacción de clientes</div>
+  <div class="stats rev">
+    <div class="stat">
+      <div class="stat-n" data-target="120" data-suffix="+">0</div>
+      <div class="stat-l">Proyectos entregados</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-n" data-target="98" data-suffix="%">0</div>
+      <div class="stat-l">Satisfacción de clientes</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-n" data-target="40" data-suffix="+">0</div>
+      <div class="stat-l">Expertos en el equipo</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-n" data-target="5" data-suffix="+">0</div>
+      <div class="stat-l">Años de experiencia</div>
+    </div>
   </div>
-  <div class="stat">
-    <div class="stat-n" data-target="40" data-suffix="+">0</div>
-    <div class="stat-l">Expertos en el equipo</div>
-  </div>
-  <div class="stat">
-    <div class="stat-n" data-target="5" data-suffix="+">0</div>
-    <div class="stat-l">Años de experiencia</div>
-  </div>
-</div>
+
+</section>
 
 <section class="section" id="servicios">
   <div class="services-bg"></div>
@@ -100,72 +110,69 @@
 <section id="ecosistema" class="rev" style="position:relative;z-index:10;background:#000000;color:#fff;padding:6rem 0;overflow:hidden;font-family:'Inter',sans-serif;">
   <div style="position:absolute;top:-10%;left:-10%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(26,79,255,0.15) 0%,transparent 70%);pointer-events:none;"></div>
   <div style="position:absolute;bottom:-10%;right:-10%;width:40vw;height:40vw;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+  
   <div style="max-width:1300px;margin:0 auto;padding:0 5vw;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;">
     <div style="display:flex;flex-direction:column;gap:2rem;">
-      <div>
-        <div class="sec-label" style="text-transform:uppercase;letter-spacing:3px;color:#ffffff;font-weight:700;font-size:0.85rem;margin-bottom:0.75rem;">Nuestro Ecosistema</div>
-        <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-family:'Syne',sans-serif;font-weight:800;line-height:1.15;margin:0 0 1.5rem 0;color:#ffffff;">
-          Respaldados por un<br>ecosistema <span style="background:linear-gradient(90deg,#00C6FF,#0072FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;">tecnológico</span>
-        </h2>
-        <p style="color:#94A3B8;font-size:1.05rem;line-height:1.6;margin:0;">
-          Nuestro equipo base está conformado por más de 30 profesionales especializados. Como socios fundadores y miembros honoríficos del <strong>Clúster de TI de Tlaxcala</strong>, extendemos nuestras capacidades de inmediato.
-        </p>
-      </div>
-      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem;backdrop-filter:blur(10px);">
-        <div style="text-align:center;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,0.08);">
-          <div style="font-size:clamp(3rem,5vw,4.5rem);font-family:'Syne',sans-serif;font-weight:800;background:linear-gradient(180deg,#fff 40%,#1A4FFF 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;" class="stat-n" data-target="500" data-suffix="+">500+</div>
-          <div style="font-size:0.8rem;text-transform:uppercase;letter-spacing:2px;color:#7094FF;font-weight:700;margin-top:0.5rem;">Ingenieros Disponibles</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-          <div style="display:flex;align-items:center;gap:0.75rem;">
-            <div style="background:rgba(26,79,255,0.15);border:1px solid rgba(26,79,255,0.3);width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#1A4FFF;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-6h6v6M9 16h6M8 6h.01M16 6h.01M8 10h.01M16 10h.01"></path></svg>
-            </div>
-            <div>
-              <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;">4 Alianzas</div>
-              <div style="font-size:0.75rem;color:#64748B;">Líderes de TI</div>
-            </div>
-          </div>
-          <div style="display:flex;align-items:center;gap:0.75rem;">
-            <div style="background:rgba(26,79,255,0.15);border:1px solid rgba(26,79,255,0.3);width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#1A4FFF;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            </div>
-            <div>
-              <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;">Nacional</div>
-              <div style="font-size:0.75rem;color:#64748B;">Presencia País</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h2 style="font-size:clamp(2.2rem,4vw,3.2rem);font-family:'Syne',sans-serif;font-weight:800;line-height:1.15;margin:0;color:#ffffff;">
+        Respaldados por un<br><span style="background:linear-gradient(90deg,#00C6FF,#0072FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:900;">ecosistema tecnológico</span>
+      </h2>
+      <p style="color:#94A3B8;font-size:1.05rem;line-height:1.6;margin:0;">
+        Nuestro equipo base está conformado por más de 30 profesionales especializados. Como socios fundadores y miembros honoríficos del <strong>Clúster de TI de Tlaxcala</strong>, extendemos nuestras capacidades de inmediato.
+      </p>
     </div>
+
     <div style="position:relative;height:550px;display:flex;align-items:center;justify-content:center;flex:1;min-width:350px;">
       <div style="position:absolute;border:1px dashed rgba(26,79,255,0.2);border-radius:50%;width:320px;height:320px;animation:spin 40s linear infinite;"></div>
       <div style="position:absolute;border:1px solid rgba(255,255,255,0.05);border-radius:50%;width:460px;height:460px;"></div>
-      <div id="eco-core" style="position:relative;z-index:5;width:190px;height:190px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;color:#030816;box-shadow:0 0 40px rgba(26,79,255,0.4);border:6px solid rgba(26,79,255,0.15);transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);">
-        <div id="core-logo-placeholder" style="height:40px;display:flex;align-items:center;margin-bottom:0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#1A4FFF;">SOFTURA</div>
-        <p id="core-desc" style="font-size:0.72rem;color:#475569;line-height:1.3;margin:0;font-weight:500;">Pasa el cursor sobre un aliado para explorar nuestro ecosistema.</p>
+      
+      <div id="eco-core" style="position:relative;z-index:5;width:200px;height:200px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;color:#030816;box-shadow:0 0 40px rgba(26,79,255,0.4);border:6px solid rgba(26,79,255,0.15);transition:all 0.4s ease;">
+        <div id="core-logo-area" style="height:45px;display:flex;align-items:center;margin-bottom:0.5rem;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#1A4FFF;">SOFTURA</div>
+        <p id="core-desc" style="font-size:0.75rem;color:#475569;line-height:1.3;margin:0;font-weight:500;">Pasa el cursor sobre un aliado para explorar.</p>
       </div>
-      <div class="sat-node" data-title="CLUSTEC" data-desc="Impulsando la innovación y competitividad tecnológica regional." data-img="/img/Imagen1.png" style="position:absolute;top:5%;background:#fff;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen1.png" alt="CLUSTEC" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="AMITI" data-desc="Fortaleciendo la industria de TI y el desarrollo de talento en México." data-img="/img/Imagen2.png" style="position:absolute;top:25%;right:5%;background:#454545;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen2.png" alt="AMITI" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="COPARMEX" data-desc="Unidos por la justicia social, un México próspero y lleno de oportunidades." data-img="/img/Imagen3.png" style="position:absolute;bottom:25%;right:5%;background:#fff;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen3.png" alt="COPARMEX" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="mxTI" data-desc="Promoviendo el desarrollo y la internacionalización de la industria de software nacional." data-img="/img/Imagen4.png" style="position:absolute;bottom:5%;background:#fff;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen4.png" alt="mxTI" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="NUEVO ALIADO A" data-desc="Descripción breve del quinto aliado estratégico." data-img="/img/Imagen5.png" style="position:absolute;bottom:25%;left:5%;background:#3f3e3e;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen5.png" alt="Aliado 5" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
-      <div class="sat-node" data-title="NUEVO ALIADO B" data-desc="Descripción breve del sexto aliado estratégico." data-img="/img/Imagen1.1.png" style="position:absolute;top:25%;left:5%;background:#383838;border-radius:14px;padding:10px;width:85px;height:55px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;">
-        <img src="/img/Imagen1.1.png" alt="Aliado 6" style="max-width:100%;max-height:100%;object-fit:contain;">
-      </div>
+
+      <div class="sat-node" data-title="Innovación" data-desc="Impulsando la tecnología." data-img="/img/Imagen1.png" data-color="#ffffff" style="position:absolute;top:5%;background:#fff;border-radius:50%;padding:10px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;"><img src="/img/Imagen1.png" style="width:70%;height:70%;object-fit:contain;"></div>
+      <div class="sat-node" data-title="Industria TI" data-desc="Fortaleciendo el sector." data-img="/img/Imagen2.png" data-color="#454545" style="position:absolute;top:25%;right:5%;background:#454545;border-radius:50%;padding:10px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;"><img src="/img/Imagen2.png" style="width:70%;height:70%;object-fit:contain;"></div>
+      <div class="sat-node" data-title="Impacto Social" data-desc="Justicia y prosperidad." data-img="/img/Imagen3.png" data-color="#ffffff" style="position:absolute;bottom:25%;right:5%;background:#fff;border-radius:50%;padding:10px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;"><img src="/img/Imagen3.png" style="width:70%;height:70%;object-fit:contain;"></div>
+      <div class="sat-node" data-title="Software" data-desc="Clase mundial." data-img="/img/Imagen4.png" data-color="#ffffff" style="position:absolute;bottom:5%;background:#fff;border-radius:50%;padding:10px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;"><img src="/img/Imagen4.png" style="width:70%;height:70%;object-fit:contain;"></div>
+      <div class="sat-node" data-title="Digital" data-desc="Transformación total." data-img="/img/Imagen5.png" data-color="#3f3e3e" style="position:absolute;bottom:25%;left:5%;background:#3f3e3e;border-radius:50%;padding:10px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;"><img src="/img/Imagen5.png" style="width:70%;height:70%;object-fit:contain;"></div>
+      <div class="sat-node" data-title="Soluciones" data-desc="Tecnología avanzada." data-img="/img/Imagen1.1.png" data-color="#383838" style="position:absolute;top:25%;left:5%;background:#383838;border-radius:50%;padding:10px;width:70px;height:70px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.3);transition:all 0.3s ease;z-index:6;"><img src="/img/Imagen1.1.png" style="width:70%;height:70%;object-fit:contain;"></div>
     </div>
   </div>
+
+  <style>
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .sat-node:hover { transform: scale(1.15); }
+  </style>
+
+  <script>
+    const core = document.getElementById('eco-core');
+    const logoArea = document.getElementById('core-logo-area');
+    const desc = document.getElementById('core-desc');
+    const nodes = document.querySelectorAll('.sat-node');
+
+    nodes.forEach(node => {
+      node.addEventListener('mouseover', () => {
+        logoArea.innerHTML = `<img src="${node.getAttribute('data-img')}" style="height:100%; object-fit:contain;">`;
+        desc.innerHTML = `<strong>${node.getAttribute('data-title')}</strong><br>${node.getAttribute('data-desc')}`;
+        
+        const color = node.getAttribute('data-color');
+        core.style.backgroundColor = color;
+        const isDark = (color !== '#ffffff');
+        core.style.color = isDark ? '#ffffff' : '#030816';
+        desc.style.color = isDark ? '#cccccc' : '#475569';
+      });
+
+      node.addEventListener('mouseout', () => {
+        logoArea.innerHTML = 'SOFTURA';
+        desc.innerText = 'Pasa el cursor sobre un aliado para explorar.';
+        core.style.backgroundColor = '#ffffff';
+        core.style.color = '#030816';
+        desc.style.color = '#475569';
+      });
+    });
+  </script>
 </section>
+
 
 <section class="section" id="proceso">
   <div class="process-wrap">
@@ -205,13 +212,34 @@
     <p class="products-sub">Soluciones diseñadas para optimizar procesos, automatizar tareas y acelerar el crecimiento de tu empresa.</p>
   </div>
   <div class="stack-grid">
-    <div class="stack-tag rev"><div class="dot">✦</div><div><h3>Bituyú</h3><p>Gestión moderna y automatización empresarial.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⬡</div><div><h3>Binibiaa</h3><p>Soluciones inteligentes para procesos digitales.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">▣</div><div><h3>Academica</h3><p>Plataforma educativa moderna y eficiente.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">◫</div><div><h3>SIGA</h3><p>Administración y control de información avanzada.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">◈</div><div><h3>Fenyx Admin</h3><p>Herramientas administrativas ágiles y escalables.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⬢</div><div><h3>MI PBR</h3><p>Monitoreo y gestión estratégica de recursos.</p></div></div>
-    <div class="stack-tag rev"><div class="dot">⌘</div><div><h3>SSPIP</h3><p>Solución tecnológica segura y eficiente.</p></div></div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/bituyu1.png" alt="Bituyú"></div>
+      <div><h3>Bituyú</h3><p>Gestión moderna y automatización empresarial.</p></div>
+    </div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/binibia.png" alt="Binibiaa"></div>
+      <div><h3>Binibiaa</h3><p>Soluciones inteligentes para procesos digitales.</p></div>
+    </div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/academica2.png" alt="academica"></div>
+      <div><h3>Academica</h3><p>Soluciones inteligentes para procesos digitales.</p></div>
+    </div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/siga2.png" alt="siga"></div>
+      <div><h3>SIGA</h3><p>Soluciones inteligentes para procesos digitales.</p></div>
+    </div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/fenix2.png" alt="fenix"></div>
+      <div><h3>Fenix Admin</h3><p>Soluciones inteligentes para procesos digitales.</p></div>
+    </div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/pbr.png" alt="pbr"></div>
+      <div><h3>Mi PBR</h3><p>Soluciones inteligentes para procesos digitales.</p></div>
+    </div>
+    <div class="stack-tag rev">
+      <div class="prod-icon"><img src="/img/sspip2.png" alt="sspip"></div>
+      <div><h3>SSPIP</h3><p>Soluciones inteligentes para procesos digitales.</p></div>
+    </div>
   </div>
 </section>
 
@@ -293,5 +321,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     node.addEventListener('mouseleave',()=>{core.style.borderColor="rgba(26,79,255,0.15)";core.style.boxShadow="0 0 40px rgba(26,79,255,0.4)";coreLogo.innerHTML=defaultTitle;coreDesc.innerHTML=defaultDesc;});
   });
 });
+
 </script>
 @endpush
