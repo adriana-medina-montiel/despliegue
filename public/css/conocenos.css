@@ -942,3 +942,81 @@
   .cn-accompany-photo { transform: none !important; }
   .cn-timeline-fill { transition: none; }
 }
+
+/* ── Consistencia visual con el Home ─────────────────────────────────────── */
+
+/* btn-p: gradiente + forma de píldora (igual que home-polish.css) */
+.page-conocenos .btn-p {
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1a4fff 0%, #2563eb 100%);
+  box-shadow: 0 10px 24px rgba(26, 79, 255, 0.22);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+.page-conocenos .btn-p:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1a4fff 100%);
+  box-shadow: 0 14px 30px rgba(26, 79, 255, 0.3);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* cn-btn-outline: ghost píldora con borde (sobre fondo oscuro del hero) */
+.page-conocenos .cn-btn-outline {
+  border-bottom: none;
+  padding: 0.82rem 1.65rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.page-conocenos .cn-btn-outline:hover {
+  border-color: rgba(147, 197, 253, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  color: #93c5fd;
+}
+
+/* cn-btn-primary: píldora consistente con btn-p (botón del formulario) */
+.page-conocenos .cn-btn-primary {
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1a4fff 0%, #2563eb 100%);
+  box-shadow: 0 8px 20px rgba(26, 79, 255, 0.22);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+  padding: 0.95rem 2rem;
+  transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+.page-conocenos .cn-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #1a4fff 100%);
+  box-shadow: 0 12px 28px rgba(26, 79, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+/* cn-hero-tag: badge tipo píldora con fondo sutil (igual que .hero-badge del home) */
+.page-conocenos .cn-hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(147, 197, 253, 0.1);
+  border: 1px solid rgba(147, 197, 253, 0.22);
+  border-radius: 999px;
+  padding: 0.3rem 1rem;
+  margin-bottom: 1.25rem;
+}
+.page-conocenos .cn-hero-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #93c5fd;
+  flex-shrink: 0;
+}
