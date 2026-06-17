@@ -172,17 +172,17 @@
         </a>
     </div>
 
-    {{-- Testimonios --}}
+    {{-- Talento (Equipo) --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#fef9c3;color:#ca8a04">
-            <i class="fas fa-quote-left"></i>
+        <div class="section-row-icon" style="background:#ecfeff;color:#0891b2">
+            <i class="fas fa-users"></i>
         </div>
         <div class="section-row-info">
-            <h3>Lo que dicen nuestros clientes</h3>
-            <p>Testimonios y reseñas de clientes actuales.</p>
+            <h3>Talento — Equipo de especialistas</h3>
+            <p>Roles y perfiles del equipo.</p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.conocenos.testimonials.edit') }}" class="edit-btn" style="background:#ca8a04">
+        <a href="{{ route('admin.conocenos.equipo.edit') }}" class="edit-btn" style="background:#0891b2">
             <i class="fas fa-pen" style="font-size:10px"></i> Editar
         </a>
     </div>

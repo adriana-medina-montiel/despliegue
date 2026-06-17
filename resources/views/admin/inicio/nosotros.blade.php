@@ -119,6 +119,8 @@
                     <i class="fas fa-cloud-upload-alt"></i>
                     <p><strong>Clic para subir imagen</strong> o arrastrar aquí</p>
                 </div>
+                <span class="field-hint">Tamaño máximo: 2MB (JPG, PNG o WebP).</span>
+                <p id="image-size-error" style="display:none;color:#ef4444;font-size:12px;margin-top:8px"></p>
                 @error('image')<p style="color:#ef4444;font-size:12px;margin-top:8px">{{ $message }}</p>@enderror
             </div>
         </div>
@@ -150,10 +152,7 @@
         <div class="preview-card">
             <div class="preview-card-header"><i class="fas fa-eye"></i> Imagen actual</div>
             <div class="preview-img-wrap">
-                @php
-                    $img = $section->content('image', '');
-                    $src = ($img && !str_starts_with($img, 'http')) ? asset('storage/' . $img) : $img;
-                @endphp
+                @php $src = cms_asset($section->content('image')); @endphp
                 <img id="preview-pic" src="{{ $src }}" alt="Preview">
             </div>
         </div>
@@ -168,9 +167,22 @@
 </form>
 
 <script>
+    const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
+
     function previewImg(event) {
-        const file = event.target.files[0];
+        const input = event.target;
+        const file = input.files[0];
+        const errorEl = document.getElementById('image-size-error');
         if (!file) return;
+
+        if (file.size > MAX_IMAGE_BYTES) {
+            errorEl.textContent = 'La imagen pesa ' + (file.size / 1024 / 1024).toFixed(1) + 'MB. El máximo permitido es 2MB, por favor comprime o redimensiona la imagen.';
+            errorEl.style.display = 'block';
+            input.value = '';
+            return;
+        }
+        errorEl.style.display = 'none';
+
         const reader = new FileReader();
         reader.onload = e => {
             document.getElementById('preview-pic').src = e.target.result;

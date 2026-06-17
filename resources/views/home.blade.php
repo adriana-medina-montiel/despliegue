@@ -9,60 +9,73 @@
 <link rel="stylesheet" href="{{ asset('css/conocenos.css') }}">
 @endpush
 
+@php
+  $hero        = $sections->get('hero');
+  $heroBgPath  = $hero?->content('background_image');
+  $heroBgSrc   = $heroBgPath ? cms_asset($heroBgPath) : null;
+  $heroIsPhoto = (bool) $hero?->content('use_image', false) && $heroBgSrc;
+@endphp
+
+@unless($heroIsPhoto)
 @push('head-scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 @endpush
+@endunless
 
 @section('content')
 
-{{-- ─── HERO THREE.JS ─────────────────────────────────────────────────────── --}}
-<section class="hero" id="hero-section">
-  <canvas id="three-hero"></canvas>
+{{-- ─── HERO (animación o imagen, según el admin) ─────────────────────────────── --}}
+<section class="hero @if($heroIsPhoto) hero--photo @endif" id="hero-section">
+  @if($heroIsPhoto)
+    <div class="hero-media"><img src="{{ $heroBgSrc }}" alt="" loading="eager"></div>
+    <div class="hero-overlay"></div>
+  @else
+    <canvas id="three-hero"></canvas>
+  @endif
   <div class="hero-content">
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      Softura Solutions
+      {{ $hero?->content('badge_text', 'Softura Solutions') }}
     </div>
-    <h1>Software<br><em>a la</em><br>medida</h1>
+    <h1>{!! $hero?->content('title', 'Software<br><em>a la</em><br>medida') !!}</h1>
     <p class="hero-sub">
-      Impulsamos la evolución de tu empresa con tecnología de alto rendimiento diseñada para el mercado actual.
+      {{ $hero?->content('description', 'Impulsamos la evolución de tu empresa con tecnología de alto rendimiento diseñada para el mercado actual.') }}
     </p>
     <div class="hero-actions">
-      <a href="#servicios" class="btn-p" style="text-decoration:none;display:inline-block;">Conoce nuestros servicios</a>
-      <a href="{{ route('conocenos') }}" class="btn-g">
+      <a href="{{ $hero?->content('cta1_url', '#servicios') }}" class="btn-p @if($heroIsPhoto) btn-p--hero @endif" style="text-decoration:none;display:inline-block;">{{ $hero?->content('cta1_text', 'Conoce nuestros servicios') }}</a>
+      <a href="{{ $hero?->content('cta2_url') ?: route('conocenos') }}" class="btn-g @if($heroIsPhoto) btn-g--hero @endif">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        Ver más
+        {{ $hero?->content('cta2_text', 'Ver más') }}
       </a>
     </div>
   </div>
 </section>
 
 {{-- ─── STATS ──────────────────────────────────────────────────────────────── --}}
-@php $hero = $sections->get('hero'); @endphp
 @if($hero && $hero->is_visible && $hero->items->count() > 0)
-<div class="stats rev">
-  @foreach($hero->items as $stat)
-  <div class="stat">
+<div class="stats">
+  @foreach($hero->items as $i => $stat)
+  <div class="stat rev" style="transition-delay:{{ $i * 0.1 }}s">
     <div class="stat-n" data-target="{{ preg_replace('/[^0-9]/', '', $stat->data('value')) }}" data-suffix="{{ preg_replace('/[0-9]/', '', $stat->data('value')) }}">{{ $stat->data('value') }}</div>
     <div class="stat-l">{{ $stat->data('label') }}</div>
   </div>
   @endforeach
 </div>
 @else
-<div class="stats rev">
-  <div class="stat">
+<div class="stats">
+  <div class="stat rev" style="transition-delay:0s">
     <div class="stat-n" data-target="20" data-suffix="+">20+</div>
     <div class="stat-l" data-i18n="home.stat.years">Años de experiencia</div>
   </div>
-  <div class="stat">
+  <div class="stat rev" style="transition-delay:0.1s">
     <div class="stat-n" data-target="30" data-suffix="+">30+</div>
     <div class="stat-l" data-i18n="home.stat.team">Profesionales especializados</div>
   </div>
-  <div class="stat">
+  <div class="stat rev" style="transition-delay:0.2s">
     <div class="stat-n" data-target="100" data-suffix="+">100+</div>
     <div class="stat-l" data-i18n="home.stat.allies">Ingenieros aliados CLUSTEC</div>
   </div>
-  <div class="stat">
+  <div class="stat rev" style="transition-delay:0.3s">
     <div class="stat-n" data-target="7" data-suffix="">7</div>
     <div class="stat-l" data-i18n="home.stat.services">Servicios especializados</div>
   </div>
@@ -74,53 +87,120 @@
 @if(!$srvIntro || $srvIntro->is_visible)
 <section class="section" id="servicios">
   <div class="services-bg"></div>
-  <div class="services-head rev">
-    <div class="sec-label">{{ $srvIntro?->content('badge_text', 'Fábrica de software') }}</div>
-    <h2>{!! $srvIntro?->content('title', 'Descubre cómo podemos <span>ayudarte</span>') !!}</h2>
-    <p class="services-sub">{{ $srvIntro?->content('description', 'Soluciones integrales de desarrollo, consultoría y acompañamiento para llevar tu negocio al siguiente nivel.') }}</p>
-  </div>
-  <div class="services-grid">
-    @php
-      $fabricaSvc = \App\Models\PageSection::get('fabrica', 'servicios');
-      $serviciosList = $fabricaSvc ? $fabricaSvc->items : collect();
-    @endphp
-    @if($serviciosList->count() > 0)
-      @foreach($serviciosList->take(3) as $idx => $svc)
-      @php $slug = Str::slug($svc->data('title', '')); $imgSrc = cms_asset($svc->data('image', '')); @endphp
-      <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
-        <div class="svc-num">0{{ $idx + 1 }}</div>
-        <div class="svc-icon">
-          @if($imgSrc)
-            <img src="{{ $imgSrc }}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:14px;" loading="lazy">
-          @else
-          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" fill="#6366f1"/><rect x="14" y="3" width="7" height="7" rx="1" fill="#6366f1"/><rect x="14" y="14" width="7" height="7" rx="1" fill="#6366f1"/><rect x="3" y="14" width="7" height="7" rx="1" fill="#6366f1"/></svg>
-          @endif
+  <div class="services-inner">
+    <div class="services-head rev">
+      <div class="sec-label">{{ $srvIntro?->content('badge_text', 'Fábrica de software') }}</div>
+      <h2>{!! $srvIntro?->content('title', 'Descubre cómo podemos <span>ayudarte</span>') !!}</h2>
+      <p class="services-sub">{{ $srvIntro?->content('description', 'Soluciones integrales de desarrollo, consultoría y acompañamiento para llevar tu negocio al siguiente nivel.') }}</p>
+    </div>
+    <div class="services-grid">
+      @php
+        $fabricaSvc = \App\Models\PageSection::get('fabrica', 'servicios');
+        $serviciosList = $fabricaSvc ? $fabricaSvc->items : collect();
+        $svcIcons = [
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/></svg>',
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
+        ];
+      @endphp
+      @if($serviciosList->count() > 0)
+        @foreach($serviciosList->take(3) as $idx => $svc)
+        @php $slug = Str::slug($svc->data('title', '')); @endphp
+        <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
+          <div class="svc-num">0{{ $idx + 1 }}</div>
+          <div class="svc-icon">
+            {!! $svcIcons[$idx] ?? $svcIcons[0] !!}
+          </div>
+          <h3 class="svc-title">{{ $svc->data('title') }}</h3>
+          <p class="svc-desc">{{ $svc->data('text') }}</p>
+          <a href="{{ route('fabrica') }}#svc-{{ $slug }}" class="svc-arrow" style="text-decoration:none;">→</a>
         </div>
-        <h3 class="svc-title">{{ $svc->data('title') }}</h3>
-        <p class="svc-desc">{{ $svc->data('text') }}</p>
-        <a href="{{ route('fabrica') }}#svc-{{ $slug }}" class="svc-arrow" style="text-decoration:none;">→</a>
-      </div>
-      @endforeach
-    @else
-      @foreach(config('softura-content.servicios', []) as $idx => $servicio)
-      @if($idx < 3)
-      <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
-        <div class="svc-num">0{{ $idx + 1 }}</div>
-        <div class="svc-icon">
-          @if(!empty($servicio['imagen']) && file_exists(public_path($servicio['imagen'])))
-            <img src="{{ asset($servicio['imagen']) }}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:14px;" loading="lazy">
-          @endif
+        @endforeach
+      @else
+        @foreach(config('softura-content.servicios', []) as $idx => $servicio)
+        @if($idx < 3)
+        <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
+          <div class="svc-num">0{{ $idx + 1 }}</div>
+          <div class="svc-icon">
+            {!! $svcIcons[$idx] ?? $svcIcons[0] !!}
+          </div>
+          <h3 class="svc-title">{{ $servicio['titulo'] }}</h3>
+          <p class="svc-desc">{{ $servicio['descripcion'] ?? '' }}</p>
+          <a href="{{ route('fabrica') }}#svc-{{ $servicio['slug'] ?? '' }}" class="svc-arrow" style="text-decoration:none;">→</a>
         </div>
-        <h3 class="svc-title">{{ $servicio['titulo'] }}</h3>
-        <p class="svc-desc">{{ $servicio['descripcion'] ?? '' }}</p>
-        <a href="{{ route('fabrica') }}#svc-{{ $servicio['slug'] ?? '' }}" class="svc-arrow" style="text-decoration:none;">→</a>
-      </div>
+        @endif
+        @endforeach
       @endif
-      @endforeach
-    @endif
+    </div>
+    <div class="rev" style="text-align:center;margin-top:3rem;">
+      <a href="{{ route('fabrica') }}" class="btn-p" style="text-decoration:none;display:inline-block;">Ver fábrica de software completa</a>
+    </div>
   </div>
-  <div class="rev" style="text-align:center;margin-top:3rem;">
-    <a href="{{ route('fabrica') }}" class="btn-p" style="text-decoration:none;display:inline-block;">Ver fábrica de software completa</a>
+</section>
+@endif
+
+{{-- ─── PROCESO (ONSHORING / NEARSHORING) ──────────────────────────────────── --}}
+@php $proceso = $sections->get('proceso'); @endphp
+@if(!$proceso || $proceso->is_visible)
+<section class="ht-ext" id="proceso">
+  <div class="ht-ext__inner">
+
+    <div class="ht-ext__copy rev">
+      <span class="sec-label">{{ $proceso?->content('kicker', 'Externalización') }}</span>
+      <h2>{!! $proceso?->content('title', 'Tus verdaderos <span>aliados</span> de negocio') !!}</h2>
+      <p>{!! $proceso?->content('footer_text', 'Hagamos equipo y deja de preocuparte de los costos de reclutamiento, selección y capacitación del personal.') !!}</p>
+      <a href="{{ route('nearshoring') }}" class="ht-ext__cta">
+        Conoce Nearshoring y Onshoring
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="ht-ext__services">
+      @php
+        $extItems = $proceso?->items ?? collect();
+        $fallback = [
+          ['icon' => 'globe', 'title' => 'Onshoring', 'desc' => 'Ingenieros en tus instalaciones en México.'],
+          ['icon' => 'pin',   'title' => 'Nearshoring', 'desc' => 'Trabajo remoto para E.U.A. y Latinoamérica.'],
+        ];
+      @endphp
+      @if($extItems->count() > 0)
+        @foreach($extItems as $idx => $card)
+        <div class="ht-ext__pill rev" style="transition-delay:{{ 0.1 + $idx * 0.12 }}s">
+          <div class="ht-ext__pill-icon">
+            @if($idx % 2 === 0)
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            @else
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            @endif
+          </div>
+          <div>
+            <strong>{{ $card->data('title') }}</strong>
+            <span>{{ $card->data('description') }}</span>
+          </div>
+        </div>
+        @endforeach
+      @else
+        @foreach($fallback as $idx => $f)
+        <div class="ht-ext__pill rev" style="transition-delay:{{ 0.1 + $idx * 0.12 }}s">
+          <div class="ht-ext__pill-icon">
+            @if($idx === 0)
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            @else
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            @endif
+          </div>
+          <div>
+            <strong>{{ $f['title'] }}</strong>
+            <span>{{ $f['desc'] }}</span>
+          </div>
+        </div>
+        @endforeach
+      @endif
+    </div>
+
   </div>
 </section>
 @endif
@@ -130,33 +210,48 @@
   $stack       = $sections->get('stack');
   $stackCtaUrl = ($stack?->content('cta_url')) ?: '/productos';
   $stackCtaHref = str_starts_with($stackCtaUrl, 'http') ? $stackCtaUrl : url($stackCtaUrl);
+  $stackLinkUrl = $stack?->content('link_url') ?: '/productos#bituyu-full-section';
+  $stackLinkHref = str_starts_with($stackLinkUrl, 'http') ? $stackLinkUrl : url($stackLinkUrl);
+  $stackLogo = cms_asset($stack?->content('brand_logo') ?: 'img/bituyu.png');
+  $stackImage = cms_asset($stack?->content('product_image') ?: 'img/official/productos/bituyu-slide.png');
+  $stackWebsiteUrl = $stack?->content('website_url');
 @endphp
 @if(!$stack || $stack->is_visible)
 <section class="stack-section ht-spot" id="stack">
   <div class="ht-spot__inner">
 
-    <div class="ht-spot__head rev">
-      <div class="sec-label">{{ $stack?->content('kicker', 'Portafolio') }}</div>
-      <h2>{!! $stack?->content('title', 'Nuestros <span>productos</span>') !!}</h2>
-    </div>
+    <div class="ht-spot__grid rev">
+      <div class="ht-spot__head">
+        <div class="sec-label">{{ $stack?->content('kicker', 'Portafolio') }}</div>
+        <h2>{!! $stack?->content('title', 'Nuestros <span>productos</span>') !!}</h2>
+      </div>
 
-    <div class="ht-spot__card rev">
       <div class="ht-spot__copy">
-        <span class="ht-spot__pill">✦ Producto estrella</span>
         <div class="ht-spot__brand">
-          <img src="{{ asset('img/bituyu.png') }}" alt="Bituyú" class="ht-spot__logo">
-          <h3>Bituyú</h3>
+          <img src="{{ $stackLogo }}" alt="{{ $stack?->content('brand_name', 'Bituyú') }}" class="ht-spot__logo">
+          <h3>{{ $stack?->content('brand_name', 'Bituyú') }}</h3>
         </div>
-        <p>Red virtual de negocios que conecta empresas, automatiza procesos y centraliza operaciones en una sola plataforma.</p>
+        <p>{{ $stack?->content('description', 'Red virtual de negocios que conecta empresas, automatiza procesos y centraliza operaciones en una sola plataforma.') }}</p>
+        @if($stack?->items?->count() > 0)
         <ul class="ht-spot__list">
-          <li>Catálogo digital y comercio electrónico</li>
-          <li>Facturación electrónica CFDI</li>
-          <li>Gestión multi-empresa en tiempo real</li>
+          @foreach($stack->items as $point)
+          <li>{{ $point->data('text') }}</li>
+          @endforeach
         </ul>
-        <a href="{{ url('/productos') }}#bituyu-full-section" class="ht-spot__link">Conoce Bituyú →</a>
+        @endif
+        <div class="ht-spot__links">
+          <a href="{{ $stackLinkHref }}" class="ht-spot__link">{{ $stack?->content('link_text', 'Conoce Bituyú →') }}</a>
+          @if($stackWebsiteUrl)
+          <a href="{{ $stackWebsiteUrl }}" class="ht-spot__weblink" target="_blank" rel="noopener">
+            {{ $stack?->content('website_text') ?: 'Visitar sitio web' }}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+          </a>
+          @endif
+        </div>
       </div>
       <div class="ht-spot__visual">
-        <img src="{{ asset('img/official/productos/bituyu-slide.png') }}" alt="Bituyú" loading="lazy">
+        <div class="ht-spot__blob" aria-hidden="true"></div>
+        <img src="{{ $stackImage }}" alt="{{ $stack?->content('brand_name', 'Bituyú') }}" loading="lazy">
       </div>
     </div>
 
@@ -216,26 +311,16 @@
 {{-- ─── SOMOS DIFERENTES ───────────────────────────────────────────────────── --}}
 @php $nosotros = $sections->get('nosotros'); @endphp
 @if(!$nosotros || $nosotros->is_visible)
-<section class="section" id="nosotros" style="background:var(--card);">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="sec-label rev">{{ $nosotros?->content('badge_text', 'Somos diferentes') }}</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:4rem;align-items:center;" class="rev">
-      <div>
-        <h2 style="margin-bottom:1.5rem;">{{ $nosotros?->content('title', '20 años impulsando la innovación') }}</h2>
-        <p style="font-size:1.05rem;line-height:1.8;color:var(--gray);">{!! $nosotros?->content('description', 'Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.') !!}</p>
-        <div style="display:flex;gap:1.5rem;align-items:center;margin-top:2rem;flex-wrap:wrap;">
-          @if(file_exists(public_path('img/official/aliados/clustec.png')))
-          <img src="{{ asset('img/official/aliados/clustec.png') }}" alt="CLUSTEC Tlaxcala" style="max-height:38px;object-fit:contain;opacity:.85;">
-          @endif
-          @if(file_exists(public_path('img/official/aliados/smartsoft.png')))
-          <img src="{{ asset('img/official/aliados/smartsoft.png') }}" alt="SmartSoft" style="max-height:38px;object-fit:contain;opacity:.85;">
-          @endif
-        </div>
-      </div>
-      <div style="position:relative;">
-        @php $nosotrosSrc = cms_asset($nosotros?->content('image', 'img/official/Conocenos/equipo.png')); @endphp
-        <img src="{{ $nosotrosSrc }}" alt="Equipo Softura Solutions" style="width:100%;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.08);" loading="lazy">
-      </div>
+<section class="ht-nosotros" id="nosotros">
+  <div class="ht-nosotros__inner">
+    <div class="ht-nosotros__copy rev">
+      <span class="sec-label">{{ $nosotros?->content('badge_text', 'Somos diferentes') }}</span>
+      <h2>{{ $nosotros?->content('title', '20 años impulsando la innovación') }}</h2>
+      <p>{!! $nosotros?->content('description', 'Contamos con la experiencia y el compromiso necesarios para impulsar la innovación y el crecimiento de nuestros clientes, adaptándonos a las necesidades del mercado actual con soluciones tecnológicas de alto valor. <strong>Somos diferentes:</strong> más de 20 años impulsando la innovación.') !!}</p>
+    </div>
+    <div class="ht-nosotros__visual rev" style="transition-delay:0.15s">
+      @php $nosotrosSrc = cms_asset($nosotros?->content('image', 'img/official/Conocenos/equipo.png')); @endphp
+      <img src="{{ $nosotrosSrc }}" alt="Equipo Softura Solutions" loading="lazy">
     </div>
   </div>
 </section>
@@ -261,75 +346,12 @@
 </section>
 @endif
 
-{{-- ─── PROCESO (ONSHORING / NEARSHORING) ──────────────────────────────────── --}}
-@php $proceso = $sections->get('proceso'); @endphp
-@if(!$proceso || $proceso->is_visible)
-<section class="ht-ext rev" id="proceso">
-  <div class="ht-ext__inner">
-
-    <div class="ht-ext__copy">
-      <span class="sec-label">{{ $proceso?->content('kicker', 'Externalización') }}</span>
-      <h2>{!! $proceso?->content('title', 'Tus verdaderos <span>aliados</span> de negocio') !!}</h2>
-      <p>{{ $proceso?->content('footer_text', 'Hagamos equipo y deja de preocuparte de los costos de reclutamiento, selección y capacitación del personal.') }}</p>
-      <a href="{{ route('nearshoring') }}" class="ht-ext__cta">
-        Conoce Nearshoring y Onshoring
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-
-    <div class="ht-ext__services">
-      @php
-        $extItems = $proceso?->items ?? collect();
-        $fallback = [
-          ['icon' => 'globe', 'title' => 'Onshoring', 'desc' => 'Ingenieros en tus instalaciones en México.'],
-          ['icon' => 'pin',   'title' => 'Nearshoring', 'desc' => 'Trabajo remoto para E.U.A. y Latinoamérica.'],
-        ];
-      @endphp
-      @if($extItems->count() > 0)
-        @foreach($extItems as $idx => $card)
-        <div class="ht-ext__pill">
-          <div class="ht-ext__pill-icon">
-            @if($idx % 2 === 0)
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            @else
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            @endif
-          </div>
-          <div>
-            <strong>{{ $card->data('title') }}</strong>
-            <span>{{ $card->data('description') }}</span>
-          </div>
-        </div>
-        @endforeach
-      @else
-        @foreach($fallback as $idx => $f)
-        <div class="ht-ext__pill">
-          <div class="ht-ext__pill-icon">
-            @if($idx === 0)
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            @else
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            @endif
-          </div>
-          <div>
-            <strong>{{ $f['title'] }}</strong>
-            <span>{{ $f['desc'] }}</span>
-          </div>
-        </div>
-        @endforeach
-      @endif
-    </div>
-
-  </div>
-</section>
-@endif
-
 {{-- ─── CALIDAD CERTIFICADA ─────────────────────────────────────────────────── --}}
 @php $calidad = $sections->get('calidad'); @endphp
 @if(!$calidad || $calidad->is_visible)
-<section class="ht-calidad rev" id="calidad">
+<section class="ht-calidad" id="calidad">
   <div class="ht-calidad__inner">
-    <div class="ht-calidad__copy">
+    <div class="ht-calidad__copy rev">
       <span class="sec-label">{{ $calidad?->content('kicker', 'Calidad certificada') }}</span>
       <h2>{{ $calidad?->content('title', 'La calidad es nuestra prioridad') }}</h2>
       <p>{{ $calidad?->content('description', 'Desarrollamos con estándares internacionales — CMMi, PSP, MoProSoft y MAAGTICSI — combinados con metodologías ágiles y equipos certificados en Scrum.') }}</p>
@@ -337,7 +359,7 @@
     @if($calidad?->items?->count() > 0)
     <div class="ht-calidad__logos">
       @foreach($calidad->items as $cert)
-      <div class="ht-calidad__cert">
+      <div class="ht-calidad__cert rev" style="transition-delay:{{ 0.1 + $loop->index * 0.1 }}s">
         @include('partials.official-logo', [
           'file'  => $cert->data('file') ?: null,
           'cdn'   => $cert->data('cdn') ?: null,
@@ -353,49 +375,42 @@
 </section>
 @endif
 
-{{-- ─── FORMACIÓN CONTINUA ──────────────────────────────────────────────────── --}}
-@php $capacitacion = $sections->get('capacitacion'); @endphp
-@if(!$capacitacion || $capacitacion->is_visible)
-<section class="section" id="capacitacion" style="background:var(--card);padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="rev" style="margin-bottom:3rem;">
-      <div class="sec-label">{{ $capacitacion?->content('kicker', 'Formación continua') }}</div>
-      <h2>{!! $capacitacion?->content('title', 'Equipo de profesionales <span>comprometidos</span>') !!}</h2>
+{{-- ─── VOCES / TESTIMONIOS ─────────────────────────────────────────────────── --}}
+@php $testimonials = $sections->get('testimonials'); @endphp
+@if(!$testimonials || $testimonials->is_visible)
+<section class="ht-testi rev" id="testimonios">
+  <div class="ht-testi__inner">
+    <div class="ht-testi__head">
+      <span class="sec-label">{{ $testimonials?->content('badge_text', 'Voces') }}</span>
+      <h2>{{ $testimonials?->content('title', 'Lo que dicen nuestros clientes') }}</h2>
     </div>
-    @if($capacitacion?->items?->count() > 0)
-    <div class="rev" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-bottom:2.5rem;">
-      @foreach($capacitacion->items as $metric)
-      <div style="text-align:center;padding:2rem;background:var(--bg);border-radius:20px;border:1px solid var(--border);">
-        <strong style="display:block;font-size:2.5rem;font-weight:700;color:var(--blue);line-height:1.1;margin-bottom:.5rem;">{{ $metric->data('value') }}</strong>
-        <p style="color:var(--gray);font-size:.9rem;line-height:1.5;margin:0;">{{ $metric->data('text') }}</p>
-      </div>
-      @endforeach
-    </div>
-    @endif
-    @if($capacitacion?->content('quote'))
-    <p class="rev" style="text-align:center;color:var(--gray);font-size:1.05rem;font-style:italic;max-width:700px;margin:0 auto;">"{{ $capacitacion->content('quote') }}"</p>
-    @endif
-  </div>
-</section>
-@endif
 
-{{-- ─── TALENTO ─────────────────────────────────────────────────────────────── --}}
-@php $equipo = $sections->get('equipo'); @endphp
-@if(!$equipo || $equipo->is_visible)
-<section class="section" id="equipo" style="background:var(--bg);padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div class="rev" style="text-align:center;margin-bottom:3rem;">
-      <div class="sec-label">{{ $equipo?->content('kicker', 'Talento') }}</div>
-      <h2>{!! $equipo?->content('title', 'Contamos con un equipo de <span>especialistas</span>') !!}</h2>
-      <p style="color:var(--gray);font-size:1.05rem;line-height:1.75;max-width:640px;margin:1rem auto 0;">{{ $equipo?->content('description') }}</p>
+    <div class="ht-testi__viewport" id="testimonial-carousel">
+      <div class="ht-testi__track">
+        @foreach($testimonials?->items ?? collect() as $item)
+          @php $logoSrc = cms_asset($item->data('logo_image') ?: ''); @endphp
+          <article class="cn-quote ht-testi__slide">
+            <span class="cn-quote-mark" aria-hidden="true">"</span>
+            <header><img src="{{ $logoSrc }}" alt="{{ $item->data('author_name') }}" loading="lazy"></header>
+            <blockquote>{{ $item->data('quote') }}</blockquote>
+            <footer>
+              <strong>{{ $item->data('author_name') }}</strong>
+              <span>{{ $item->data('author_role') }}</span>
+            </footer>
+          </article>
+        @endforeach
+      </div>
     </div>
-    @if($equipo?->items?->count() > 0)
-    <div data-cn-stagger class="talento-grid" style="display:flex;flex-wrap:wrap;justify-content:center;gap:.85rem;">
-      @foreach($equipo->items as $rol)
-      <span class="cn-stagger-item talento-pill">{{ $rol->data('label') }}</span>
-      @endforeach
+
+    <div class="ht-testi__nav">
+      <button type="button" class="ht-testi__arrow" id="testimonial-prev" aria-label="Testimonio anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="cn-dots" id="testimonial-dots"></div>
+      <button type="button" class="ht-testi__arrow" id="testimonial-next" aria-label="Siguiente testimonio">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
     </div>
-    @endif
   </div>
 </section>
 @endif
@@ -410,31 +425,110 @@
 
 @push('scripts')
 <script>
-/* Animación stagger del home (independiente de page-conocenos, que es donde vive el observer original) */
+/* Carrusel "coverflow" de testimonios — activa al centro, vecinas a los lados, loop infinito */
 (function () {
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.page-home [data-cn-stagger]').forEach((group) => {
-    const items = group.querySelectorAll('.cn-stagger-item');
-    if (!items.length) return;
-    if (reduced) {
-      items.forEach((item) => item.classList.add('cn-visible'));
-      return;
+  const viewport = document.getElementById('testimonial-carousel');
+  if (!viewport) return;
+  const track = viewport.querySelector('.ht-testi__track');
+  const realSlides = Array.from(track.querySelectorAll('.ht-testi__slide'));
+  const dotsEl = document.getElementById('testimonial-dots');
+  const prevBtn = document.getElementById('testimonial-prev');
+  const nextBtn = document.getElementById('testimonial-next');
+  const n = realSlides.length;
+  if (!n) return;
+
+  let current = n > 1 ? 1 : 0;   // posición en la pista (1 = primer slide real, ya que 0 es el clon del último)
+  let startX = 0;
+  let timer = null;
+  const track_n = n;
+
+  if (n > 1) {
+    const firstClone = realSlides[0].cloneNode(true);
+    const lastClone = realSlides[n - 1].cloneNode(true);
+    firstClone.setAttribute('aria-hidden', 'true');
+    lastClone.setAttribute('aria-hidden', 'true');
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, realSlides[0]);
+  }
+
+  const allSlides = Array.from(track.querySelectorAll('.ht-testi__slide'));
+  const total = allSlides.length;
+
+  function realIndexOf(trackIdx) {
+    return ((trackIdx - 1) % track_n + track_n) % track_n;
+  }
+
+  function updateClasses() {
+    allSlides.forEach((el, i) => el.classList.toggle('is-active', i === current));
+    dotsEl?.querySelectorAll('button').forEach((d, i) => d.classList.toggle('active', i === realIndexOf(current)));
+  }
+
+  function center(withTransition) {
+    const slide = allSlides[current];
+    const offset = (viewport.offsetWidth - slide.offsetWidth) / 2 - slide.offsetLeft;
+    track.style.transition = withTransition === false ? 'none' : '';
+    track.style.transform = 'translateX(' + offset + 'px)';
+  }
+
+  function goTo(trackIndex, withTransition) {
+    current = trackIndex;
+    updateClasses();
+    center(withTransition);
+  }
+
+  function next() { if (n > 1) goTo(current + 1); }
+  function prev() { if (n > 1) goTo(current - 1); }
+
+  track.addEventListener('transitionend', (e) => {
+    if (e.target !== track || n < 2) return;
+    if (current === total - 1) {
+      requestAnimationFrame(() => goTo(1, false));
+    } else if (current === 0) {
+      requestAnimationFrame(() => goTo(total - 2, false));
     }
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          items.forEach((item, i) => {
-            item.style.transitionDelay = i * 0.08 + 's';
-            item.classList.add('cn-visible');
-          });
-          obs.unobserve(group);
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    obs.observe(group);
   });
+
+  if (dotsEl && n > 1) {
+    dotsEl.innerHTML = '';
+    realSlides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Testimonio ' + (i + 1));
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => { goTo(i + 1); restart(); });
+      dotsEl.appendChild(dot);
+    });
+  }
+
+  prevBtn?.addEventListener('click', () => { prev(); restart(); });
+  nextBtn?.addEventListener('click', () => { next(); restart(); });
+
+  function start() {
+    if (n < 2) return;
+    timer = setInterval(next, 9000);
+  }
+  function restart() { clearInterval(timer); start(); }
+
+  viewport.addEventListener('mouseenter', () => clearInterval(timer));
+  viewport.addEventListener('mouseleave', start);
+
+  viewport.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].screenX; }, { passive: true });
+  viewport.addEventListener('touchend', (e) => {
+    const diff = e.changedTouches[0].screenX - startX;
+    if (Math.abs(diff) < 50) return;
+    diff < 0 ? next() : prev();
+    restart();
+  }, { passive: true });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => center(false), 120);
+  });
+
+  updateClasses();
+  center(false);
+  start();
 })();
 </script>
 <script>

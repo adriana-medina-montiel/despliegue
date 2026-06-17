@@ -21,7 +21,7 @@ class NosotrosController extends Controller
             'badge_text'  => 'required|string|max:100',
             'title'       => 'required|string|max:255',
             'description' => 'required|string|max:2000',
-            'image'       => 'nullable|image|max:4096',
+            'image'       => 'nullable|image|max:2048',
         ]);
 
         $section = PageSection::get('inicio', 'nosotros') ?? abort(404);

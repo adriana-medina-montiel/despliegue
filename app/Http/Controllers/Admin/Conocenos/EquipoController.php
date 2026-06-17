@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Inicio;
+namespace App\Http\Controllers\Admin\Conocenos;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageSection;
@@ -10,10 +10,10 @@ class EquipoController extends Controller
 {
     public function edit()
     {
-        $section = PageSection::get('inicio', 'equipo') ?? abort(404);
+        $section = PageSection::get('conocenos', 'equipo') ?? abort(404);
         $items   = $section->items;
 
-        return view('admin.inicio.equipo', compact('section', 'items'));
+        return view('admin.conocenos.equipo', compact('section', 'items'));
     }
 
     public function update(Request $request)
@@ -25,7 +25,7 @@ class EquipoController extends Controller
             'item_label.*'  => 'required|string|max:100',
         ]);
 
-        $section = PageSection::get('inicio', 'equipo') ?? abort(404);
+        $section = PageSection::get('conocenos', 'equipo') ?? abort(404);
 
         $section->update([
             'content' => [
@@ -47,7 +47,7 @@ class EquipoController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.inicio.equipo.edit')
+        return redirect()->route('admin.conocenos.equipo.edit')
             ->with('success', 'Sección Equipo actualizada correctamente.');
     }
 }

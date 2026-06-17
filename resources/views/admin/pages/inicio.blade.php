@@ -87,14 +87,14 @@
 
 <div class="sections-list">
 
-    {{-- Hero --}}
+    {{-- 1. Hero / Software a la medida + Números (stats) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb">
             <i class="fas fa-image"></i>
         </div>
         <div class="section-row-info">
-            <h3>Hero / Banner Principal & Estadísticas</h3>
-            <p>Imagen de fondo, título, subtítulo, descripción principal y los 5 valores estadísticos.</p>
+            <h3>Hero (Software a la medida) & Números</h3>
+            <p>Imagen de fondo, título, subtítulo, descripción principal y los 4 valores estadísticos.</p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
         <a href="{{ route('admin.inicio.hero.edit') }}" class="edit-btn" style="background:#1d6fdb">
@@ -102,28 +102,13 @@
         </a>
     </div>
 
-    {{-- Nosotros --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed">
-            <i class="fas fa-info-circle"></i>
-        </div>
-        <div class="section-row-info">
-            <h3>Sección Nosotros (Somos Diferentes)</h3>
-            <p>Título, descripción e imagen lateral para la sección de los 20 años de trayectoria.</p>
-        </div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.nosotros.edit') }}" class="edit-btn" style="background:#7c3aed">
-            <i class="fas fa-pen" style="font-size:10px"></i> Editar
-        </a>
-    </div>
-
-    {{-- Servicios destacados --}}
+    {{-- 2. Fábrica de Software (cabecera) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#ecfeff;color:#0891b2">
             <i class="fas fa-layer-group"></i>
         </div>
         <div class="section-row-info">
-            <h3>Servicios Destacados (Cabecera)</h3>
+            <h3>Fábrica de Software</h3>
             <p>Etiqueta, título y descripción para la sección que introduce la Fábrica de Software.</p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
@@ -132,85 +117,21 @@
         </a>
     </div>
 
-    {{-- DevOps --}}
+    {{-- 3. Portafolio (Bituyú) --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#0f172a;color:#fbbf24"><i class="fas fa-code-branch"></i></div>
-        <div class="section-row-info"><h3>DevOps</h3><p>Entrega continua, bullets e imagen lateral.</p></div>
+        <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-boxes"></i></div>
+        <div class="section-row-info"><h3>Portafolio</h3><p>Producto destacado (Bituyú) y enlace al catálogo de productos.</p></div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.devops.edit') }}" class="edit-btn" style="background:#0f172a"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
+        <a href="{{ route('admin.inicio.stack.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
-    {{-- Onshoring --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#1e293b;color:#fbbf24"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="section-row-info"><h3>Onshoring</h3><p>Modalidad onshoring, texto REPSE e imagen.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.onshoring.edit') }}" class="edit-btn" style="background:#1e293b"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Calidad --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#fef9c3;color:#ca8a04"><i class="fas fa-award"></i></div>
-        <div class="section-row-info"><h3>Calidad Certificada</h3><p>Certificaciones y logos de calidad.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.calidad.edit') }}" class="edit-btn" style="background:#ca8a04"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Valor --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-star"></i></div>
-        <div class="section-row-info"><h3>Experiencia Integral (Valor)</h3><p>Valores numerados de experiencia.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.valor.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Equipo --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#ecfeff;color:#0891b2"><i class="fas fa-users"></i></div>
-        <div class="section-row-info"><h3>Equipo / Talento</h3><p>Roles y perfiles del equipo.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.equipo.edit') }}" class="edit-btn" style="background:#0891b2"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Tecnologías --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed"><i class="fas fa-microchip"></i></div>
-        <div class="section-row-info"><h3>Stack Tecnológico</h3><p>Textos y cita (logos desde partial).</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.tecnologias.edit') }}" class="edit-btn" style="background:#7c3aed"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Capacitación --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-graduation-cap"></i></div>
-        <div class="section-row-info"><h3>Capacitación</h3><p>Métricas, cita e imagen decorativa.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.capacitacion.edit') }}" class="edit-btn" style="background:#16a34a"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Acompañamiento --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#1e293b;color:#fbbf24"><i class="fas fa-hands-helping"></i></div>
-        <div class="section-row-info"><h3>Acompañamiento</h3><p>Aliado tecnológico, párrafos e imagen.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.acompanamiento.edit') }}" class="edit-btn" style="background:#1e293b"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Ecosistema --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#fef9c3;color:#ca8a04"><i class="fas fa-network-wired"></i></div>
-        <div class="section-row-info"><h3>Ecosistema / Respaldo</h3><p>Aliados, highlight y CTA.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.ecosistema.edit') }}" class="edit-btn" style="background:#ca8a04"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- Clientes --}}
+    {{-- 4. Confianza (Clientes) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a">
             <i class="fas fa-building"></i>
         </div>
         <div class="section-row-info">
-            <h3>Logos de Clientes (Compartido)</h3>
+            <h3>Confianza (Clientes)</h3>
             <p>Logos de empresas que nos avalan. <em>Nota: Esta sección se comparte con el módulo de Conócenos.</em></p>
         </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
@@ -219,51 +140,59 @@
         </a>
     </div>
 
-    {{-- RSE --}}
+    {{-- 5. Somos Diferentes (Nosotros) --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#1e293b;color:#fbbf24"><i class="fas fa-heart"></i></div>
-        <div class="section-row-info"><h3>Responsabilidad Social (RSE)</h3><p>Puntos con iconos y logos IES.</p></div>
+        <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="section-row-info">
+            <h3>Somos Diferentes</h3>
+            <p>Título, descripción e imagen lateral para la sección de los 20 años de trayectoria.</p>
+        </div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.rse.edit') }}" class="edit-btn" style="background:#1e293b"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
+        <a href="{{ route('admin.inicio.nosotros.edit') }}" class="edit-btn" style="background:#7c3aed">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
     </div>
 
-    {{-- Bituyú Preview --}}
+    {{-- 6. Stack Tecnológico --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed"><i class="fas fa-store"></i></div>
-        <div class="section-row-info"><h3>Bituyú Preview</h3><p>Producto destacado, stats y CTA.</p></div>
+        <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed"><i class="fas fa-microchip"></i></div>
+        <div class="section-row-info"><h3>Stack Tecnológico</h3><p>Textos y cita (logos desde partial).</p></div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.bituyu_preview.edit') }}" class="edit-btn" style="background:#7c3aed"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
+        <a href="{{ route('admin.inicio.tecnologias.edit') }}" class="edit-btn" style="background:#7c3aed"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
-    {{-- Proceso --}}
+    {{-- 7. Externalización (Proceso Nearshoring/Onshoring) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-project-diagram"></i></div>
-        <div class="section-row-info"><h3>Proceso / Externalización</h3><p>Tarjetas Onshoring-Nearshoring y pie.</p></div>
+        <div class="section-row-info"><h3>Externalización</h3><p>Tarjetas Onshoring-Nearshoring y pie.</p></div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
         <a href="{{ route('admin.inicio.proceso.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
-    {{-- Stack --}}
+    {{-- 8. Calidad Certificada --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-boxes"></i></div>
-        <div class="section-row-info"><h3>Stack / Productos</h3><p>Portafolio de productos en inicio.</p></div>
+        <div class="section-row-icon" style="background:#fef9c3;color:#ca8a04"><i class="fas fa-award"></i></div>
+        <div class="section-row-info"><h3>Calidad Certificada</h3><p>Certificaciones y logos de calidad.</p></div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.stack.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
+        <a href="{{ route('admin.inicio.calidad.edit') }}" class="edit-btn" style="background:#ca8a04"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
-    {{-- CTA / Contacto --}}
+    {{-- 9. Formación Continua (Capacitación) --}}
     <div class="section-row">
-        <div class="section-row-icon" style="background:#fff7ed;color:#ea580c">
-            <i class="fas fa-envelope"></i>
-        </div>
-        <div class="section-row-info">
-            <h3>Llamada a la Acción & Contacto</h3>
-            <p>Textos explicativos del formulario de contacto y llamados a la acción al pie de la página.</p>
-        </div>
+        <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-graduation-cap"></i></div>
+        <div class="section-row-info"><h3>Formación Continua</h3><p>Métricas, cita e imagen decorativa.</p></div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.cta.edit') }}" class="edit-btn" style="background:#ea580c">
-            <i class="fas fa-pen" style="font-size:10px"></i> Editar
-        </a>
+        <a href="{{ route('admin.inicio.capacitacion.edit') }}" class="edit-btn" style="background:#16a34a"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
+    </div>
+
+    {{-- 10. Voces / Testimonios --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#fef9c3;color:#ca8a04"><i class="fas fa-quote-left"></i></div>
+        <div class="section-row-info"><h3>Voces (Testimonios)</h3><p>Lo que dicen los clientes — carrusel de testimonios.</p></div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.inicio.testimonials.edit') }}" class="edit-btn" style="background:#ca8a04"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
 </div>

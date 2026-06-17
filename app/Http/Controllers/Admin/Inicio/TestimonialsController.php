@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Conocenos;
+namespace App\Http\Controllers\Admin\Inicio;
 
 use App\Http\Controllers\Controller;
 use App\Models\PageSection;
@@ -11,10 +11,10 @@ class TestimonialsController extends Controller
 {
     public function edit()
     {
-        $section = PageSection::get('conocenos', 'testimonials') ?? abort(404);
+        $section = PageSection::get('inicio', 'testimonials') ?? abort(404);
         $items   = $section->items()->orderBy('sort_order')->get();
 
-        return view('admin.conocenos.testimonials', compact('section', 'items'));
+        return view('admin.inicio.testimonials', compact('section', 'items'));
     }
 
     public function update(Request $request)
@@ -25,10 +25,10 @@ class TestimonialsController extends Controller
             'item_quote.*'        => 'required|string|max:1000',
             'item_author_name.*'  => 'required|string|max:100',
             'item_author_role.*'  => 'nullable|string|max:200',
-            'item_logo_new.*'     => 'nullable|image|max:4096',
+            'item_logo_new.*'     => 'nullable|image|max:2048',
         ]);
 
-        $section = PageSection::get('conocenos', 'testimonials') ?? abort(404);
+        $section = PageSection::get('inicio', 'testimonials') ?? abort(404);
 
         $section->update([
             'content' => [
@@ -46,7 +46,7 @@ class TestimonialsController extends Controller
 
         $section->items()->delete();
 
-        $quotes         = array_slice($request->input('item_quote', []), 0, 10);
+        $quotes         = array_slice($request->input('item_quote', []), 0, 10, true);
         $authorNames    = $request->input('item_author_name', []);
         $authorRoles    = $request->input('item_author_role', []);
         $existingLogos  = $request->input('item_logo_existing', []);
@@ -65,7 +65,7 @@ class TestimonialsController extends Controller
                 if ($existing && !str_starts_with($existing, 'http')) {
                     Storage::disk('public')->delete($existing);
                 }
-                $logo = $logoFiles[$idx]->store('conocenos/testimonials', 'public');
+                $logo = $logoFiles[$idx]->store('inicio/testimonials', 'public');
             }
 
             if ($logo && !str_starts_with($logo, 'http')) {
@@ -89,7 +89,7 @@ class TestimonialsController extends Controller
             }
         }
 
-        return redirect()->route('admin.conocenos.testimonials.edit')
+        return redirect()->route('admin.inicio.testimonials.edit')
             ->with('success', 'Sección "Testimonios" actualizada correctamente.');
     }
 }

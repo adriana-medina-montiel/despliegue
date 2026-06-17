@@ -22,7 +22,7 @@ class HeroController extends Controller
             'badge_text'       => 'required|string|max:100',
             'title'            => 'required|string|max:255',
             'description'      => 'required|string|max:1000',
-            'background_image' => 'nullable|image|max:4096',
+            'background_image' => 'nullable|image|max:2048',
             'cta1_text'        => 'required|string|max:100',
             'cta1_url'         => 'required|string|max:255',
             'cta2_text'        => 'required|string|max:100',
@@ -39,6 +39,7 @@ class HeroController extends Controller
         $content['cta1_url']    = $request->cta1_url;
         $content['cta2_text']   = $request->cta2_text;
         $content['cta2_url']    = $request->cta2_url;
+        $content['use_image']   = $request->boolean('use_image');
 
         if ($request->hasFile('background_image')) {
             $old = $content['background_image'] ?? null;

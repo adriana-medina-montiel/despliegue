@@ -59,8 +59,12 @@
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
-.cn-section-quotes {
+.cn-section-talento {
   background: var(--soft);
+}
+
+.cn-head h2 span {
+  color: var(--blue);
 }
 
 /* Stagger */
@@ -560,7 +564,85 @@
 }
 #testimonial-dots { display: none; }
 
-/* Talento */
+/* Equipo — píldoras de roles */
+.cn-team-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.85rem;
+}
+.cn-team-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.cn-team-chip:hover {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 12px 26px rgba(26, 79, 255, 0.28);
+}
+
+/* Formación Continua — métricas grid */
+.cn-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.cn-metric {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--card, #fff);
+  border: 1px solid var(--border, #e8eaf0);
+  border-radius: 20px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.cn-metric:hover {
+  border-color: rgba(26, 79, 255, 0.25);
+  box-shadow: 0 10px 28px rgba(26, 79, 255, 0.08);
+  transform: translateY(-3px);
+}
+
+.cn-metric strong {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--blue);
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.cn-metric p {
+  color: var(--gray, #64748b);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.cn-capacitacion-quote {
+  text-align: center;
+  color: var(--gray, #64748b);
+  font-size: 1rem;
+  font-style: italic;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* Carreras — formulario "Buscamos talento" */
 .cn-talent {
   position: relative;
   background: var(--ink);

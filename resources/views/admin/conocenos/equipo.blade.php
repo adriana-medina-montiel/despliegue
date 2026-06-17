@@ -1,19 +1,19 @@
 @extends('layouts.admin')
-@section('title', 'Equipo — Inicio')
-@section('breadcrumb', 'Página principal › Equipo')
+@section('title', 'Equipo — Conócenos')
+@section('breadcrumb', 'Conócenos › Equipo')
 
 @section('content')
 @include('admin.inicio.partials.form-styles', ['accent' => '#0891b2'])
 
 <div class="form-page-header">
     <div class="fph-icon"><i class="fas fa-users"></i></div>
-    <div class="fph-text"><h2>Sección Equipo</h2><p>Roles y perfiles del equipo</p></div>
-    <a href="{{ route('admin.pages.inicio') }}" class="fph-back"><i class="fas fa-arrow-left"></i> Volver a Inicio</a>
+    <div class="fph-text"><h2>Sección Equipo (Talento)</h2><p>Roles y perfiles del equipo</p></div>
+    <a href="{{ route('admin.pages.conocenos') }}" class="fph-back"><i class="fas fa-arrow-left"></i> Volver a Conócenos</a>
 </div>
 
 @if(session('success'))<div class="alert-success"><i class="fas fa-check-circle"></i> {{ session('success') }}</div>@endif
 
-<form action="{{ route('admin.inicio.equipo.update') }}" method="POST">
+<form action="{{ route('admin.conocenos.equipo.update') }}" method="POST">
 @csrf
 <div class="editor-layout">
     <div>

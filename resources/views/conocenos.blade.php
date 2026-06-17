@@ -156,29 +156,47 @@ $clientSectors = $clients?->content('sectors', [
 </section>
 @endif
 
-@php $testimonials = $sections->get('testimonials'); @endphp
-@if(!$testimonials || $testimonials->is_visible)
-<section class="cn-section cn-section-quotes">
+@php $equipo = $sections->get('equipo'); @endphp
+@if(!$equipo || $equipo->is_visible)
+<section class="cn-section cn-section-talento">
   <div class="cn-container">
     <header class="cn-head rev">
-      <span class="cn-label">{{ $testimonials?->content('badge_text', 'Voces') }}</span>
-      <h2>{{ $testimonials?->content('title', 'Lo que dicen nuestros clientes') }}</h2>
+      <span class="cn-label">{{ $equipo?->content('kicker', 'Talento') }}</span>
+      <h2>{!! $equipo?->content('title', 'Contamos con un equipo de <span>especialistas</span>') !!}</h2>
+      <p>{{ $equipo?->content('description') }}</p>
     </header>
-    <div class="cn-quotes rev" id="testimonial-carousel">
-      @foreach($testimonials?->items ?? collect() as $item)
-        @php $logoSrc = cms_asset($item->data('logo_image') ?: ''); @endphp
-        <article class="cn-quote">
-          <span class="cn-quote-mark" aria-hidden="true">"</span>
-          <header><img src="{{ $logoSrc }}" alt="{{ $item->data('author_name') }}" loading="lazy"></header>
-          <blockquote>{{ $item->data('quote') }}</blockquote>
-          <footer>
-            <strong>{{ $item->data('author_name') }}</strong>
-            <span>{{ $item->data('author_role') }}</span>
-          </footer>
-        </article>
+    @if($equipo?->items?->count() > 0)
+    <div class="cn-team-chips" data-cn-stagger>
+      @foreach($equipo->items as $rol)
+      <span class="cn-stagger-item cn-team-chip">{{ $rol->data('label') }}</span>
       @endforeach
     </div>
-    <div class="cn-dots" id="testimonial-dots"></div>
+    @endif
+  </div>
+</section>
+@endif
+
+@php $capacitacion = \App\Models\PageSection::forPage('inicio')->get('capacitacion'); @endphp
+@if(!$capacitacion || $capacitacion->is_visible)
+<section class="cn-section" id="capacitacion">
+  <div class="cn-container">
+    <header class="cn-head rev">
+      <span class="cn-label">{{ $capacitacion?->content('kicker', 'Formación continua') }}</span>
+      <h2>{!! $capacitacion?->content('title', 'Equipo de profesionales <span>comprometidos</span>') !!}</h2>
+    </header>
+    @if($capacitacion?->items?->count() > 0)
+    <div class="cn-metrics rev" data-cn-stagger>
+      @foreach($capacitacion->items as $metric)
+      <div class="cn-metric cn-stagger-item">
+        <strong>{{ $metric->data('value') }}</strong>
+        <p>{{ $metric->data('text') }}</p>
+      </div>
+      @endforeach
+    </div>
+    @endif
+    @if($capacitacion?->content('quote'))
+    <p class="cn-capacitacion-quote rev">"{{ $capacitacion->content('quote') }}"</p>
+    @endif
   </div>
 </section>
 @endif

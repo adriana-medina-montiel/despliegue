@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Conocenos\ClientsController as AdminClientsController;
-use App\Http\Controllers\Admin\Conocenos\TestimonialsController as AdminTestimonialsController;
 use App\Http\Controllers\Admin\Conocenos\DifferentiatorsController as AdminDifferentiatorsController;
+use App\Http\Controllers\Admin\Conocenos\EquipoController as AdminConocenosEquipoController;
 use App\Http\Controllers\Admin\Conocenos\HeroController as AdminHeroController;
 use App\Http\Controllers\Admin\Conocenos\PillarsController as AdminPillarsController;
 use App\Http\Controllers\Admin\Conocenos\SupportController as AdminSupportController;
@@ -54,8 +54,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::post('/calidad',         [\App\Http\Controllers\Admin\Inicio\CalidadController::class, 'update'])->name('calidad.update');
         Route::get('/valor',            [\App\Http\Controllers\Admin\Inicio\ValorController::class, 'edit'])->name('valor.edit');
         Route::post('/valor',           [\App\Http\Controllers\Admin\Inicio\ValorController::class, 'update'])->name('valor.update');
-        Route::get('/equipo',           [\App\Http\Controllers\Admin\Inicio\EquipoController::class, 'edit'])->name('equipo.edit');
-        Route::post('/equipo',          [\App\Http\Controllers\Admin\Inicio\EquipoController::class, 'update'])->name('equipo.update');
+        Route::get('/testimonials',     [\App\Http\Controllers\Admin\Inicio\TestimonialsController::class, 'edit'])->name('testimonials.edit');
+        Route::post('/testimonials',    [\App\Http\Controllers\Admin\Inicio\TestimonialsController::class, 'update'])->name('testimonials.update');
         Route::get('/tecnologias',      [\App\Http\Controllers\Admin\Inicio\TecnologiasController::class, 'edit'])->name('tecnologias.edit');
         Route::post('/tecnologias',     [\App\Http\Controllers\Admin\Inicio\TecnologiasController::class, 'update'])->name('tecnologias.update');
         Route::get('/capacitacion',     [\App\Http\Controllers\Admin\Inicio\CapacitacionController::class, 'edit'])->name('capacitacion.edit');
@@ -130,8 +130,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
         Route::post('/support',         [AdminSupportController::class, 'update'])->name('support.update');
         Route::get('/clients',          [AdminClientsController::class, 'edit'])->name('clients.edit');
         Route::post('/clients',         [AdminClientsController::class, 'update'])->name('clients.update');
-        Route::get('/testimonials',     [AdminTestimonialsController::class, 'edit'])->name('testimonials.edit');
-        Route::post('/testimonials',    [AdminTestimonialsController::class, 'update'])->name('testimonials.update');
+        Route::get('/equipo',           [AdminConocenosEquipoController::class, 'edit'])->name('equipo.edit');
+        Route::post('/equipo',          [AdminConocenosEquipoController::class, 'update'])->name('equipo.update');
         Route::get('/careers',          [AdminCareersController::class, 'edit'])->name('careers.edit');
         Route::post('/careers',         [AdminCareersController::class, 'update'])->name('careers.update');
     });

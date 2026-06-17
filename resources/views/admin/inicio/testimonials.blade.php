@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title', 'Testimonios — Conócenos')
-@section('breadcrumb', 'Conócenos › Testimonios')
+@section('title', 'Testimonios — Inicio')
+@section('breadcrumb', 'Página principal › Testimonios')
 
 @section('content')
 <style>
@@ -155,8 +155,8 @@
         <h2>Testimonios</h2>
         <p>Lo que dicen los clientes (máx. 10 · se muestran como carrusel)</p>
     </div>
-    <a href="{{ route('admin.pages.conocenos') }}" class="fph-back">
-        <i class="fas fa-arrow-left"></i> Volver a Conócenos
+    <a href="{{ route('admin.pages.inicio') }}" class="fph-back">
+        <i class="fas fa-arrow-left"></i> Volver a Inicio
     </a>
 </div>
 
@@ -164,7 +164,7 @@
 <div class="alert-success"><i class="fas fa-check-circle"></i> {{ session('success') }}</div>
 @endif
 
-<form action="{{ route('admin.conocenos.testimonials.update') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.inicio.testimonials.update') }}" method="POST" enctype="multipart/form-data">
 @csrf
 
 <div class="editor-layout">
@@ -212,7 +212,7 @@
                     @foreach($items as $item)
                     @php
                         $logo = $item->data('logo_image','');
-                        $logoSrc = ($logo && !str_starts_with($logo,'http')) ? asset('storage/'.$logo) : $logo;
+                        $logoSrc = cms_asset($logo);
                         $idx = $item->sort_order;
                     @endphp
                     <div class="testimonial-card" id="t-card-{{ $idx }}">

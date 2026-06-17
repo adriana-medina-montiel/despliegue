@@ -161,8 +161,33 @@
             </div>
         </div>
 
-        {{-- Imagen hero --}}
+        {{-- Modo de fondo: animación 3D o imagen --}}
         <div class="form-card">
+            <div class="form-card-header">
+                <i class="fas fa-toggle-on" style="color:#1d6fdb;font-size:13px"></i>
+                <h3>Fondo del Hero</h3>
+            </div>
+            <div class="form-card-body">
+                <div class="visibility-row">
+                    <div class="visibility-info">
+                        <h4>Cambiar animación por imagen</h4>
+                        <p>Por defecto se muestra la animación 3D interactiva. Actívalo para usar una imagen de fondo estática.</p>
+                    </div>
+                    <div class="toggle-wrap">
+                        <span class="toggle-label" id="img-mode-label">{{ $section->content('use_image') ? 'Sí' : 'No' }}</span>
+                        <label class="switch">
+                            <input type="checkbox" name="use_image" value="1" id="use-image-toggle"
+                                {{ $section->content('use_image') ? 'checked' : '' }}
+                                onchange="toggleImageMode(this)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Imagen hero --}}
+        <div class="form-card" id="bg-image-card" style="{{ $section->content('use_image') ? '' : 'display:none' }}">
             <div class="form-card-header">
                 <i class="fas fa-image" style="color:#1d6fdb;font-size:13px"></i>
                 <h3>Imagen de fondo</h3>
@@ -173,6 +198,11 @@
                     <i class="fas fa-cloud-upload-alt"></i>
                     <p><strong>Clic para subir imagen</strong> o arrastrar aquí</p>
                 </div>
+                <span class="field-hint">Tamaño máximo: 2MB (JPG, PNG o WebP).</span>
+                <p id="image-size-error" style="display:none;color:#ef4444;font-size:12px;margin-top:8px"></p>
+                @if($section->content('background_image'))
+                <p style="font-size:11px;color:#94a3b8;margin-top:8px">Imagen actual: {{ basename($section->content('background_image')) }}</p>
+                @endif
                 @error('background_image')<p style="color:#ef4444;font-size:12px;margin-top:8px">{{ $message }}</p>@enderror
             </div>
         </div>
@@ -245,10 +275,7 @@
         <div class="preview-card">
             <div class="preview-card-header"><i class="fas fa-eye"></i> Vista previa</div>
             <div class="preview-img-wrap">
-                @php
-                    $bgImg = $section->content('background_image', '');
-                    $bgSrc = ($bgImg && !str_starts_with($bgImg, 'http')) ? asset('storage/' . $bgImg) : $bgImg;
-                @endphp
+                @php $bgSrc = cms_asset($section->content('background_image')); @endphp
                 <img id="preview-bg" src="{{ $bgSrc }}" alt="Preview">
                 <div class="preview-overlay">
                     <div class="preview-badge" id="prev-badge">{{ $section->content('badge_text') }}</div>
@@ -276,9 +303,27 @@
         document.getElementById('prev-desc').textContent = document.getElementById('description').value;
     }
 
+    function toggleImageMode(checkbox) {
+        document.getElementById('img-mode-label').textContent = checkbox.checked ? 'Sí' : 'No';
+        document.getElementById('bg-image-card').style.display = checkbox.checked ? '' : 'none';
+    }
+
+    const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
+
     function previewBg(event) {
-        const file = event.target.files[0];
+        const input = event.target;
+        const file = input.files[0];
+        const errorEl = document.getElementById('image-size-error');
         if (!file) return;
+
+        if (file.size > MAX_IMAGE_BYTES) {
+            errorEl.textContent = 'La imagen pesa ' + (file.size / 1024 / 1024).toFixed(1) + 'MB. El máximo permitido es 2MB, por favor comprime o redimensiona la imagen.';
+            errorEl.style.display = 'block';
+            input.value = '';
+            return;
+        }
+        errorEl.style.display = 'none';
+
         const reader = new FileReader();
         reader.onload = e => {
             document.getElementById('preview-bg').src = e.target.result;

@@ -20,63 +20,69 @@ class StackController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'kicker'           => 'required|string|max:100',
-            'title'            => 'required|string|max:255',
-            'description'      => 'required|string|max:2000',
-            'cta_text'         => 'required|string|max:100',
-            'cta_url'          => 'required|string|max:255',
-            'item_name.*'      => 'required|string|max:100',
-            'item_description.*' => 'required|string|max:200',
-            'item_url.*'       => 'required|string|max:255',
-            'item_logo.*'      => 'nullable|string|max:255',
-            'item_logo_new.*'  => 'nullable|image|max:4096',
+            'kicker'          => 'required|string|max:100',
+            'title'           => 'required|string|max:255',
+            'brand_name'      => 'required|string|max:100',
+            'description'     => 'required|string|max:500',
+            'link_text'       => 'required|string|max:100',
+            'link_url'        => 'required|string|max:255',
+            'website_text'    => 'nullable|string|max:100',
+            'website_url'     => 'nullable|string|max:255',
+            'cta_text'        => 'required|string|max:100',
+            'cta_url'         => 'required|string|max:255',
+            'brand_logo'      => 'nullable|image|max:2048',
+            'product_image'   => 'nullable|image|max:2048',
+            'item_text.*'     => 'required|string|max:150',
         ]);
 
         $section = PageSection::get('inicio', 'stack') ?? abort(404);
+        $content = $section->content ?? [];
+
+        $content['kicker']       = $request->kicker;
+        $content['title']        = $request->title;
+        $content['brand_name']   = $request->brand_name;
+        $content['description']  = $request->description;
+        $content['link_text']    = $request->link_text;
+        $content['link_url']     = $request->link_url;
+        $content['website_text'] = $request->website_text;
+        $content['website_url']  = $request->website_url;
+        $content['cta_text']     = $request->cta_text;
+        $content['cta_url']      = $request->cta_url;
+        unset($content['pill_text']);
+
+        if ($request->hasFile('brand_logo')) {
+            $old = $content['brand_logo'] ?? null;
+            if ($old && !str_starts_with($old, 'http') && !str_starts_with($old, 'img/')) {
+                Storage::disk('public')->delete($old);
+            }
+            $content['brand_logo'] = $request->file('brand_logo')->store('inicio/stack', 'public');
+        }
+
+        if ($request->hasFile('product_image')) {
+            $old = $content['product_image'] ?? null;
+            if ($old && !str_starts_with($old, 'http') && !str_starts_with($old, 'img/')) {
+                Storage::disk('public')->delete($old);
+            }
+            $content['product_image'] = $request->file('product_image')->store('inicio/stack', 'public');
+        }
 
         $section->update([
-            'content' => [
-                'kicker'      => $request->kicker,
-                'title'       => $request->title,
-                'description' => $request->description,
-                'cta_text'    => $request->cta_text,
-                'cta_url'     => $request->cta_url,
-            ],
+            'content'    => $content,
             'is_visible' => $request->boolean('is_visible'),
         ]);
 
-        $oldItems = $section->items()->get()->keyBy('sort_order');
         $section->items()->delete();
-
-        $names  = $request->input('item_name', []);
-        $descs  = $request->input('item_description', []);
-        $urls   = $request->input('item_url', []);
-        $logos  = $request->input('item_logo', []);
-        $newLogos = $request->file('item_logo_new', []);
-
-        foreach ($names as $i => $name) {
-            $logo = $logos[$i] ?? '';
-
-            if (! empty($newLogos[$i])) {
-                $oldLogo = $oldItems->get($i)?->data('logo', '');
-                if ($oldLogo && ! str_starts_with($oldLogo, 'http') && ! str_starts_with($oldLogo, 'img/')) {
-                    Storage::disk('public')->delete($oldLogo);
-                }
-                $logo = $newLogos[$i]->store('inicio/stack', 'public');
+        foreach ($request->input('item_text', []) as $i => $text) {
+            if (trim($text) === '') {
+                continue;
             }
-
             $section->items()->create([
                 'sort_order' => $i,
-                'data'       => [
-                    'name'        => $name,
-                    'description' => $descs[$i] ?? '',
-                    'url'         => $urls[$i] ?? '',
-                    'logo'        => $logo,
-                ],
+                'data'       => ['text' => $text],
             ]);
         }
 
         return redirect()->route('admin.inicio.stack.edit')
-            ->with('success', 'Sección Stack actualizada correctamente.');
+            ->with('success', 'Sección Portafolio actualizada correctamente.');
     }
 }

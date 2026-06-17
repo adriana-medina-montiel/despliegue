@@ -15,9 +15,10 @@ class InicioSeeder extends Seeder
             [
                 'content' => [
                     'badge_text'       => 'Softura Solutions',
-                    'title'            => 'Un poco de software <em>hace la diferencia</em>',
-                    'description'      => 'Ayudamos a las empresas a crecer con soluciones de software a la medida, respaldadas por consultoría especializada y más de 20 años de experiencia.',
+                    'title'            => 'Software<br><em>a la</em><br>medida',
+                    'description'      => 'Impulsamos la evolución de tu empresa con tecnología de alto rendimiento diseñada para el mercado actual.',
                     'background_image' => 'img/official/Conocenos/software.jpg',
+                    'use_image'        => false,
                     'cta1_text'        => 'Conoce nuestros servicios',
                     'cta1_url'         => '#servicios',
                     'cta2_text'        => 'Ver más',
