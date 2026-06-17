@@ -35,56 +35,22 @@ nav {
     position: relative;
 }
 
-/* 2. Resetea el comportamiento del submenú para que NO se alinee en horizontal */
+/* El dropdown hereda todos los estilos visuales de estilos.css (base global).
+   Aquí solo se mantiene el mecanismo de visibilidad para esta página. */
 .nav-links .dropdown-menu {
-    position: absolute;
-    top: 100%;             /* Se posiciona justo debajo de "Servicios" */
-    left: 0;               /* Lo alinea a la izquierda del texto padre */
-    background: #ffffff;   /* Fondo sólido para que no se transparente el texto de abajo */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Sombra para darle elevación */
-    border-radius: 6px;
-    padding: 0.5rem 0;
-    margin: 0;
-    list-style: none;
-    min-width: 240px;      /* Evita que los textos largos se amontonen o se corten */
-    
-    /* Forzamos a que las opciones se apilen verticalmente */
     display: flex;
     flex-direction: column;
-
-    /* Estado inicial: oculto */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.2s ease, visibility 0.2s;
-    z-index: 999;          /* Se asegura de flotar por encima de las tarjetas y títulos */
 }
 
-/* 3. Estilos para los elementos de lista internos del submenú */
 .nav-links .dropdown-menu li {
     width: 100%;
     display: block;
 }
 
-/* 4. Estilos para los enlaces de adentro del submenú */
-.nav-links .dropdown-menu li a {
-    display: block;
-    padding: 0.7rem 1.2rem;
-    color: #334155;        /* Color gris oscuro para el texto */
-    font-size: 0.8rem;
-    text-transform: none;  /* Mantiene las minúsculas/mayúsculas originales */
-    letter-spacing: normal;
-    white-space: nowrap;   /* Evita saltos de línea molestos */
-    transition: background 0.2s, color 0.2s;
-}
-
-/* Hover de las opciones internas */
-.nav-links .dropdown-menu li a:hover {
-    background-color: #f1f5f9; /* Fondo gris claro al pasar el mouse */
-    color: var(--blue);        /* Cambia al color azul de tu proyecto */
-}
-
-/* 5. Interacción: Muestra el submenú al hacer hover en el li (.dropdown) */
 .nav-links .dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
