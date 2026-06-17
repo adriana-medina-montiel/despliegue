@@ -117,7 +117,15 @@
         </a>
     </div>
 
-    {{-- 3. Portafolio (Bituyú) --}}
+    {{-- 3. Externalización (Proceso Nearshoring/Onshoring) --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-project-diagram"></i></div>
+        <div class="section-row-info"><h3>Externalización</h3><p>Título, descripción y tarjetas Onshoring / Nearshoring.</p></div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.inicio.proceso.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
+    </div>
+
+    {{-- 4. Portafolio (Bituyú) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-boxes"></i></div>
         <div class="section-row-info"><h3>Portafolio</h3><p>Producto destacado (Bituyú) y enlace al catálogo de productos.</p></div>
@@ -125,7 +133,7 @@
         <a href="{{ route('admin.inicio.stack.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
-    {{-- 4. Confianza (Clientes) --}}
+    {{-- 5. Confianza (Clientes) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a">
             <i class="fas fa-building"></i>
@@ -140,7 +148,7 @@
         </a>
     </div>
 
-    {{-- 5. Somos Diferentes (Nosotros) --}}
+    {{-- 6. Somos Diferentes (Nosotros) --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed">
             <i class="fas fa-info-circle"></i>
@@ -155,20 +163,12 @@
         </a>
     </div>
 
-    {{-- 6. Stack Tecnológico --}}
+    {{-- 7. Stack Tecnológico --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#f5f3ff;color:#7c3aed"><i class="fas fa-microchip"></i></div>
         <div class="section-row-info"><h3>Stack Tecnológico</h3><p>Textos y cita (logos desde partial).</p></div>
         <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
         <a href="{{ route('admin.inicio.tecnologias.edit') }}" class="edit-btn" style="background:#7c3aed"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- 7. Externalización (Proceso Nearshoring/Onshoring) --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#eff6ff;color:#1d6fdb"><i class="fas fa-project-diagram"></i></div>
-        <div class="section-row-info"><h3>Externalización</h3><p>Tarjetas Onshoring-Nearshoring y pie.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.proceso.edit') }}" class="edit-btn" style="background:#1d6fdb"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
     {{-- 8. Calidad Certificada --}}
@@ -179,15 +179,7 @@
         <a href="{{ route('admin.inicio.calidad.edit') }}" class="edit-btn" style="background:#ca8a04"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
     </div>
 
-    {{-- 9. Formación Continua (Capacitación) --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-graduation-cap"></i></div>
-        <div class="section-row-info"><h3>Formación Continua</h3><p>Métricas, cita e imagen decorativa.</p></div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.inicio.capacitacion.edit') }}" class="edit-btn" style="background:#16a34a"><i class="fas fa-pen" style="font-size:10px"></i> Editar</a>
-    </div>
-
-    {{-- 10. Voces / Testimonios --}}
+    {{-- 9. Voces / Testimonios --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#fef9c3;color:#ca8a04"><i class="fas fa-quote-left"></i></div>
         <div class="section-row-info"><h3>Voces (Testimonios)</h3><p>Lo que dicen los clientes — carrusel de testimonios.</p></div>

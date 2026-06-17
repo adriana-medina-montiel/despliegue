@@ -46,6 +46,18 @@
     .save-bar p { font-size:12px;color:#94a3b8;margin:0; }
     .btn-save { display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:9px;background:#0891b2;color:white;font-size:13.5px;font-weight:700;border:none;cursor:pointer;transition:filter .15s,transform .1s; }
     .btn-save:hover { filter:brightness(1.1);transform:translateY(-1px); }
+
+    .card-group { border:1px solid #e2e8f0;border-radius:10px;padding:18px;margin-bottom:14px;background:#fafafa; }
+    .card-group-header { display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f1f5f9; }
+    .card-group-num { width:24px;height:24px;border-radius:50%;background:#0891b2;color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .card-group-header h4 { font-size:13px;font-weight:700;color:#0f172a;margin:0; }
+
+    .icon-picker { display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:6px; }
+    .icon-picker input[type=radio] { display:none; }
+    .icon-picker label { display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:1;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;background:white;transition:border-color .15s,background .15s;color:#64748b; }
+    .icon-picker label:hover { border-color:#0891b2;color:#0891b2; }
+    .icon-picker input[type=radio]:checked + label { border-color:#0891b2;background:#ecfeff;color:#0891b2; }
+    .icon-picker label svg { width:18px;height:18px; }
 </style>
 
 <div class="form-page-header">
@@ -94,6 +106,80 @@
                     <textarea id="description" name="description" class="field-input"
                         maxlength="1000">{{ old('description', $section->content('description')) }}</textarea>
                 </div>
+            </div>
+        </div>
+
+        {{-- Cards --}}
+        <div class="form-card">
+            <div class="form-card-header">
+                <i class="fas fa-th-large" style="color:#0891b2;font-size:13px"></i>
+                <h3>Tarjetas de servicios (3 cards)</h3>
+            </div>
+            <div class="form-card-body">
+
+            @php
+            $cardDefaults = [
+                1 => [
+                    'title' => 'Software a la medida',
+                    'desc'  => 'Ayudamos a las empresas a crecer y consolidarse mediante soluciones de software a la medida, respaldadas por consultoría especializada que garantiza que cada desarrollo responda realmente a las necesidades y objetivos del negocio.',
+                    'icon'  => '0',
+                ],
+                2 => [
+                    'title' => 'Desarrollo de aplicaciones móviles',
+                    'desc'  => 'Convierte tu idea en una aplicación móvil real. Nuestro equipo de especialistas en iOS y Android te acompaña desde el concepto hasta el lanzamiento, desarrollando apps innovadoras que generan valor para tu negocio.',
+                    'icon'  => '1',
+                ],
+                3 => [
+                    'title' => 'Maquila de software',
+                    'desc'  => 'Amplía la capacidad de desarrollo de tu empresa sin aumentar tu estructura interna. Nuestro equipo de profesionales en ingeniería de software te permite responder rápidamente a picos de demanda, evitando costos y tiempos asociados al reclutamiento y capacitación.',
+                    'icon'  => '2',
+                ],
+            ];
+            $iconSvgs = [
+                0 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+                1 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/></svg>',
+                2 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+                3 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
+                4 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+                5 => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
+            ];
+            $iconLabels = ['Código', 'Móvil', 'Equipo', 'Monitor', 'Paquete', 'Config'];
+            @endphp
+
+            @for($ci = 1; $ci <= 3; $ci++)
+            @php $d = $cardDefaults[$ci]; @endphp
+            <div class="card-group">
+                <div class="card-group-header">
+                    <div class="card-group-num">{{ $ci }}</div>
+                    <h4>Tarjeta {{ $ci }}</h4>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label">Icono</label>
+                    <div class="icon-picker">
+                        @foreach($iconSvgs as $idx => $svg)
+                        <input type="radio" name="card{{ $ci }}_icon" id="card{{ $ci }}_icon_{{ $idx }}"
+                            value="{{ $idx }}"
+                            {{ old("card{$ci}_icon", $section->content("card{$ci}_icon", $d['icon'])) == $idx ? 'checked' : '' }}>
+                        <label for="card{{ $ci }}_icon_{{ $idx }}" title="{{ $iconLabels[$idx] }}">{!! $svg !!}</label>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label class="field-label" for="card{{ $ci }}_title">Título</label>
+                    <input type="text" id="card{{ $ci }}_title" name="card{{ $ci }}_title" class="field-input"
+                        value="{{ old("card{$ci}_title", $section->content("card{$ci}_title", $d['title'])) }}" maxlength="120">
+                </div>
+
+                <div class="field-group" style="margin-bottom:0">
+                    <label class="field-label" for="card{{ $ci }}_desc">Descripción</label>
+                    <textarea id="card{{ $ci }}_desc" name="card{{ $ci }}_desc" class="field-input" style="min-height:80px"
+                        maxlength="500">{{ old("card{$ci}_desc", $section->content("card{$ci}_desc", $d['desc'])) }}</textarea>
+                </div>
+            </div>
+            @endfor
+
             </div>
         </div>
     </div>

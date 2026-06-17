@@ -187,6 +187,21 @@
         </a>
     </div>
 
+    {{-- Formación Continua (movida desde Home) --}}
+    <div class="section-row">
+        <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="section-row-info">
+            <h3>Formación Continua</h3>
+            <p>Métricas de capacitación y cita del equipo. <em>Nota: Esta sección se muestra en la página Conócenos.</em></p>
+        </div>
+        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
+        <a href="{{ route('admin.inicio.capacitacion.edit') }}" class="edit-btn" style="background:#16a34a">
+            <i class="fas fa-pen" style="font-size:10px"></i> Editar
+        </a>
+    </div>
+
     {{-- Carreras --}}
     <div class="section-row">
         <div class="section-row-icon" style="background:#fdf2f8;color:#db2777">

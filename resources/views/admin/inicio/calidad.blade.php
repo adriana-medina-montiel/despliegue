@@ -29,15 +29,15 @@
             <div class="form-card-header"><i class="fas fa-certificate"></i><h3>Certificaciones</h3></div>
             <div class="form-card-body" id="items-wrap">
                 @php $oldItems = old('item_name') ? collect(old('item_name'))->keys() : $items->keys(); @endphp
-                @foreach($items as $idx => $item)
+                @foreach($items as $item)
                 <div class="item-row" style="grid-template-columns:1fr 1fr">
                     <button type="button" class="item-row-remove" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
-                    <input type="text" name="item_name[]" class="field-input" value="{{ old('item_name.'.$idx, $item->data('name')) }}" placeholder="Nombre">
-                    <input type="hidden" name="item_file[]" value="{{ old('item_file.'.$idx, $item->data('file')) }}">
-                    <input type="text" name="item_cdn[]" class="field-input" value="{{ old('item_cdn.'.$idx, $item->data('cdn')) }}" placeholder="CDN URL (opcional)">
+                    <input type="text" name="item_name[]" class="field-input" value="{{ old('item_name.'.$loop->index, $item->data('name')) }}" placeholder="Nombre">
+                    <input type="hidden" name="item_file[]" value="{{ old('item_file.'.$loop->index, $item->data('file')) }}">
+                    <input type="text" name="item_cdn[]" class="field-input" value="{{ old('item_cdn.'.$loop->index, $item->data('cdn')) }}" placeholder="CDN URL (opcional)">
                     <div style="grid-column:1/-1;display:flex;align-items:center;gap:12px">
                         @if($item->data('file'))<img src="{{ cms_asset($item->data('file')) }}" style="height:40px;object-fit:contain" alt="">@endif
-                        <input type="file" name="item_logo_new[{{ $idx }}]" accept="image/*" class="field-input">
+                        <input type="file" name="item_logo_new[{{ $loop->index }}]" accept="image/*" class="field-input">
                     </div>
                 </div>
                 @endforeach

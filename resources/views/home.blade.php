@@ -16,15 +16,18 @@
   $heroIsPhoto = (bool) $hero?->content('use_image', false) && $heroBgSrc;
 @endphp
 
-@unless($heroIsPhoto)
-@push('head-scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-@endpush
-@endunless
+@if(!$hero || $hero->is_visible)
+  @unless($heroIsPhoto)
+  @push('head-scripts')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  @endpush
+  @endunless
+@endif
 
 @section('content')
 
 {{-- ─── HERO (animación o imagen, según el admin) ─────────────────────────────── --}}
+@if(!$hero || $hero->is_visible)
 <section class="hero @if($heroIsPhoto) hero--photo @endif" id="hero-section">
   @if($heroIsPhoto)
     <div class="hero-media"><img src="{{ $heroBgSrc }}" alt="" loading="eager"></div>
@@ -50,6 +53,7 @@
     </div>
   </div>
 </section>
+@endif
 
 {{-- ─── STATS ──────────────────────────────────────────────────────────────── --}}
 @if($hero && $hero->is_visible && $hero->items->count() > 0)
@@ -61,7 +65,7 @@
   </div>
   @endforeach
 </div>
-@else
+@elseif(!$hero || $hero->is_visible)
 <div class="stats">
   <div class="stat rev" style="transition-delay:0s">
     <div class="stat-n" data-target="20" data-suffix="+">20+</div>
@@ -95,8 +99,6 @@
     </div>
     <div class="services-grid">
       @php
-        $fabricaSvc = \App\Models\PageSection::get('fabrica', 'servicios');
-        $serviciosList = $fabricaSvc ? $fabricaSvc->items : collect();
         $svcIcons = [
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/></svg>',
@@ -105,35 +107,41 @@
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>',
         ];
+
+        // Build cards: admin content takes priority, then fallback to config
+        $svcCards = [];
+        for ($ci = 1; $ci <= 3; $ci++) {
+          if ($srvIntro?->content("card{$ci}_title")) {
+            $svcCards[] = [
+              'title' => $srvIntro->content("card{$ci}_title"),
+              'desc'  => $srvIntro->content("card{$ci}_desc", ''),
+              'icon'  => (int) $srvIntro->content("card{$ci}_icon", $ci - 1),
+              'slug'  => Str::slug($srvIntro->content("card{$ci}_title", '')),
+            ];
+          }
+        }
+        if (empty($svcCards)) {
+          foreach (array_slice(config('softura-content.servicios', []), 0, 3) as $idx => $s) {
+            $svcCards[] = [
+              'title' => $s['titulo'],
+              'desc'  => $s['texto'] ?? '',
+              'icon'  => $idx,
+              'slug'  => $s['slug'] ?? '',
+            ];
+          }
+        }
       @endphp
-      @if($serviciosList->count() > 0)
-        @foreach($serviciosList->take(3) as $idx => $svc)
-        @php $slug = Str::slug($svc->data('title', '')); @endphp
-        <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
-          <div class="svc-num">0{{ $idx + 1 }}</div>
-          <div class="svc-icon">
-            {!! $svcIcons[$idx] ?? $svcIcons[0] !!}
-          </div>
-          <h3 class="svc-title">{{ $svc->data('title') }}</h3>
-          <p class="svc-desc">{{ $svc->data('text') }}</p>
-          <a href="{{ route('fabrica') }}#svc-{{ $slug }}" class="svc-arrow" style="text-decoration:none;">→</a>
+      @foreach($svcCards as $idx => $card)
+      <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
+        <div class="svc-num">0{{ $idx + 1 }}</div>
+        <div class="svc-icon">
+          {!! $svcIcons[$card['icon']] ?? $svcIcons[0] !!}
         </div>
-        @endforeach
-      @else
-        @foreach(config('softura-content.servicios', []) as $idx => $servicio)
-        @if($idx < 3)
-        <div class="svc rev" style="transition-delay:{{ $idx * 0.1 }}s">
-          <div class="svc-num">0{{ $idx + 1 }}</div>
-          <div class="svc-icon">
-            {!! $svcIcons[$idx] ?? $svcIcons[0] !!}
-          </div>
-          <h3 class="svc-title">{{ $servicio['titulo'] }}</h3>
-          <p class="svc-desc">{{ $servicio['descripcion'] ?? '' }}</p>
-          <a href="{{ route('fabrica') }}#svc-{{ $servicio['slug'] ?? '' }}" class="svc-arrow" style="text-decoration:none;">→</a>
-        </div>
-        @endif
-        @endforeach
-      @endif
+        <h3 class="svc-title">{{ $card['title'] }}</h3>
+        <p class="svc-desc">{{ $card['desc'] }}</p>
+        <a href="{{ route('fabrica') }}#svc-{{ $card['slug'] }}" class="svc-arrow" style="text-decoration:none;">→</a>
+      </div>
+      @endforeach
     </div>
     <div class="rev" style="text-align:center;margin-top:3rem;">
       <a href="{{ route('fabrica') }}" class="btn-p" style="text-decoration:none;display:inline-block;">Ver fábrica de software completa</a>
@@ -267,7 +275,6 @@
 
 {{-- ─── CLIENTES ─────────────────────────────────────────────────────────────── --}}
 @php
-  $homeClients = $sections->get('home_clients');
   $cnClients   = \App\Models\PageSection::forPage('conocenos')->get('clients');
   $cnClientSectors = $cnClients?->content('sectors', [
     ['name' => 'Gobierno',  'tag' => 'Sector gobierno'],
@@ -276,7 +283,7 @@
     ['name' => 'Privado',   'tag' => 'Iniciativa privada'],
   ]);
 @endphp
-@if(!$homeClients || $homeClients->is_visible)
+@if(!$cnClients || $cnClients->is_visible)
 <section class="cn-section" id="home-clientes">
   <div class="cn-container">
     <header class="cn-head rev">
