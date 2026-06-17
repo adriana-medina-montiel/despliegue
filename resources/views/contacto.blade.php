@@ -1,8 +1,8 @@
 @extends('layouts.web')
 
 @section('title', 'Contacto — Softura Solutions')
+@section('i18n-title', 'titles.contacto')
 @section('body-class', 'subpage subpage-dark')
-@section('nav-class', 'nav-dark')
 @section('footer-class', 'footer-dark')
 
 @section('content')
@@ -23,7 +23,7 @@
           <a href="mailto:contacto@softura.com.mx">contacto@softura.com.mx</a>
         </div>
         <div class="contact-detail-item">
-          <span class="contact-detail-label">WhatsApp</span>
+          <span class="contact-detail-label" data-i18n="contact.whatsapp">WhatsApp</span>
           <a href="https://api.whatsapp.com/send?phone=522411016729" target="_blank" rel="noopener">+52 241 101 6729</a>
         </div>
       </div>
