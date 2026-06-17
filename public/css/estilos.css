@@ -495,3 +495,31 @@ section.softura-support-fluid-row { position: relative; max-width: 1350px; width
   line-height:1.7;
   font-size:1.05rem;
 }
+
+
+html {
+    scroll-behavior: smooth;
+}
+.boton-volver-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #0055FF; 
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.boton-volver-arriba:hover {
+    background-color: #0033aa;
+    transform: translateY(-5px); 
+}

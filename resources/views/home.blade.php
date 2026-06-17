@@ -271,6 +271,8 @@
   </div>
 </section>
 
+<a href="#hero-section" class="boton-volver-arriba">&uarr;</a>
+
 @endsection
 
 @push('scripts')
