@@ -49,15 +49,16 @@ nav.nav-inicio .lang-option.active {
 }
 nav.nav-softura .dropdown-menu,
 nav.nav-inicio .dropdown-menu {
-  background: rgba(10, 22, 40, 0.96);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border-color: #e4e4ee;
+  box-shadow: 0 8px 24px rgba(10, 22, 40, 0.1);
 }
 nav.nav-softura .dropdown-menu a,
-nav.nav-inicio .dropdown-menu a { color: rgba(255, 255, 255, 0.75); }
+nav.nav-inicio .dropdown-menu a { color: #1e3a5f; }
 nav.nav-softura .dropdown-menu a:hover,
 nav.nav-inicio .dropdown-menu a:hover {
-  background: rgba(26, 79, 255, 0.15);
-  color: #fff;
+  background: #f0f7ff;
+  color: #1a4fff;
 }
 
 .nav-cta {

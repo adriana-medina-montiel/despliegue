@@ -14,14 +14,14 @@
 
 {{-- Hero --}}
 @if(!$hero || $hero->is_visible)
-<section style="min-height:80vh;display:flex;align-items:center;justify-content:center;padding:8rem 5vw 4rem;text-align:center;background:linear-gradient(135deg,#F8F9FF 0%,#FAFAFA 60%,#F0F4FF 100%);position:relative;" class="rev">
-  <div style="max-width:800px;margin:0 auto;position:relative;z-index:2;">
-    <div class="sec-label" style="margin-bottom:1rem;">{{ $hero?->content('badge_text', 'Servicios') }}</div>
-    <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-.03em;">{!! $hero?->content('title', 'Nearshoring &amp; <span style="color:var(--blue)">Onshoring</span>') !!}</h1>
-    <p style="font-size:1.15rem;line-height:1.75;color:var(--gray);max-width:600px;margin:0 auto 2.5rem;">
+<section class="nrs-hero rev">
+  <div class="nrs-hero-inner">
+    <div class="sec-label nrs-hero-badge">{{ $hero?->content('badge_text', 'Servicios') }}</div>
+    <h1 class="nrs-hero-h1">{!! $hero?->content('title', 'Nearshoring &amp; <span class="nrs-accent">Onshoring</span>') !!}</h1>
+    <p class="nrs-hero-lead">
       {{ $hero?->content('description', 'Con nuestros modelos de externalización, nuestros ingenieros se integran a tu equipo desde México, ya sea presencialmente o de forma remota.') }}
     </p>
-    <a href="{{ route('contacto') }}" class="btn-p" style="text-decoration:none;display:inline-block;">Hablemos de tu proyecto</a>
+    <a href="{{ route('contacto') }}" class="btn-p">Hablemos de tu proyecto</a>
   </div>
 </section>
 @endif
@@ -71,19 +71,19 @@
 
 {{-- Ventajas / Células Especializadas --}}
 @if(!$ventajas || $ventajas->is_visible)
-<section class="section" style="background:#020714;padding:6rem 5vw;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:4rem;align-items:center;" class="rev">
-    <div>
-      <div style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#00C9A7;margin-bottom:1rem;font-weight:500;">{{ $ventajas?->content('badge_text', 'Onshoring') }}</div>
-      <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,3rem);color:#fff;margin-bottom:1.5rem;letter-spacing:-.03em;line-height:1.1;">{{ $ventajas?->content('title', 'Células especializadas') }}</h2>
-      <p style="color:#94a3b8;font-size:1.05rem;line-height:1.75;margin-bottom:1rem;">{{ $ventajas?->content('description') }}</p>
+<section class="nrs-ventajas">
+  <div class="nrs-ventajas-inner rev">
+    <div class="nrs-ventajas-copy">
+      <div class="nrs-ventajas-badge">{{ $ventajas?->content('badge_text', 'Onshoring') }}</div>
+      <h2 class="nrs-ventajas-h2">{{ $ventajas?->content('title', 'Células especializadas') }}</h2>
+      <p class="nrs-ventajas-desc">{{ $ventajas?->content('description') }}</p>
       @if($ventajas?->content('repse_text'))
-      <p style="color:#94a3b8;font-size:.95rem;line-height:1.6;border-left:3px solid #00C9A7;padding-left:1rem;">{!! $ventajas->content('repse_text') !!}</p>
+      <p class="nrs-ventajas-repse">{!! $ventajas->content('repse_text') !!}</p>
       @endif
     </div>
-    <div>
+    <div class="nrs-ventajas-visual">
       @php $vimgSrc = cms_asset(($ventajas?->content('image')) ?: 'img/official/productos/onshoring.jpg'); @endphp
-      <img src="{{ $vimgSrc }}" alt="Equipo de desarrollo" style="width:100%;border-radius:20px;box-shadow:0 25px 60px rgba(0,0,0,.4);" loading="lazy">
+      <img src="{{ $vimgSrc }}" alt="Equipo de desarrollo" loading="lazy">
     </div>
   </div>
 </section>

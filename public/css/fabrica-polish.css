@@ -1,8 +1,96 @@
 /* Fábrica de Software — página deck */
 
 .page-fabrica {
-  background: var(--deck-navy, #020714);
-  color: #fff;
+  background: #eef4ff;
+  color: #1e3a5f;
+}
+
+/* Override deck-page dark nav */
+.page-fabrica nav {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom-color: #bfdbfe !important;
+}
+
+.page-fabrica .nav-links a {
+  color: #1e3a5f;
+}
+
+/* Override dark section pseudo-element backgrounds */
+.page-fabrica .deck-section::before {
+  background: linear-gradient(135deg, #eef4ff 0%, #dbeafe 50%, #ffffff 100%);
+}
+
+.page-fabrica .deck-section--alt::before {
+  background: linear-gradient(160deg, #dbeafe 0%, #eef4ff 60%, #f8fbff 100%);
+}
+
+/* Typography — copiado del home (.page-home h1/h2/h3) */
+.page-fabrica h1,
+.page-fabrica h2,
+.page-fabrica h3,
+.page-fabrica h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.page-fabrica .deck-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  color: #1e3a5f;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+}
+
+.page-fabrica .deck-tag {
+  color: #2563eb;
+}
+
+.page-fabrica .deck-lead {
+  color: #475569;
+  font-family: 'Inter', sans-serif;
+}
+
+.page-fabrica .deck-lead strong {
+  color: #1e3a5f;
+}
+
+.page-fabrica .deck-hero h1,
+.page-fabrica .fab-hero h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
+}
+
+.page-fabrica .deck-hero h1 em,
+.page-fabrica .fab-hero h1 em {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #2563eb;
+  color: #2563eb;
+  font-style: normal;
+}
+
+.page-fabrica .deck-hero-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: #475569;
+}
+
+.page-fabrica .deck-svc-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-size: .95rem;
+  line-height: 1.3;
 }
 
 .page-fabrica .fab-hero {
@@ -12,6 +100,7 @@
   align-items: center;
   min-height: min(88vh, 820px);
   padding-top: 7rem;
+  background: linear-gradient(180deg, #eef4ff 0%, #ffffff 100%);
 }
 
 .page-fabrica .fab-hero .deck-container {
@@ -30,16 +119,16 @@
   max-height: 520px;
   object-fit: contain;
   border-radius: 20px;
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 24px 48px rgba(37, 99, 235, 0.12));
 }
 
 .page-fabrica .deck-service-block {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(135deg, #020714 0%, #0a1e4a 100%);
+  border-top: 1px solid #bfdbfe;
+  background: linear-gradient(135deg, #eef4ff 0%, #ffffff 100%);
 }
 
 .page-fabrica .deck-service-block--reverse {
-  background: linear-gradient(160deg, #000a1a 0%, #0d2d6b 100%);
+  background: linear-gradient(160deg, #dbeafe 0%, #f8fbff 100%);
 }
 
 .page-fabrica .deck-visual img {
@@ -47,8 +136,8 @@
   border-radius: 20px;
   object-fit: cover;
   max-height: 420px;
-  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 56px rgba(37, 99, 235, 0.1);
+  border: 1px solid #bfdbfe;
 }
 
 .page-fabrica .fab-repse {
@@ -57,8 +146,8 @@
   gap: 0.75rem;
   margin-top: 1.25rem;
   padding: 1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(219, 234, 254, 0.4);
+  border: 1px solid #bfdbfe;
   border-radius: 14px;
 }
 
@@ -72,8 +161,8 @@
   width: auto;
   max-width: 120px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  filter: none;
+  opacity: 0.85;
 }
 
 .page-fabrica .deck-partners .fab-partner-logo {
@@ -84,7 +173,7 @@
 .page-fabrica .fab-cloud-wrap {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid #bfdbfe;
 }
 
 .page-fabrica .deck-cloud-card ul {
@@ -103,15 +192,157 @@
 }
 
 .page-fabrica .deck-svc-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06);
+  color: #1e3a5f;
 }
 
 .page-fabrica .deck-svc-card:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: #f0f7ff;
+  border-color: #2563eb;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+  transform: translateY(-4px);
 }
 
 .page-fabrica .deck-svc-img {
   border-radius: 12px;
+}
+
+/* Buttons — match home btn-p style */
+.page-fabrica .deck-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1a4fff;
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 0.9rem 2.2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  border: 2px solid #1a4fff;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.page-fabrica .deck-btn:hover {
+  background: #0f3acc;
+  border-color: #0f3acc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26, 79, 255, 0.25);
+  color: #ffffff;
+}
+
+.page-fabrica .deck-btn--outline {
+  background: transparent;
+  color: #1a4fff;
+  border: 2px solid #1a4fff;
+}
+
+.page-fabrica .deck-btn--outline:hover {
+  background: #1a4fff;
+  color: #ffffff;
+}
+
+/* Even service blocks — override dark gradient */
+.page-fabrica .deck-service-block:nth-child(even) {
+  background: linear-gradient(160deg, #f0f7ff 0%, #ffffff 100%);
+}
+
+/* List items — legible dark text */
+.page-fabrica .deck-list li {
+  color: #334155;
+}
+
+.page-fabrica .deck-list li::before {
+  color: #2563eb;
+}
+
+/* Cloud cards — white with blue tint */
+.page-fabrica .deck-cloud-card {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  color: #1e3a5f;
+}
+
+.page-fabrica .deck-cloud-card h4 {
+  color: #1e3a5f;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.page-fabrica .deck-cloud-card ul li {
+  color: #334155;
+}
+
+/* Partners — no invert filter */
+.page-fabrica .deck-partners img {
+  filter: none;
+  opacity: 0.85;
+}
+
+.page-fabrica .deck-partners img:hover {
+  opacity: 1;
+}
+
+/* CTA band — mismo azul marino oscuro que "Somos Diferentes" del home */
+.page-fabrica .deck-band {
+  background: linear-gradient(135deg, #050b1a 0%, #0a1530 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-fabrica .deck-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 82% 45%, rgba(26, 79, 255, 0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.page-fabrica .deck-band .deck-title {
+  color: #ffffff;
+}
+
+.page-fabrica .deck-band .deck-lead {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.page-fabrica .deck-band .deck-lead strong {
+  color: #ffffff;
+}
+
+.page-fabrica .deck-band .deck-btn {
+  background: #ffffff;
+  color: #1a4fff;
+  border-color: #ffffff;
+}
+
+.page-fabrica .deck-band .deck-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0a2fcc;
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.page-fabrica .deck-band .deck-visual img {
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Anniversary badge — light theme */
+.page-fabrica .deck-anniversary-badge {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+/* Title divider line */
+.page-fabrica .deck-title-line {
+  background: #2563eb;
+  opacity: 0.4;
 }
 
 @media (max-width: 900px) {

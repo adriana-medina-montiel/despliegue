@@ -280,19 +280,19 @@
 }
 
 .page-home .nav-links .dropdown-menu {
-  background: rgba(5, 11, 26, 0.98);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 36px rgba(5, 11, 26, 0.35);
+  background: #ffffff;
+  border: 1px solid #e4e4ee;
+  box-shadow: 0 8px 24px rgba(10, 22, 40, 0.1);
 }
 
 .page-home .nav-links .dropdown-menu a {
-  color: #e5eefb;
+  color: #1e3a5f;
 }
 
 .page-home .nav-links .dropdown-menu a:hover,
 .page-home .nav-links .dropdown-menu a:focus-visible {
-  color: #fff;
-  background: rgba(26, 79, 255, 0.18);
+  color: #1a4fff;
+  background: #f0f7ff;
 }
 
 .page-home .hero--photo h1 em {

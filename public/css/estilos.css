@@ -281,8 +281,9 @@ footer .logo{font-size:1rem}
 .nav-dark .nav-links a{color:#94a3b8}
 .nav-dark .nav-links a:hover,
 .nav-dark .nav-links a.nav-active{color:#fff}
-.nav-dark .dropdown-menu{background:#0f172a;border:1px solid rgba(255,255,255,.08)}
-.nav-dark .dropdown-menu a{color:#cbd5e1}
+.nav-dark .dropdown-menu{background:#ffffff;border:1px solid #e4e4ee;box-shadow:0 8px 24px rgba(10,22,40,.1)}
+.nav-dark .dropdown-menu a{color:#1e3a5f}
+.nav-dark .dropdown-menu a:hover{background:#f0f7ff;color:#1a4fff}
 .contact-page{ padding:7rem 5vw 5rem;min-height:calc(100vh - 120px);}
 .contact-page-inner{
   max-width:1200px;
@@ -349,7 +350,7 @@ section.softura-service-row {  position: relative;  max-width: 1350px;  width: 9
 .onsh-card-main {  width: 300px;  height: 250px;  border: 6px solid #fff;  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);  z-index: 2;}
 /* --- BLOQUE DE CONTENIDO --- */
 .onsh-free-content { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; z-index: 2;}
-.onsh-title-fluid {  font-family: 'Syne', sans-serif;font-size: 3.6rem; font-weight: 900; color: #11365e; letter-spacing: -1px; margin: 0 0 1.2rem 0;  line-height: 1;}
+.onsh-title-fluid {  font-family: 'Inter', sans-serif;font-size: 3.6rem; font-weight: 700; color: #11365e; letter-spacing: -0.02em; margin: 0 0 1.2rem 0;  line-height: 1.1;}
 .onsh-desc-fluid {font-size: 1.05rem; line-height: 1.65; color: #475569; max-width: 540px; margin: 0 0 2rem 0;  text-align: left;}
 /* Contenedor del Icono */
 .onsh-actions-container {  display: flex;  width: 100%;  justify-content: flex-start;}
@@ -399,7 +400,7 @@ section.nearsh-section-wrapper {  width: 100%;  background: #ffffff;  display: b
 .onsh-line-decorator.left-side { position: absolute; top: 0; left: 0; width: 12px; height: 100%; background: #11365e;  z-index: 2;}
 /* --- COLUMNA DE TEXTOS (IZQUIERDA) --- */
 .nearsh-content-col {  padding: 3.5rem 3rem 3.5rem 4rem;  display: flex; flex-direction: column;   justify-content: center;}
-.nearsh-title-fluid {  font-family: 'Syne', sans-serif; font-size: 3.8rem; font-weight: 900;color: #11365e;  letter-spacing: -1px; margin: 0 0 1.5rem 0;  line-height: 1;}
+.nearsh-title-fluid {  font-family: 'Inter', sans-serif; font-size: 3.8rem; font-weight: 700;color: #11365e;  letter-spacing: -0.02em; margin: 0 0 1.5rem 0;  line-height: 1.1;}
 .nearsh-desc-fluid {  font-size: 1.05rem;  line-height: 1.6;  color: #475569;  margin: 0 0 2rem 0;  text-align: justify;}
 /* Lista de viñetas en vertical */
 .nearsh-bullets-group {  display: flex;  flex-direction: column;  gap: 1.5rem;}
@@ -434,7 +435,7 @@ section.softura-support-fluid-row { position: relative; max-width: 1350px; width
 .supp-line-decorator.bottom-side { position: absolute; bottom: 0; left: 0; width: 100%; height: 10px;   background: #11365e;   border-radius: 5px;}
 /* --- BLOQUE SUPERIOR: TÍTULO CENTRADO --- */
 .supp-fluid-header { width: 100%; text-align: center; margin-bottom: 3.5rem;}
-.supp-fluid-title {  font-family: 'Syne', sans-serif;  font-size: 2.6rem;  font-weight: 900;  color: #11365e;  letter-spacing: -0.5px;  margin: 0;   line-height: 1.2;}
+.supp-fluid-title {  font-family: 'Inter', sans-serif;  font-size: 2.6rem;  font-weight: 700;  color: #11365e;  letter-spacing: -0.02em;  margin: 0;   line-height: 1.2;}
 /* --- BLOQUE INFERIOR: GRID INVERTIDO --- */
 .supp-fluid-body-grid {    display: grid;    grid-template-columns: 0.9fr 1.1fr;   gap: 4rem;   align-items: center;}
 /* Columna Izquierda de la Imagen (Ahora aparece primero) */
@@ -456,3 +457,127 @@ section.softura-support-fluid-row { position: relative; max-width: 1350px; width
 .softura-support-fluid-row.visible .supp-fluid-image-col img {   animation: imagenPrincipalPop 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;}
 /* --- RESPONSIVE OPTIMIZADO PARA MÓVILES --- */
 @media (max-width: 991px) {   .supp-fluid-body-grid {     grid-template-columns: 1fr;    gap: 2.5rem; } .supp-fluid-image-col {     order: 2;   }  .supp-fluid-content {      order: 1;  }  .supp-fluid-title {     font-size: 2.1rem;   }   .supp-fluid-lead,   .supp-fluid-desc {   text-align: center;    align-items: center;  }  section.softura-support-fluid-row {     padding: 2rem 1.5rem 4rem 1.5rem;       margin: 3rem auto;   }}
+
+/* Nearshoring — tipografía estandarizada (override de estilos inline) */
+.page-nearshoring h1,
+.page-nearshoring h2 {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+.page-nearshoring h1 { font-size: clamp(2.6rem, 5.5vw, 4rem) !important; line-height: 1.1 !important; }
+.page-nearshoring h2 { font-size: clamp(1.75rem, 3vw, 2.4rem) !important; line-height: 1.2 !important; }
+.page-nearshoring h3 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
+
+/* Nearshoring — rediseño visual ========================== */
+
+/* Hero */
+.nrs-hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 5vw 4rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 60%, #eef4ff 100%);
+  position: relative;
+}
+
+.nrs-hero-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.nrs-hero-badge {
+  margin-bottom: 1rem;
+}
+
+.nrs-hero-h1 {
+  margin-bottom: 1.5rem;
+}
+
+.nrs-accent,
+.nrs-hero-h1 span {
+  color: var(--blue);
+}
+
+.nrs-hero-lead {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--gray);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Ventajas / Células especializadas — mismo azul marino del home */
+.nrs-ventajas {
+  background: linear-gradient(135deg, #050b1a 0%, #0a1530 100%);
+  padding: 6rem 5vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.nrs-ventajas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 80% 50%, rgba(26, 79, 255, 0.22), transparent 60%);
+  pointer-events: none;
+}
+
+.nrs-ventajas-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+  align-items: center;
+}
+
+.nrs-ventajas-badge {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.nrs-ventajas-h2 {
+  color: #ffffff !important;
+  margin-bottom: 1.5rem;
+}
+
+.nrs-ventajas-desc {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.nrs-ventajas-repse {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-left: 3px solid rgba(255, 255, 255, 0.35);
+  padding-left: 1rem;
+}
+
+.nrs-ventajas-visual img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Decoradores — actualizar de #11365e a azul de marca */
+.onsh-line-decorator.right-side,
+.onsh-line-decorator.left-side {
+  background: var(--blue);
+}
+
+.supp-line-decorator.bottom-side {
+  background: var(--blue);
+}

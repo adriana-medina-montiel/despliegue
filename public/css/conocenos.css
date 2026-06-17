@@ -51,8 +51,18 @@
   background: linear-gradient(180deg, var(--bg) 0%, var(--soft) 100%);
 }
 .cn-section-pillars {
-  background: var(--ink);
+  background: linear-gradient(135deg, #050b1a 0%, #0a1530 100%);
   color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.cn-section-pillars::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 82% 45%, rgba(26, 79, 255, 0.22), transparent 60%);
+  pointer-events: none;
 }
 .cn-section-clients {
   background: var(--card);

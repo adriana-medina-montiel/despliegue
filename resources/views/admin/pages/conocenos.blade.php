@@ -157,20 +157,6 @@
         </a>
     </div>
 
-    {{-- Clientes --}}
-    <div class="section-row">
-        <div class="section-row-icon" style="background:#f0fdf4;color:#16a34a">
-            <i class="fas fa-building"></i>
-        </div>
-        <div class="section-row-info">
-            <h3>Clientes — Quiénes nos avalan</h3>
-            <p>Logos por sector: gobierno, educativo, TIC's e iniciativa privada.</p>
-        </div>
-        <span class="badge-ready" style="background:#f0fdf4;color:#16a34a">Listo</span>
-        <a href="{{ route('admin.conocenos.clients.edit') }}" class="edit-btn" style="background:#16a34a">
-            <i class="fas fa-pen" style="font-size:10px"></i> Editar
-        </a>
-    </div>
 
     {{-- Talento (Equipo) --}}
     <div class="section-row">

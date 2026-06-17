@@ -111,50 +111,6 @@
 </section>
 @endif
 
-@php
-$clients = $sections->get('clients');
-$clientSectors = $clients?->content('sectors', [
-    ['name' => 'Gobierno',  'tag' => 'Sector gobierno'],
-    ['name' => 'Educativo', 'tag' => 'Sector educativo'],
-    ['name' => "TIC's",     'tag' => "Sector TIC's"],
-    ['name' => 'Privado',   'tag' => 'Iniciativa privada'],
-]);
-@endphp
-@if(!$clients || $clients->is_visible)
-<section class="cn-section cn-section-clients" id="clientes">
-  <div class="cn-container">
-    <div class="cn-clients-stat rev">
-      <span class="cn-clients-stat-num">100%</span>
-      <p>Clientes satisfechos con nuestro servicio y compromiso.</p>
-    </div>
-    <header class="cn-head rev">
-      <span class="cn-label">{{ $clients?->content('badge_text', 'Confianza') }}</span>
-      <h2>{{ $clients?->content('title', 'Ellos nos avalan') }}</h2>
-      <p>{{ $clients?->content('description', 'Relaciones comerciales basadas en la confianza, en cualquier giro y modelo de negocio.') }}</p>
-    </header>
-    <div class="cn-tabs rev" id="sector-tabs" role="tablist">
-      @foreach($clientSectors as $i => $sector)
-      <button type="button" {{ $i === 0 ? 'class="active"' : '' }} data-sector="{{ $i }}">{{ $sector['name'] }}</button>
-      @endforeach
-    </div>
-    <div class="cn-panel rev" id="clients-carousel">
-      @foreach($clientSectors as $i => $sector)
-      @php $sectorLogos = $clients?->items->filter(fn($item) => (int)$item->data('sector',0) === $i) ?? collect(); @endphp
-      <div class="cn-carousel-item {{ $i === 0 ? 'active' : '' }}">
-        <p class="cn-panel-tag">{{ $sector['tag'] }}</p>
-        <div class="cn-logos">
-          @foreach($sectorLogos as $logo)
-            @php $src = cms_asset($logo->data('image') ?: ''); @endphp
-            <img src="{{ $src }}" alt="{{ $logo->data('alt') }}" loading="lazy">
-          @endforeach
-        </div>
-      </div>
-      @endforeach
-    </div>
-    <div class="cn-dots" id="clients-dots"></div>
-  </div>
-</section>
-@endif
 
 @php $equipo = $sections->get('equipo'); @endphp
 @if(!$equipo || $equipo->is_visible)
