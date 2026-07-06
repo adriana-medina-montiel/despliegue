@@ -428,6 +428,8 @@
 {{-- Sección Experiencia Integral eliminada del home --}}
 {{-- Sección CTA Contacto eliminada del home --}}
 
+<a href="#hero-section" class="boton-volver-arriba">&uarr;</a>
+
 @endsection
 
 @push('scripts')
@@ -656,5 +658,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     node.addEventListener('mouseleave',()=>{core.style.borderColor="rgba(26,79,255,0.15)";core.style.boxShadow="0 0 40px rgba(26,79,255,0.4)";coreLogo.innerHTML=defaultTitle;coreDesc.innerHTML=defaultDesc;});
   });
 });
+
 </script>
 @endpush

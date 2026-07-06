@@ -58,6 +58,7 @@ class NearshoringSeeder extends Seeder
         }
 
         // 3. Ventajas Competitivas
+
         PageSection::firstOrCreate(
             ['page_slug' => 'nearshoring', 'section_key' => 'ventajas'],
             [
@@ -97,5 +98,28 @@ class NearshoringSeeder extends Seeder
                 'is_visible' => true,
             ]
         );
+
+        // nearshoring
+        PageSection::firstOrCreate(
+            ['page_slug' => 'nearshoring', 'section_key' => 'nearsh'],
+            [
+                'content' => [
+                    'title' => 'Nearshoring',
+                    'description' => 'Trabaja codo a codo con tu equipo nearshore para una comunicación fluida y resultados rápidos.',
+                    'background_image' => 'https://url-de-imagen-original',
+                ],
+                'is_visible' => true
+            ]
+        );
+
+        PageSection::firstOrCreate(
+            ['page_slug' => 'nearshoring', 'section_key' => 'cta'],
+            ['content' => [
+                'title' => '¿Listo para potenciar tu equipo con Nearshoring?',
+                'description' => 'Contáctanos para conocer más sobre cómo podemos ayudarte.',
+                'button_text' => 'Contáctanos'
+            ], 'is_visible' => true]
+        );
+
     }
 }

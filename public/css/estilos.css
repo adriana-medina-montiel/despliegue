@@ -328,7 +328,7 @@ footer .logo{font-size:1rem}
 .form-message{  font-size:.85rem;padding:.75rem 1rem;border-radius:8px;margin:0;}
 .form-message.success{background:rgba(16,185,129,.15);color:#6ee7b7}
 .form-message.error{background:rgba(239,68,68,.15);color:#fca5a5}
-.footer-dark{ background:#010510;border-top:1px solid rgba(255,255,255,.06); color:#64748b;}
+.footer-dark{ background:#e6ecff;border-top:1px solid rgba(255,255,255,.06); color:#64748b;}
 .footer-dark .f-links a{color:#64748b}
 .footer-dark .f-links a:hover{color:#fff}
 @media(max-width:768px){ .form-row{grid-template-columns:1fr} .nav-links{gap:1rem;flex-wrap:wrap}}
